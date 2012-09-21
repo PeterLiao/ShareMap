@@ -1,0 +1,351 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		043393C4160B7C7B007C81C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393C3160B7C7B007C81C0 /* UIKit.framework */; };
+		043393C6160B7C7B007C81C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393C5160B7C7B007C81C0 /* Foundation.framework */; };
+		043393C8160B7C7B007C81C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393C7160B7C7B007C81C0 /* CoreGraphics.framework */; };
+		043393CE160B7C7B007C81C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 043393CC160B7C7B007C81C0 /* InfoPlist.strings */; };
+		043393D0160B7C7B007C81C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 043393CF160B7C7B007C81C0 /* main.m */; };
+		043393D4160B7C7B007C81C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 043393D3160B7C7B007C81C0 /* AppDelegate.m */; };
+		043393DB160B7CA8007C81C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393DA160B7CA8007C81C0 /* FacebookSDK.framework */; };
+		043393DD160B7CAF007C81C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393DC160B7CAF007C81C0 /* FacebookSDK.framework */; };
+		043393DF160B7D0C007C81C0 /* ShareMapStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */; };
+		043393E2160B7E9A007C81C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043393E1160B7E9A007C81C0 /* LoginViewController.m */; };
+		04422A9B160BD923000C4200 /* TravelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422A9A160BD923000C4200 /* TravelEvent.m */; };
+		04422A9F160BF262000C4200 /* EventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422A9E160BF262000C4200 /* EventTabBarController.m */; };
+		04422AA1160BF854000C4200 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04422AA0160BF854000C4200 /* MapKit.framework */; };
+		04422AA8160BF9BC000C4200 /* EventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AA7160BF9BC000C4200 /* EventMapViewController.m */; };
+		04422AAB160BFC74000C4200 /* PlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAA160BFC74000C4200 /* PlaceItem.m */; };
+		04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAD160C0D9E000C4200 /* CustomPlacemark.m */; };
+		04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAE160C0D9E000C4200 /* EventTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		043393BF160B7C7B007C81C0 /* ShareMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		043393C3160B7C7B007C81C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		043393C5160B7C7B007C81C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		043393C7160B7C7B007C81C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		043393CB160B7C7B007C81C0 /* ShareMap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShareMap-Info.plist"; sourceTree = "<group>"; };
+		043393CD160B7C7B007C81C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		043393CF160B7C7B007C81C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		043393D1160B7C7B007C81C0 /* ShareMap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareMap-Prefix.pch"; sourceTree = "<group>"; };
+		043393D2160B7C7B007C81C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		043393D3160B7C7B007C81C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		043393DA160B7CA8007C81C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/mac/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
+		043393DC160B7CAF007C81C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Users/mac/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShareMapStoryboard.storyboard; sourceTree = "<group>"; };
+		043393E0160B7E9A007C81C0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		043393E1160B7E9A007C81C0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		0433941A160B89CF007C81C0 /* EventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewController.h; sourceTree = "<group>"; };
+		04422A99160BD923000C4200 /* TravelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelEvent.h; sourceTree = "<group>"; };
+		04422A9A160BD923000C4200 /* TravelEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelEvent.m; sourceTree = "<group>"; };
+		04422A9D160BF262000C4200 /* EventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTabBarController.h; sourceTree = "<group>"; };
+		04422A9E160BF262000C4200 /* EventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTabBarController.m; sourceTree = "<group>"; };
+		04422AA0160BF854000C4200 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		04422AA6160BF9BC000C4200 /* EventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapViewController.h; sourceTree = "<group>"; };
+		04422AA7160BF9BC000C4200 /* EventMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventMapViewController.m; sourceTree = "<group>"; };
+		04422AA9160BFC74000C4200 /* PlaceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceItem.h; path = ../PlaceItem.h; sourceTree = "<group>"; };
+		04422AAA160BFC74000C4200 /* PlaceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceItem.m; path = ../PlaceItem.m; sourceTree = "<group>"; };
+		04422AAC160C0D9E000C4200 /* CustomPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlacemark.h; sourceTree = "<group>"; };
+		04422AAD160C0D9E000C4200 /* CustomPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlacemark.m; sourceTree = "<group>"; };
+		04422AAE160C0D9E000C4200 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		043393BC160B7C7B007C81C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04422AA1160BF854000C4200 /* MapKit.framework in Frameworks */,
+				043393DB160B7CA8007C81C0 /* FacebookSDK.framework in Frameworks */,
+				043393C4160B7C7B007C81C0 /* UIKit.framework in Frameworks */,
+				043393C6160B7C7B007C81C0 /* Foundation.framework in Frameworks */,
+				043393C8160B7C7B007C81C0 /* CoreGraphics.framework in Frameworks */,
+				043393DD160B7CAF007C81C0 /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		043393B4160B7C7B007C81C0 = {
+			isa = PBXGroup;
+			children = (
+				04422AA0160BF854000C4200 /* MapKit.framework */,
+				043393C9160B7C7B007C81C0 /* ShareMap */,
+				043393C2160B7C7B007C81C0 /* Frameworks */,
+				043393C0160B7C7B007C81C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		043393C0160B7C7B007C81C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				043393BF160B7C7B007C81C0 /* ShareMap.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		043393C2160B7C7B007C81C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				043393DA160B7CA8007C81C0 /* FacebookSDK.framework */,
+				043393DC160B7CAF007C81C0 /* FacebookSDK.framework */,
+				043393C3160B7C7B007C81C0 /* UIKit.framework */,
+				043393C5160B7C7B007C81C0 /* Foundation.framework */,
+				043393C7160B7C7B007C81C0 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		043393C9160B7C7B007C81C0 /* ShareMap */ = {
+			isa = PBXGroup;
+			children = (
+				043393D2160B7C7B007C81C0 /* AppDelegate.h */,
+				043393D3160B7C7B007C81C0 /* AppDelegate.m */,
+				043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */,
+				043393E0160B7E9A007C81C0 /* LoginViewController.h */,
+				043393E1160B7E9A007C81C0 /* LoginViewController.m */,
+				0433941A160B89CF007C81C0 /* EventTableViewController.h */,
+				04422AAE160C0D9E000C4200 /* EventTableViewController.m */,
+				04422A9D160BF262000C4200 /* EventTabBarController.h */,
+				04422A9E160BF262000C4200 /* EventTabBarController.m */,
+				04422AA6160BF9BC000C4200 /* EventMapViewController.h */,
+				04422AA7160BF9BC000C4200 /* EventMapViewController.m */,
+				04422AAC160C0D9E000C4200 /* CustomPlacemark.h */,
+				04422AAD160C0D9E000C4200 /* CustomPlacemark.m */,
+				04422A9C160BD92D000C4200 /* Model */,
+				04339425160B8D66007C81C0 /* Import */,
+				043393CA160B7C7B007C81C0 /* Supporting Files */,
+			);
+			path = ShareMap;
+			sourceTree = "<group>";
+		};
+		043393CA160B7C7B007C81C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				043393CB160B7C7B007C81C0 /* ShareMap-Info.plist */,
+				043393CC160B7C7B007C81C0 /* InfoPlist.strings */,
+				043393CF160B7C7B007C81C0 /* main.m */,
+				043393D1160B7C7B007C81C0 /* ShareMap-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04339425160B8D66007C81C0 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Import;
+			sourceTree = "<group>";
+		};
+		04422A9C160BD92D000C4200 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04422AA9160BFC74000C4200 /* PlaceItem.h */,
+				04422AAA160BFC74000C4200 /* PlaceItem.m */,
+				04422A99160BD923000C4200 /* TravelEvent.h */,
+				04422A9A160BD923000C4200 /* TravelEvent.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		043393BE160B7C7B007C81C0 /* ShareMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043393D7160B7C7B007C81C0 /* Build configuration list for PBXNativeTarget "ShareMap" */;
+			buildPhases = (
+				043393BB160B7C7B007C81C0 /* Sources */,
+				043393BC160B7C7B007C81C0 /* Frameworks */,
+				043393BD160B7C7B007C81C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareMap;
+			productName = ShareMap;
+			productReference = 043393BF160B7C7B007C81C0 /* ShareMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		043393B6160B7C7B007C81C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Mac;
+			};
+			buildConfigurationList = 043393B9160B7C7B007C81C0 /* Build configuration list for PBXProject "ShareMap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 043393B4160B7C7B007C81C0;
+			productRefGroup = 043393C0160B7C7B007C81C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				043393BE160B7C7B007C81C0 /* ShareMap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		043393BD160B7C7B007C81C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043393CE160B7C7B007C81C0 /* InfoPlist.strings in Resources */,
+				043393DF160B7D0C007C81C0 /* ShareMapStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		043393BB160B7C7B007C81C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043393D0160B7C7B007C81C0 /* main.m in Sources */,
+				043393D4160B7C7B007C81C0 /* AppDelegate.m in Sources */,
+				043393E2160B7E9A007C81C0 /* LoginViewController.m in Sources */,
+				04422A9B160BD923000C4200 /* TravelEvent.m in Sources */,
+				04422A9F160BF262000C4200 /* EventTabBarController.m in Sources */,
+				04422AA8160BF9BC000C4200 /* EventMapViewController.m in Sources */,
+				04422AAB160BFC74000C4200 /* PlaceItem.m in Sources */,
+				04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */,
+				04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		043393CC160B7C7B007C81C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				043393CD160B7C7B007C81C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		043393D5160B7C7B007C81C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		043393D6160B7C7B007C81C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		043393D8160B7C7B007C81C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mac/Documents/FacebookSDK,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareMap/ShareMap-Prefix.pch";
+				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		043393D9160B7C7B007C81C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mac/Documents/FacebookSDK,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ShareMap/ShareMap-Prefix.pch";
+				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		043393B9160B7C7B007C81C0 /* Build configuration list for PBXProject "ShareMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043393D5160B7C7B007C81C0 /* Debug */,
+				043393D6160B7C7B007C81C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		043393D7160B7C7B007C81C0 /* Build configuration list for PBXNativeTarget "ShareMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043393D8160B7C7B007C81C0 /* Debug */,
+				043393D9160B7C7B007C81C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 043393B6160B7C7B007C81C0 /* Project object */;
+}
