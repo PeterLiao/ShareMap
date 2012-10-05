@@ -17,7 +17,8 @@
 
 @synthesize placemarkList;
 @synthesize responseData = _responseData;
-@synthesize mapView;
+@synthesize mapView = _mapView;
+@synthesize searchTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,25 +33,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.mapView removeAnnotations:[mapView annotations]];
+    [_mapView removeAnnotations:[_mapView annotations]];
     placemarkList = [[NSArray alloc] init];
-    /*
-    CLLocationCoordinate2D coordinae2D;
-    coordinae2D.latitude = 24.158588;
-    coordinae2D.longitude = 120.65583;
-    
-    CustomPlacemark * placemark = [[CustomPlacemark alloc] initWithCoordinate:coordinae2D addressDictionary:nil];
-    [placemark setTitle:@"志明"];
-    [placemark setSubtitle:@"趕往路途中"];*/
-    
-    [self addPlacemark:24.158588 longitude:120.65583 title:@"志明" subTitle:@"正在趕路中"];
-    [self zoomMap];
-    //[self addPlacemarkToList:placemark];
-    
-    //[self.mapView addAnnotations:placemarkList];
+
+    [self addPlacemark:25.043119 longitude:121.509529 title:@"志明" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
+    [self addPlacemark:25.049272 longitude:121.516879 title:@"春嬌" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
 }
 
--(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile
+-(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
 {
     CLLocationCoordinate2D coordinae2D;
     coordinae2D.latitude = latitude;
@@ -59,8 +49,12 @@
     CustomPlacemark * placemark = [[CustomPlacemark alloc] initWithCoordinate:coordinae2D addressDictionary:nil];
     [placemark setTitle:title];
     [placemark setSubtitle:subTtile];
+    [placemark setStatus:status];
     
     [self addPlacemarkToList:placemark];
+    [self resetMapScope:coordinae2D];
+    [_mapView setCenterCoordinate:_mapView.centerCoordinate animated:YES];
+    [_mapView selectAnnotation:placemark animated:YES]; 
 }
 
 - (void)viewDidUnload
@@ -74,21 +68,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)addPlacemarkToList:(CustomPlacemark *)item
-{    
-    CLLocationCoordinate2D coordinae2D;
-    coordinae2D.latitude = item.latitude;
-    coordinae2D.longitude = item.longitude;
-    
-    CustomPlacemark * placemark = [[CustomPlacemark alloc] initWithCoordinate:coordinae2D addressDictionary:nil];
-    [placemark setTitle:item.title];
-    [placemark setSubtitle:item.subtitle];
-    
+-(void)addPlacemarkToList:(CustomPlacemark *)placemark
+{        
     placemarkList = [placemarkList arrayByAddingObject:placemark];
-    
-    //NSLog(@"title:%@", item.title);
-    [self.mapView addAnnotation:placemark];
-    [self.mapView setCenterCoordinate:placemark.coordinate animated:YES];
+    [_mapView addAnnotation:placemark];
 }
 
 
@@ -112,8 +95,8 @@
     self.placemarkList = [[NSArray alloc] init];
     
     // convert to JSON
-    NSError *myError = nil;
-    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    //NSError *myError = nil;
+    //NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     // show all values
     /*
@@ -126,60 +109,78 @@
         event.owner_id = [[result objectForKey:@"owner_id"] intValue];
         self.rowList = [self.rowList arrayByAddingObject:event];
     }
-    [self.mapView addAnnotations:placemarkList];*/
+    [_mapView addAnnotations:placemarkList];*/
 }
 
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_4_0)
 {
-    NSLog(@"didSelectAnnotationView title:%@", [view.annotation title]);
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSLog(@"calloutAccessoryControlTapped title:%@", [view.annotation title]);
-    /*
-    MemoryDetail *memoryDetail = ((CustomPlacemark*)view.annotation).memoryDetail;
-    MemoryViewController *memController = [[MemoryViewController alloc] initWithNibName:@"MemoryView" bundle:nil];
-    memController.memDetail = memoryDetail;
-    [self.navigationController pushViewController:memController animated:YES];
-    [memController release];
-     */
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"通知選項" message:@"" delegate:nil cancelButtonTitle:@"返回" otherButtonTitles:@"傳送導航", @"迷路求救", @"丟訊息", nil];
+    [alert show];
 }
 
-- (MKAnnotationView *)_mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    NSLog(@"viewForAnnotation>>>");
     NSString *title = annotation.title;
-    NSLog(@"viewForAnnotation: title:%@", title);
-    MKPinAnnotationView *pinView=(MKPinAnnotationView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:title];
-    
+    MKPinAnnotationView *pinView=(MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:title];
     if(pinView==nil)
         pinView=[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:title];
     
-    //if(annotation == aMarker)
+    CustomPlacemark * placemark = (CustomPlacemark *)annotation;
+    if(placemark.status == STATUS_ARRIVED)
         [pinView setPinColor:MKPinAnnotationColorGreen];
-    //else if(annotation == bMarker)
-    //    [pinView setPinColor:MKPinAnnotationColorRed];
+    else if(placemark.status == STATUS_MISSING || placemark.status == STATUS_GOING)
+        [pinView setPinColor:MKPinAnnotationColorRed];
+    else
+        [pinView setPinColor:MKPinAnnotationColorPurple];
     
     pinView.canShowCallout=YES;
     pinView.animatesDrop=YES;
-    NSLog(@"viewForAnnotation<<<");
+    pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     return pinView;
 }
 
--(void)zoomMap:
+-(void)resetMapScope:(CLLocationCoordinate2D)coordinate
 {
-    //CLLocation *location = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude]; //Get your location and create a CLLocation
-    MKCoordinateRegion region; //create a region.  No this is not a pointer
-    region.center = location.coordinate;  // set the region center to your current location
     MKCoordinateSpan span; // create a range of your view
     span.latitudeDelta = 0.0144927536 * 5/3;  // span dimensions.  I have BASE_RADIUS defined as 0.0144927536 which is equivalent to 1 mile
     span.longitudeDelta = 0.0144927536 * 5/3;  // span dimensions
+ 
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude]; //Get your location and create a CLLocation
+    
+    MKCoordinateRegion region; //create a region.  No this is not a pointer
+    region.center = location.coordinate;  // set the region center to your current location
+    
     region.span = span; // Set the region's span to the new span.
-    [mapView setRegion:region animated:YES]; // to set the map to the newly created region
+    
+    [_mapView setRegion:region animated:YES]; // to set the map to the newly created region
     //[mapView setMapType:MKMapTypeHybrid];
+}
+
+- (IBAction)doSearch:(id)sender
+{
+    CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:searchTextField.text completionHandler:^(NSArray *placemarks, NSError *error)
+    {
+        if(placemarks.count > 0)
+        {
+            NSLog(@"Found placemarks for %@",searchTextField.text);
+            CLPlacemark* placemark =  [placemarks objectAtIndex:0];
+            double latitude = placemark.location.coordinate.latitude;
+            double longitude = placemark.location.coordinate.longitude;
+            [self addPlacemark:latitude longitude:longitude title:searchTextField.text subTitle:@"約會地點" status:STATUS_TARGET];
+        }
+        else
+        {
+            NSLog(@"Found no placemarks for %@",searchTextField.text);
+        }
+    }];
+    [searchTextField resignFirstResponder];
 }
 
 @end

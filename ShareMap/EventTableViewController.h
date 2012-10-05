@@ -14,4 +14,6 @@
 }
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, retain) NSArray *rowList;
+
+- (IBAction)addEvent:(id)sender;
 @end

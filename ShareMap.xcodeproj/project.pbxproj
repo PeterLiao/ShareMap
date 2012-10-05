@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0432A99F160D6DB5003E8869 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0432A99E160D6DB5003E8869 /* CoreLocation.framework */; };
+		0432A9A7160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png in Resources */ = {isa = PBXBuildFile; fileRef = 0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */; };
 		043393C4160B7C7B007C81C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393C3160B7C7B007C81C0 /* UIKit.framework */; };
 		043393C6160B7C7B007C81C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393C5160B7C7B007C81C0 /* Foundation.framework */; };
 		043393C8160B7C7B007C81C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393C7160B7C7B007C81C0 /* CoreGraphics.framework */; };
@@ -24,10 +26,13 @@
 		04422AAB160BFC74000C4200 /* PlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAA160BFC74000C4200 /* PlaceItem.m */; };
 		04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAD160C0D9E000C4200 /* CustomPlacemark.m */; };
 		04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAE160C0D9E000C4200 /* EventTableViewController.m */; };
+		04A831DA161EA811005930DB /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A831D9161EA811005930DB /* AddEventViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		043393BF160B7C7B007C81C0 /* ShareMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0432A99E160D6DB5003E8869 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "螢幕快照 2012-09-23 上午2.14.06.png"; sourceTree = "<group>"; };
+		043393BF160B7C7B007C81C0 /* 人肉導航機!!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "人肉導航機!!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		043393C3160B7C7B007C81C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		043393C5160B7C7B007C81C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		043393C7160B7C7B007C81C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +60,8 @@
 		04422AAC160C0D9E000C4200 /* CustomPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlacemark.h; sourceTree = "<group>"; };
 		04422AAD160C0D9E000C4200 /* CustomPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlacemark.m; sourceTree = "<group>"; };
 		04422AAE160C0D9E000C4200 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
+		04A831D8161EA811005930DB /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		04A831D9161EA811005930DB /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0432A99F160D6DB5003E8869 /* CoreLocation.framework in Frameworks */,
 				04422AA1160BF854000C4200 /* MapKit.framework in Frameworks */,
 				043393DB160B7CA8007C81C0 /* FacebookSDK.framework in Frameworks */,
 				043393C4160B7C7B007C81C0 /* UIKit.framework in Frameworks */,
@@ -77,6 +85,8 @@
 		043393B4160B7C7B007C81C0 = {
 			isa = PBXGroup;
 			children = (
+				0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */,
+				0432A99E160D6DB5003E8869 /* CoreLocation.framework */,
 				04422AA0160BF854000C4200 /* MapKit.framework */,
 				043393C9160B7C7B007C81C0 /* ShareMap */,
 				043393C2160B7C7B007C81C0 /* Frameworks */,
@@ -87,7 +97,7 @@
 		043393C0160B7C7B007C81C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				043393BF160B7C7B007C81C0 /* ShareMap.app */,
+				043393BF160B7C7B007C81C0 /* 人肉導航機!!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +133,8 @@
 				04422A9C160BD92D000C4200 /* Model */,
 				04339425160B8D66007C81C0 /* Import */,
 				043393CA160B7C7B007C81C0 /* Supporting Files */,
+				04A831D8161EA811005930DB /* AddEventViewController.h */,
+				04A831D9161EA811005930DB /* AddEventViewController.m */,
 			);
 			path = ShareMap;
 			sourceTree = "<group>";
@@ -173,7 +185,7 @@
 			);
 			name = ShareMap;
 			productName = ShareMap;
-			productReference = 043393BF160B7C7B007C81C0 /* ShareMap.app */;
+			productReference = 043393BF160B7C7B007C81C0 /* 人肉導航機!!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -209,6 +221,7 @@
 			files = (
 				043393CE160B7C7B007C81C0 /* InfoPlist.strings in Resources */,
 				043393DF160B7D0C007C81C0 /* ShareMapStoryboard.storyboard in Resources */,
+				0432A9A7160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +241,7 @@
 				04422AAB160BFC74000C4200 /* PlaceItem.m in Sources */,
 				04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */,
 				04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */,
+				04A831DA161EA811005930DB /* AddEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +318,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareMap/ShareMap-Prefix.pch";
 				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "人肉導航機!!";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -319,7 +333,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareMap/ShareMap-Prefix.pch";
 				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "人肉導航機!!";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

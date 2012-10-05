@@ -15,11 +15,13 @@
     NSString * subtitle;
     double latitude;
     double longitude;
+    int status;
 }
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nonatomic) int place_id;
+@property (nonatomic) int status;
 
 @end

@@ -10,15 +10,27 @@
 #import <MapKit/MapKit.h>
 #import "CustomPlacemark.h"
 
+enum {
+    STATUS_ARRIVED = 0,
+    STATUS_GOING,
+    STATUS_MISSING,
+    STATUS_TARGET
+};
+
 @interface EventMapViewController : UIViewController<MKMapViewDelegate, NSURLConnectionDelegate>
 {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
+    IBOutlet UITextField *searchTextField;
 }
 @property (nonatomic, retain) NSArray * placemarkList;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
+@property (nonatomic, retain) UITextField *searchTextField;
 
--(void) addPlacemarkToList:(CustomPlacemark *)item;
--(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile;
+-(void)resetMapScope:(CLLocationCoordinate2D)coordinate;
+-(void)addPlacemarkToList:(CustomPlacemark *)placemark;
+-(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status;
+
+- (IBAction)doSearch:(id)sender;
 @end

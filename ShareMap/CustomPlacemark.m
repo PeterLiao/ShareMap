@@ -16,5 +16,6 @@
 @synthesize place_id;
 @synthesize latitude;
 @synthesize longitude;
+@synthesize status;
 
 @end
