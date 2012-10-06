@@ -16,7 +16,6 @@
 		043393D0160B7C7B007C81C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 043393CF160B7C7B007C81C0 /* main.m */; };
 		043393D4160B7C7B007C81C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 043393D3160B7C7B007C81C0 /* AppDelegate.m */; };
 		043393DB160B7CA8007C81C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393DA160B7CA8007C81C0 /* FacebookSDK.framework */; };
-		043393DD160B7CAF007C81C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043393DC160B7CAF007C81C0 /* FacebookSDK.framework */; };
 		043393DF160B7D0C007C81C0 /* ShareMapStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */; };
 		043393E2160B7E9A007C81C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043393E1160B7E9A007C81C0 /* LoginViewController.m */; };
 		04422A9B160BD923000C4200 /* TravelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422A9A160BD923000C4200 /* TravelEvent.m */; };
@@ -27,6 +26,13 @@
 		04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAD160C0D9E000C4200 /* CustomPlacemark.m */; };
 		04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAE160C0D9E000C4200 /* EventTableViewController.m */; };
 		04A831DA161EA811005930DB /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A831D9161EA811005930DB /* AddEventViewController.m */; };
+		CE223C2416201BBC001BA44C /* 09-chat-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C1D16201BBC001BA44C /* 09-chat-2.png */; };
+		CE223C2516201BBC001BA44C /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C1E16201BBC001BA44C /* 19-gear.png */; };
+		CE223C2616201BBC001BA44C /* 56-cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C1F16201BBC001BA44C /* 56-cloud.png */; };
+		CE223C2716201BBC001BA44C /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C2016201BBC001BA44C /* 86-camera.png */; };
+		CE223C2816201BBC001BA44C /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C2116201BBC001BA44C /* 103-map.png */; };
+		CE223C2916201BBC001BA44C /* 180-stickynote.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C2216201BBC001BA44C /* 180-stickynote.png */; };
+		CE223C2A16201BBC001BA44C /* coolpc-printershare.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223C2316201BBC001BA44C /* coolpc-printershare.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +49,6 @@
 		043393D2160B7C7B007C81C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		043393D3160B7C7B007C81C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		043393DA160B7CA8007C81C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/mac/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
-		043393DC160B7CAF007C81C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Users/mac/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShareMapStoryboard.storyboard; sourceTree = "<group>"; };
 		043393E0160B7E9A007C81C0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		043393E1160B7E9A007C81C0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -62,6 +67,13 @@
 		04422AAE160C0D9E000C4200 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
 		04A831D8161EA811005930DB /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		04A831D9161EA811005930DB /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		CE223C1D16201BBC001BA44C /* 09-chat-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "09-chat-2.png"; path = "res/09-chat-2.png"; sourceTree = "<group>"; };
+		CE223C1E16201BBC001BA44C /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear.png"; path = "res/19-gear.png"; sourceTree = "<group>"; };
+		CE223C1F16201BBC001BA44C /* 56-cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "56-cloud.png"; path = "res/56-cloud.png"; sourceTree = "<group>"; };
+		CE223C2016201BBC001BA44C /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "86-camera.png"; path = "res/86-camera.png"; sourceTree = "<group>"; };
+		CE223C2116201BBC001BA44C /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map.png"; path = "res/103-map.png"; sourceTree = "<group>"; };
+		CE223C2216201BBC001BA44C /* 180-stickynote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "180-stickynote.png"; path = "res/180-stickynote.png"; sourceTree = "<group>"; };
+		CE223C2316201BBC001BA44C /* coolpc-printershare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coolpc-printershare.png"; path = "res/coolpc-printershare.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +87,6 @@
 				043393C4160B7C7B007C81C0 /* UIKit.framework in Frameworks */,
 				043393C6160B7C7B007C81C0 /* Foundation.framework in Frameworks */,
 				043393C8160B7C7B007C81C0 /* CoreGraphics.framework in Frameworks */,
-				043393DD160B7CAF007C81C0 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */,
+				CE223C1C16201B7F001BA44C /* Resource Files */,
 				0432A99E160D6DB5003E8869 /* CoreLocation.framework */,
 				04422AA0160BF854000C4200 /* MapKit.framework */,
 				043393C9160B7C7B007C81C0 /* ShareMap */,
@@ -106,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				043393DA160B7CA8007C81C0 /* FacebookSDK.framework */,
-				043393DC160B7CAF007C81C0 /* FacebookSDK.framework */,
 				043393C3160B7C7B007C81C0 /* UIKit.framework */,
 				043393C5160B7C7B007C81C0 /* Foundation.framework */,
 				043393C7160B7C7B007C81C0 /* CoreGraphics.framework */,
@@ -168,6 +179,20 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		CE223C1C16201B7F001BA44C /* Resource Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE223C1D16201BBC001BA44C /* 09-chat-2.png */,
+				CE223C1E16201BBC001BA44C /* 19-gear.png */,
+				CE223C1F16201BBC001BA44C /* 56-cloud.png */,
+				CE223C2016201BBC001BA44C /* 86-camera.png */,
+				CE223C2116201BBC001BA44C /* 103-map.png */,
+				CE223C2216201BBC001BA44C /* 180-stickynote.png */,
+				CE223C2316201BBC001BA44C /* coolpc-printershare.png */,
+			);
+			name = "Resource Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,6 +247,13 @@
 				043393CE160B7C7B007C81C0 /* InfoPlist.strings in Resources */,
 				043393DF160B7D0C007C81C0 /* ShareMapStoryboard.storyboard in Resources */,
 				0432A9A7160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png in Resources */,
+				CE223C2416201BBC001BA44C /* 09-chat-2.png in Resources */,
+				CE223C2516201BBC001BA44C /* 19-gear.png in Resources */,
+				CE223C2616201BBC001BA44C /* 56-cloud.png in Resources */,
+				CE223C2716201BBC001BA44C /* 86-camera.png in Resources */,
+				CE223C2816201BBC001BA44C /* 103-map.png in Resources */,
+				CE223C2916201BBC001BA44C /* 180-stickynote.png in Resources */,
+				CE223C2A16201BBC001BA44C /* coolpc-printershare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

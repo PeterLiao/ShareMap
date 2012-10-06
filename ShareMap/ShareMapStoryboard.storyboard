@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1fv-oB-XcJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1fv-oB-XcJ">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
@@ -154,7 +154,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="分享" id="QbG-PN-1kJ"/>
+                    <tabBarItem key="tabBarItem" title="分享" image="56-cloud.png" id="QbG-PN-1kJ"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1443" y="778"/>
@@ -176,7 +176,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="朋友" id="1Da-nq-A0o"/>
+                    <tabBarItem key="tabBarItem" title="朋友" image="09-chat-2.png" id="1Da-nq-A0o"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
             </objects>
@@ -192,7 +192,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="拍照" id="ZuV-sm-chE"/>
+                    <tabBarItem key="tabBarItem" title="拍照" image="86-camera.png" id="ZuV-sm-chE"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
             </objects>
@@ -236,7 +236,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="地圖" id="5VR-ie-Rl0"/>
+                    <tabBarItem key="tabBarItem" title="地圖" image="103-map.png" id="5VR-ie-Rl0"/>
                     <connections>
                         <outlet property="mapView" destination="Ddh-oG-1Er" id="998-e4-nU3"/>
                         <outlet property="searchTextField" destination="ZQF-f0-k5x" id="D77-kG-mYG"/>
@@ -283,6 +283,41 @@
             <point key="canvasLocation" x="-171" y="453"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="09-chat-2.png" width="24" height="22"/>
+        <image name="103-map.png" width="26" height="21"/>
+        <image name="56-cloud.png" width="24" height="16"/>
+        <image name="86-camera.png" width="24" height="18"/>
+    </resources>
+    <classes>
+        <class className="AddEventViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEventViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doCancelView:"/>
+            </relationships>
+        </class>
+        <class className="EventMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doSearch:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="EventTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTabBarController.h"/>
+        </class>
+        <class className="EventTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addEvent:"/>
+                <relationship kind="action" name="doEvent:"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
