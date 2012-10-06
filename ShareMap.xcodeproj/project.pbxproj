@@ -96,13 +96,13 @@
 		043393B4160B7C7B007C81C0 = {
 			isa = PBXGroup;
 			children = (
-				0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */,
-				CE223C1C16201B7F001BA44C /* Resource Files */,
 				0432A99E160D6DB5003E8869 /* CoreLocation.framework */,
-				04422AA0160BF854000C4200 /* MapKit.framework */,
-				043393C9160B7C7B007C81C0 /* ShareMap */,
 				043393C2160B7C7B007C81C0 /* Frameworks */,
+				04422AA0160BF854000C4200 /* MapKit.framework */,
 				043393C0160B7C7B007C81C0 /* Products */,
+				CE223C1C16201B7F001BA44C /* Resource Files */,
+				043393C9160B7C7B007C81C0 /* ShareMap */,
+				0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,11 +183,11 @@
 			isa = PBXGroup;
 			children = (
 				CE223C1D16201BBC001BA44C /* 09-chat-2.png */,
+				CE223C2116201BBC001BA44C /* 103-map.png */,
+				CE223C2216201BBC001BA44C /* 180-stickynote.png */,
 				CE223C1E16201BBC001BA44C /* 19-gear.png */,
 				CE223C1F16201BBC001BA44C /* 56-cloud.png */,
 				CE223C2016201BBC001BA44C /* 86-camera.png */,
-				CE223C2116201BBC001BA44C /* 103-map.png */,
-				CE223C2216201BBC001BA44C /* 180-stickynote.png */,
 				CE223C2316201BBC001BA44C /* coolpc-printershare.png */,
 			);
 			name = "Resource Files";

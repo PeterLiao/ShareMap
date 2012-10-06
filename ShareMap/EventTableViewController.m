@@ -148,6 +148,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         TravelEvent *event = [self.rowList objectAtIndex:[indexPath row]];
+        UIImage *image = [UIImage imageNamed:@"res/gathering.jpg"];
+        cell.imageView.image = image;
         [[cell textLabel] setText:event.name];
         [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@", event.description]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
