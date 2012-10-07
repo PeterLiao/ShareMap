@@ -394,6 +394,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addEvent:"/>
+                <relationship kind="action" name="doEvent:"/>
             </relationships>
         </class>
         <class className="FaceViewController" superclassName="UIViewController">

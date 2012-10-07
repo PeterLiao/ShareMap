@@ -437,6 +437,10 @@
     
     
     [self autoMovekeyBoard:0];
+    // Roger Liu: Add Toolbar when keyboard remove.
+    UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:TOOLBARTAG];
+	toolbar.frame = CGRectMake(0.0f, (float)(323.0f), 320.0f, 44.0f);
+
 }
 
 
