@@ -98,7 +98,7 @@
     
     
 	self.title = @"IM通信";
-	//[self openUDPServer];
+	[self openUDPServer];
 	
 	[self.messageTextField setText:self.messageString];
 	[self.chatTableView reloadData];
@@ -107,15 +107,38 @@
 //建立基于UDP的Socket连接
 -(void)openUDPServer{
 	//初始化udp
-	GCDAsyncUdpSocket *tempSocket=[GCDAsyncUdpSocket alloc] ;
+    
+	GCDAsyncUdpSocket *tempSocket=[[GCDAsyncUdpSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
 	self.udpSocket=tempSocket;
 
 	//绑定端口
 	NSError *error = nil;
-	[self.udpSocket bindToPort:4333 error:&error];
+//	/[self.udpSocket bindToPort:4333 error:&error];
+    if (![self.udpSocket bindToPort:4333 error:&error])
+    {
+        NSLog(@"Error binding: %@", [error description]);
+        return;
+    }
+    [self.udpSocket enableBroadcast:YES error:&error];
+    if (error != nil)
+    {
+        NSLog(@"Error enableing broadcast: %@", [error description]);
+        return;
+    }
+
     [self.udpSocket joinMulticastGroup:@"224.0.0.1" error:&error];
+       	//启动接收线程
+    if (error != nil)
+    {
+        NSLog(@"Error joinMulticastGroup: %@", [error description]);
+        return;
+    }
     
-   	//启动接收线程
+    
+    if (![self.udpSocket beginReceiving:&error])
+    {
+        NSLog(@"Error receiving: %@", [error description]);
+    }
 	//[self.udpSocket];
     
 }
@@ -168,16 +191,14 @@
 {
     
 	NSDate *nowTime = [NSDate date];
-	
 	NSMutableString *sendString=[NSMutableString stringWithCapacity:100];
 	[sendString appendString:message];
 	//开始发送
-//	void res = [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
+//	BOOL res = [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
     [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
 								 toHost:@"224.0.0.1"
 								   port:4333
 							withTimeout:-1
-                
                                     tag:0];
     
     
@@ -280,11 +301,19 @@
 
 #pragma mark -
 #pragma mark UDP Delegate Methods
-- (BOOL)onUdpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data
+      fromAddress:(NSData *)address withFilterContext:(id)filterContext
 {
+
     
-    NSLog(@"host---->%@",host);
+    NSLog(@"host---->%@",address);
+    NSError *error = nil;
     //[self.udpSocket receiveWithTimeout:-1 tag:0];
+    if (![self.udpSocket beginReceiving:&error])
+    {
+        NSLog(@"Error receiving: %@", [error description]);
+    }
    	//接收到数据回调，用泡泡VIEW显示出来
 	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
     NSLog(@"%@",info);
@@ -298,8 +327,8 @@
 	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
 							  atScrollPosition: UITableViewScrollPositionBottom
 									  animated:YES];
-	//已经处理完毕
-	return YES;
+
+
 }
 
 - (void)onUdpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error
