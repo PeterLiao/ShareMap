@@ -26,6 +26,10 @@
 {
 	self = [super initWithFrame:frame];
 	if (self != nil) {
+        if(mapView){
+            mapView.delegate = nil;
+            mapView = nil;
+        }
 		mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 		mapView.showsUserLocation = YES;
 		[mapView setDelegate:self];
@@ -97,6 +101,7 @@
 }
 
 -(void) centerMap {
+    if (routes.count == 0) return;
 	MKCoordinateRegion region;
     
 	CLLocationDegrees maxLat = -90;
@@ -142,6 +147,12 @@
 }
 
 -(void) updateRouteView {
+    if (routes.count == 0){
+        UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Message" message:@"沒有可到達的路徑" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [av show];
+        routeView.image = nil;
+        return;
+    }
 	CGContextRef context = 	CGBitmapContextCreate(nil,
 												  routeView.frame.size.width,
 												  routeView.frame.size.height,
