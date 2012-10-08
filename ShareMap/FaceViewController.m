@@ -39,7 +39,6 @@
         [temp addObject:dicFace];
     }
     self.phraseArray = temp;
-	[temp release];
     [self showEmojiView];
     
 }
@@ -73,10 +72,10 @@
 
 
 - (void)dealloc {
-	[_chatViewController release];
-	[_phraseArray release];
-    [_faceScrollView release];
-    [super dealloc];
+//	[_chatViewController release];
+//	[_phraseArray release];
+//    [_faceScrollView release];
+//    [super dealloc];
 }
 
 

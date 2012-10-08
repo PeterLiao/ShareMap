@@ -117,21 +117,21 @@
     if (![self.udpSocket bindToPort:4333 error:&error])
     {
         NSLog(@"Error binding: %@", [error description]);
-        return;
+        //return;
     }
-    [self.udpSocket enableBroadcast:YES error:&error];
-    if (error != nil)
-    {
-        NSLog(@"Error enableing broadcast: %@", [error description]);
-        return;
-    }
+//    [self.udpSocket enableBroadcast:YES error:&error];
+//    if (error != nil)
+//    {
+//        NSLog(@"Error enabling broadcast: %@", [error description]);
+//        //return;
+//    }
 
     [self.udpSocket joinMulticastGroup:@"224.0.0.1" error:&error];
        	//启动接收线程
     if (error != nil)
     {
         NSLog(@"Error joinMulticastGroup: %@", [error description]);
-        return;
+        //return;
     }
     
     
@@ -235,18 +235,18 @@
 }
 
 
-//-(IBAction)showPhraseInfo:(id)sender
-//{
-//    self.messageString =[NSMutableString stringWithFormat:@"%@",self.messageTextField.text];
-//	[self.messageTextField resignFirstResponder];
-//	if (self.phraseViewController == nil) {
-//		FaceViewController *temp = [[FaceViewController alloc] initWithNibName:@"FaceViewController" bundle:nil];
-//		self.phraseViewController = temp;
-//
-//	}
-//	[self presentModalViewController:self.phraseViewController animated:YES];
-//}
-//
+-(IBAction)showPhraseInfo:(id)sender
+{
+    self.messageString =[NSMutableString stringWithFormat:@"%@",self.messageTextField.text];
+	[self.messageTextField resignFirstResponder];
+	if (self.phraseViewController == nil) {
+		FaceViewController *temp = [[FaceViewController alloc] initWithNibName:@"FaceViewController" bundle:nil];
+		self.phraseViewController = temp;
+
+	}
+	[self presentModalViewController:self.phraseViewController animated:YES];
+}
+
 
 /*
  生成泡泡UIView

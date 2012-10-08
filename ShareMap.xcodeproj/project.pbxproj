@@ -259,6 +259,8 @@
 		CEC249AD1622C3DF00CE7BD6 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2499E1621A65C00CE7BD6 /* Place.m */; };
 		CEC249B31622E5E200CE7BD6 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B916230A9200CE7BD6 /* PhotoViewController.m */; };
+		CEC249C0162354D200CE7BD6 /* FaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */; };
+		CEC249C51623564D00CE7BD6 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2497F1621117D00CE7BD6 /* FaceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -538,6 +540,7 @@
 		CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = RegexKitLite/RegexKitLite.m; sourceTree = "<group>"; };
 		CEC249B816230A9000CE7BD6 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CEC249B916230A9200CE7BD6 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -594,6 +597,7 @@
 		043393C9160B7C7B007C81C0 /* ShareMap */ = {
 			isa = PBXGroup;
 			children = (
+				CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */,
 				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
 				CEC2498D1621221D00CE7BD6 /* ChatCustomCell.xib */,
 				CEC2499D1621A65B00CE7BD6 /* Place.h */,
@@ -1199,6 +1203,7 @@
 				CEC24996162170E300CE7BD6 /* default_head_online.png in Resources */,
 				CEC24997162170E300CE7BD6 /* face_test.png in Resources */,
 				CEC24998162170E300CE7BD6 /* senditem.png in Resources */,
+				CEC249C0162354D200CE7BD6 /* FaceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,6 +1214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC249C51623564D00CE7BD6 /* FaceViewController.m in Sources */,
 				CEC249B31622E5E200CE7BD6 /* RegexKitLite.m in Sources */,
 				CEC249AD1622C3DF00CE7BD6 /* Place.m in Sources */,
 				043393D0160B7C7B007C81C0 /* main.m in Sources */,
