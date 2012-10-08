@@ -254,6 +254,10 @@
 		CEC24996162170E300CE7BD6 /* default_head_online.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC24993162170E300CE7BD6 /* default_head_online.png */; };
 		CEC24997162170E300CE7BD6 /* face_test.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC24994162170E300CE7BD6 /* face_test.png */; };
 		CEC24998162170E300CE7BD6 /* senditem.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC24995162170E300CE7BD6 /* senditem.png */; };
+		CEC249A61622B86E00CE7BD6 /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249A51622B86E00CE7BD6 /* PlaceMark.m */; };
+		CEC249A91622B8D600CE7BD6 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249A81622B8D600CE7BD6 /* MapView.m */; };
+		CEC249AD1622C3DF00CE7BD6 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2499E1621A65C00CE7BD6 /* Place.m */; };
+		CEC249B31622E5E200CE7BD6 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -523,6 +527,14 @@
 		CEC24993162170E300CE7BD6 /* default_head_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_head_online.png; sourceTree = "<group>"; };
 		CEC24994162170E300CE7BD6 /* face_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_test.png; sourceTree = "<group>"; };
 		CEC24995162170E300CE7BD6 /* senditem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = senditem.png; sourceTree = "<group>"; };
+		CEC2499D1621A65B00CE7BD6 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		CEC2499E1621A65C00CE7BD6 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		CEC249A41622B86D00CE7BD6 /* PlaceMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMark.h; sourceTree = "<group>"; };
+		CEC249A51622B86E00CE7BD6 /* PlaceMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMark.m; sourceTree = "<group>"; };
+		CEC249A71622B8D500CE7BD6 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		CEC249A81622B8D600CE7BD6 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		CEC249B11622E57F00CE7BD6 /* RegexKitLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = RegexKitLite/RegexKitLite.h; sourceTree = "<group>"; };
+		CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = RegexKitLite/RegexKitLite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -579,10 +591,17 @@
 		043393C9160B7C7B007C81C0 /* ShareMap */ = {
 			isa = PBXGroup;
 			children = (
+				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
 				CEC2498D1621221D00CE7BD6 /* ChatCustomCell.xib */,
+				CEC2499D1621A65B00CE7BD6 /* Place.h */,
+				CEC2499E1621A65C00CE7BD6 /* Place.m */,
 				04A831D8161EA811005930DB /* AddEventViewController.h */,
 				CEC2498A162121F800CE7BD6 /* ChatCustomCell.h */,
 				CEC2498B162121F800CE7BD6 /* ChatCustomCell.m */,
+				CEC249A41622B86D00CE7BD6 /* PlaceMark.h */,
+				CEC249A51622B86E00CE7BD6 /* PlaceMark.m */,
+				CEC249A71622B8D500CE7BD6 /* MapView.h */,
+				CEC249A81622B8D600CE7BD6 /* MapView.m */,
 				04A831D9161EA811005930DB /* AddEventViewController.m */,
 				043393D2160B7C7B007C81C0 /* AppDelegate.h */,
 				043393D3160B7C7B007C81C0 /* AppDelegate.m */,
@@ -888,6 +907,15 @@
 			path = res/Face;
 			sourceTree = "<group>";
 		};
+		CEC249A016228A0200CE7BD6 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				CEC249B11622E57F00CE7BD6 /* RegexKitLite.h */,
+				CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */,
+			);
+			name = RegexKitLite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1176,6 +1204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC249B31622E5E200CE7BD6 /* RegexKitLite.m in Sources */,
+				CEC249AD1622C3DF00CE7BD6 /* Place.m in Sources */,
 				043393D0160B7C7B007C81C0 /* main.m in Sources */,
 				043393D4160B7C7B007C81C0 /* AppDelegate.m in Sources */,
 				043393E2160B7E9A007C81C0 /* LoginViewController.m in Sources */,
@@ -1189,6 +1219,8 @@
 				CEC249791621051C00CE7BD6 /* ChatViewController.m in Sources */,
 				CEC24984162116E500CE7BD6 /* AsyncUdpSocket.m in Sources */,
 				CEC2498C162121F800CE7BD6 /* ChatCustomCell.m in Sources */,
+				CEC249A61622B86E00CE7BD6 /* PlaceMark.m in Sources */,
+				CEC249A91622B8D600CE7BD6 /* MapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1297,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareMap/ShareMap-Prefix.pch";
 				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "人肉導航機!!";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1280,6 +1313,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareMap/ShareMap-Prefix.pch";
 				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "人肉導航機!!";
 				WRAPPER_EXTENSION = app;
 			};

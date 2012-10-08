@@ -36,8 +36,25 @@
     [_mapView removeAnnotations:[_mapView annotations]];
     placemarkList = [[NSArray alloc] init];
 
-    [self addPlacemark:25.043119 longitude:121.509529 title:@"志明" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
-    [self addPlacemark:25.049272 longitude:121.516879 title:@"春嬌" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
+    MapView* mapView = [[MapView alloc] initWithFrame:
+						 CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:mapView];
+    Place* home = [[Place alloc] init];
+	home.name = @"Home";
+	home.description = @"Sweet home";
+	home.latitude = 25.043119;
+	home.longitude = 121.509529;
+    
+	Place* office = [[Place alloc] init];
+	office.name = @"Office";
+	office.description = @"Bad office";
+	office.latitude = 25.049272;
+	office.longitude = 121.516879;
+    
+    [mapView showRouteFrom:home to:office];
+    [self addPlacemark:25.043119 longitude:121.509529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
+    [self addPlacemark:25.049272 longitude:121.516879 title:@"Miniko" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
+
 }
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status

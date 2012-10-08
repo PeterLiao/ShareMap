@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "CustomPlacemark.h"
+#import "MapView.h"
+#import "Place.h"
 
 enum {
     STATUS_ARRIVED = 0,
