@@ -50,8 +50,11 @@
 	NSInteger len = [encoded length];
 	NSInteger index = 0;
 	NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *array2 = [[NSMutableArray alloc] init];
+    NSMutableArray *array3 = [[NSMutableArray alloc] init];
 	NSInteger lat=0;
 	NSInteger lng=0;
+    NSInteger turn=0;
 	while (index < len) {
 		NSInteger b;
 		NSInteger shift = 0;
@@ -76,18 +79,40 @@
 		NSNumber *longitude = [[NSNumber alloc] initWithFloat:lng * 1e-5];
 		printf("[%f,", [latitude doubleValue]);
 		printf("%f]", [longitude doubleValue]);
+        
 		CLLocation *loc = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]] ;
+        
+        // calculate distance between them
+        //CLLocationDistance meters = [newLocation distanceFromLocation:oldLocation];
+        
 		[array addObject:loc];
+        [array2 addObject:latitude];
+        [array3 addObject:longitude];
+        
 	}
-	
+    
+	for(int i = 1; i < array2.count; i++){
+        // calculate distance between them
+        CLLocation *oldLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i-1] floatValue] longitude:[[array3 objectAtIndex:i-1] floatValue]] ;
+        CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i] floatValue] longitude:[[array3 objectAtIndex:i] floatValue]] ;
+        CLLocationDistance meters = [newLocation distanceFromLocation:oldLocation];
+//        NSLog(@"i=%@",[array2 objectAtIndex:i]);
+        if (meters != 0){
+            turn++;
+            NSLog(@"meters=%f",meters);
+        }
+    }
+    NSLog(@"total turn=%d",turn);
 	return array;
 }
 
 -(NSArray*) calculateRoutesFrom:(CLLocationCoordinate2D) f to: (CLLocationCoordinate2D) t {
+//    CLLocationCoordinate2D currentLocation = [self getCurrentLocation];  // Use to get current location
+    //Or @"http://maps.google.com/maps?saddr=Current+Location&daddr=%@", it need to localize the Current+Location string. 
 	NSString* saddr = [NSString stringWithFormat:@"%f,%f", f.latitude, f.longitude];
 	NSString* daddr = [NSString stringWithFormat:@"%f,%f", t.latitude, t.longitude];
 	
-	NSString* apiUrlStr = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@", saddr, daddr];
+	NSString* apiUrlStr = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&dirflg=w", saddr, daddr];
 	NSURL* apiUrl = [NSURL URLWithString:apiUrlStr];
 	NSLog(@"api url: %@", apiUrl);
 
