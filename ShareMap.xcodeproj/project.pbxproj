@@ -258,6 +258,7 @@
 		CEC249A91622B8D600CE7BD6 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249A81622B8D600CE7BD6 /* MapView.m */; };
 		CEC249AD1622C3DF00CE7BD6 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2499E1621A65C00CE7BD6 /* Place.m */; };
 		CEC249B31622E5E200CE7BD6 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B916230A9200CE7BD6 /* PhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -535,6 +536,8 @@
 		CEC249A81622B8D600CE7BD6 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		CEC249B11622E57F00CE7BD6 /* RegexKitLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = RegexKitLite/RegexKitLite.h; sourceTree = "<group>"; };
 		CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = RegexKitLite/RegexKitLite.m; sourceTree = "<group>"; };
+		CEC249B816230A9000CE7BD6 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		CEC249B916230A9200CE7BD6 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -613,6 +616,8 @@
 				04422AAD160C0D9E000C4200 /* CustomPlacemark.m */,
 				04422AA6160BF9BC000C4200 /* EventMapViewController.h */,
 				04422AA7160BF9BC000C4200 /* EventMapViewController.m */,
+				CEC249B816230A9000CE7BD6 /* PhotoViewController.h */,
+				CEC249B916230A9200CE7BD6 /* PhotoViewController.m */,
 				04422A9D160BF262000C4200 /* EventTabBarController.h */,
 				04422A9E160BF262000C4200 /* EventTabBarController.m */,
 				0433941A160B89CF007C81C0 /* EventTableViewController.h */,
@@ -1221,6 +1226,7 @@
 				CEC2498C162121F800CE7BD6 /* ChatCustomCell.m in Sources */,
 				CEC249A61622B86E00CE7BD6 /* PlaceMark.m in Sources */,
 				CEC249A91622B8D600CE7BD6 /* MapView.m in Sources */,
+				CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

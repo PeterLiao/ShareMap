@@ -88,7 +88,7 @@
 	NSLog(@"api url: %@", apiUrl);
 
     NSError *error = nil;
-    NSLog(@"api url");
+
     NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl encoding:NSUTF8StringEncoding error:&error];
     
 	NSString* encodedPoints = [apiResponse stringByMatching:@"points:\\\"([^\\\"]*)\\\"" capture:1L];
