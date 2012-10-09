@@ -354,54 +354,6 @@
         <image name="86-camera.png" width="24" height="18"/>
         <image name="IMG_0972.JPG" width="2448" height="3264"/>
     </resources>
-    <classes>
-        <class className="AddEventViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEventViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doCancelView:"/>
-            </relationships>
-        </class>
-        <class className="ChatViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChatViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sendMessage_Click:"/>
-                <relationship kind="action" name="showPhraseInfo:"/>
-                <relationship kind="outlet" name="chatTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="messageTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phraseViewController" candidateClass="FaceViewController"/>
-            </relationships>
-        </class>
-        <class className="EventMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doSearch:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="EventTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTabBarController.h"/>
-        </class>
-        <class className="EventTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addEvent:"/>
-            </relationships>
-        </class>
-        <class className="FaceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FaceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissMyselfAction:"/>
-                <relationship kind="outlet" name="faceScrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-        </class>
-        <class className="PhotoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

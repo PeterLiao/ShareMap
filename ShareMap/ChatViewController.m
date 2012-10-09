@@ -95,9 +95,11 @@
 -(void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:YES];
     
+
+    [self.navigationController setTitle:@"Test"];
+
     
-    
-	self.title = @"IM通信";
+
 	[self openUDPServer];
 	
 	[self.messageTextField setText:self.messageString];
@@ -574,5 +576,6 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 @end
