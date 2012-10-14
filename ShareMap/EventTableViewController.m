@@ -18,6 +18,7 @@
 
 @synthesize responseData = _responseData;
 @synthesize rowList = _rowList;
+@synthesize connStatus = _connStatus;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,46 +29,49 @@
     return self;
 }
 
+-(void)reloadEvent
+{
+    _responseData = [NSMutableData data];
+    _connStatus = STATUS_CONN_SUCCESS;
+    NSURLRequest *request = [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:@"http://localhost:3000/travel_event/"]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if(!conn)
+    {
+        _connStatus = STATUS_CONN_FAIL;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //NSURL *apiUrl = [NSURL URLWithString:@"http://localhost:3000/travel_event/"];
-    //NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl];
+    [self reloadEvent];
+}
 
-    
-    self.responseData = [NSMutableData data];
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:@"http://localhost:3000/travel_event/"]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    
-    // convert to JSON
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"viewWillAppear");
+    [self reloadEvent];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
+    [_responseData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
+    NSLog(@"didReceiveData");
+    [_responseData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
+    _connStatus = STATUS_CONN_FAIL;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+    NSLog(@"Received %d bytes of data",[self.responseData length]);
     
     self.rowList = [[NSArray alloc] init];
     
@@ -85,6 +89,7 @@
         event.owner_id = [[result objectForKey:@"owner_id"] intValue];
         self.rowList = [self.rowList arrayByAddingObject:event];
     }
+    _connStatus = STATUS_CONN_SUCCESS;
     [self.tableView reloadData];
     /*
     for(id key in res) {
@@ -138,9 +143,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self.rowList count] > 0)
+    if([self.rowList count] > 0 && _connStatus == STATUS_CONN_SUCCESS)
     {
-        static NSString *CellIdentifier = @"Cell";
+        static NSString *CellIdentifier = @"LoadOKCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -151,6 +156,16 @@
         [[cell textLabel] setText:event.name];
         [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@", event.description]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return cell;
+    }
+    else if(_connStatus == STATUS_CONN_FAIL)
+    {
+        static NSString *CellIdentifier = @"LoadFailCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        [[cell detailTextLabel] setText:@"資料讀取失敗!"];
         return cell;
     }
     else

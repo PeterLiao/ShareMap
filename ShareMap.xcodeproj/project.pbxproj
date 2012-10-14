@@ -566,6 +566,7 @@
 			children = (
 				043393C2160B7C7B007C81C0 /* Frameworks */,
 				043393C0160B7C7B007C81C0 /* Products */,
+				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
 				CE223C1C16201B7F001BA44C /* Resource Files */,
 				043393C9160B7C7B007C81C0 /* ShareMap */,
 				0432A9A6160E3797003E8869 /* 螢幕快照 2012-09-23 上午2.14.06.png */,
@@ -597,18 +598,18 @@
 		043393C9160B7C7B007C81C0 /* ShareMap */ = {
 			isa = PBXGroup;
 			children = (
+				043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */,
 				CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */,
-				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
 				CEC2498D1621221D00CE7BD6 /* ChatCustomCell.xib */,
 				CEC2499D1621A65B00CE7BD6 /* Place.h */,
 				CEC2499E1621A65C00CE7BD6 /* Place.m */,
-				04A831D8161EA811005930DB /* AddEventViewController.h */,
 				CEC2498A162121F800CE7BD6 /* ChatCustomCell.h */,
 				CEC2498B162121F800CE7BD6 /* ChatCustomCell.m */,
 				CEC249A41622B86D00CE7BD6 /* PlaceMark.h */,
 				CEC249A51622B86E00CE7BD6 /* PlaceMark.m */,
 				CEC249A71622B8D500CE7BD6 /* MapView.h */,
 				CEC249A81622B8D600CE7BD6 /* MapView.m */,
+				04A831D8161EA811005930DB /* AddEventViewController.h */,
 				04A831D9161EA811005930DB /* AddEventViewController.m */,
 				043393D2160B7C7B007C81C0 /* AppDelegate.h */,
 				043393D3160B7C7B007C81C0 /* AppDelegate.m */,
@@ -626,14 +627,13 @@
 				04422A9E160BF262000C4200 /* EventTabBarController.m */,
 				0433941A160B89CF007C81C0 /* EventTableViewController.h */,
 				04422AAE160C0D9E000C4200 /* EventTableViewController.m */,
-				CE223C3316202632001BA44C /* Face */,
 				CEC2497E1621117D00CE7BD6 /* FaceViewController.h */,
 				CEC2497F1621117D00CE7BD6 /* FaceViewController.m */,
-				04339425160B8D66007C81C0 /* Import */,
 				043393E0160B7E9A007C81C0 /* LoginViewController.h */,
 				043393E1160B7E9A007C81C0 /* LoginViewController.m */,
+				CE223C3316202632001BA44C /* Face */,
+				04339425160B8D66007C81C0 /* Import */,
 				04422A9C160BD92D000C4200 /* Model */,
-				043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */,
 				043393CA160B7C7B007C81C0 /* Supporting Files */,
 			);
 			path = ShareMap;
@@ -923,6 +923,7 @@
 				CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */,
 			);
 			name = RegexKitLite;
+			path = ShareMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
