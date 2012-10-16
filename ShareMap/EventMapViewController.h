@@ -11,6 +11,10 @@
 #import "CustomPlacemark.h"
 #import "MapView.h"
 #import "Place.h"
+#import "QuartzCore/CAShapeLayer.h"
+
+#import "RegexKitLite/RegexKitLite.h"
+#import "PlaceMark.h"
 
 enum {
     STATUS_ARRIVED = 0,
@@ -24,16 +28,23 @@ enum {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
     IBOutlet UITextField *searchTextField;
-    CALayer *pulseLayer_;
+    CAShapeLayer *pulseLayer_;
+    UIImageView* routeView;
+	NSArray* routes;
+    UIColor* lineColor;
 }
+
 @property (nonatomic, retain) NSArray * placemarkList;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (nonatomic, retain) UITextField *searchTextField;
+@property (nonatomic, retain) CAShapeLayer *pulseLayer_;
+@property (nonatomic, retain) UIColor* lineColor;
 
 -(void)resetMapScope:(CLLocationCoordinate2D)coordinate;
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark;
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status;
+-(void) showRouteFrom: (Place*) f to:(Place*) t;
 
 - (IBAction)doSearch:(id)sender;
 @end

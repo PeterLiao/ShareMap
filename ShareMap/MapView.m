@@ -21,6 +21,7 @@
 @implementation MapView
 
 @synthesize lineColor;
+@synthesize mapView = _mapView;
 
 - (id) initWithFrame:(CGRect) frame
 {

@@ -23,6 +23,7 @@
 }
 
 @property (nonatomic, retain) UIColor* lineColor;
+@property (nonatomic, retain) MKMapView * mapView;
 
 -(void) showRouteFrom: (Place*) f to:(Place*) t;
 
