@@ -24,6 +24,7 @@ enum {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
     IBOutlet UITextField *searchTextField;
+    CALayer *pulseLayer_;
 }
 @property (nonatomic, retain) NSArray * placemarkList;
 @property (nonatomic, strong) NSMutableData *responseData;

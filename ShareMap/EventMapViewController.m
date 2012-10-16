@@ -8,6 +8,9 @@
 
 #import "EventMapViewController.h"
 #import "CustomPlacemark.h"
+#import "QuartzCore/CAAnimation.h"
+#import "QuartzCore/CAMediaTimingFunction.h"
+#import "UsefulMacros.h"
 
 @interface EventMapViewController ()
 
@@ -36,25 +39,51 @@
     [_mapView removeAnnotations:[_mapView annotations]];
     placemarkList = [[NSArray alloc] init];
 
-    MapView* mapView = [[MapView alloc] initWithFrame:
-						 CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [self.view addSubview:mapView];
-    Place* home = [[Place alloc] init];
-	home.name = @"Home";
-	home.description = @"Sweet home";
-	home.latitude = 25.043119;
-	home.longitude = 121.509529;
     
-	Place* office = [[Place alloc] init];
-	office.name = @"Office";
-	office.description = @"Bad office";
-	office.latitude = 25.049272;
-	office.longitude = 121.516879;
+    pulseLayer_ = [CALayer layer];
+    [_mapView.layer addSublayer:pulseLayer_];
     
-    [mapView showRouteFrom:home to:office];
+    self.view = _mapView;
+//    MapView* mapView = [[MapView alloc] initWithFrame:
+//						 CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//    [self.view addSubview:mapView];
+//    Place* home = [[Place alloc] init];
+//	home.name = @"Home";
+//	home.description = @"Sweet home";
+//	home.latitude = 25.043119;
+//	home.longitude = 121.509529;
+//    
+//	Place* office = [[Place alloc] init];
+//	office.name = @"Office";
+//	office.description = @"Bad office";
+//	office.latitude = 25.049272;
+//	office.longitude = 121.516879;
+//    
+//    [mapView showRouteFrom:home to:office];
     [self addPlacemark:25.043119 longitude:121.509529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
     [self addPlacemark:25.049272 longitude:121.516879 title:@"Miniko" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
 
+
+}
+
+-(void)drawInContext:(CGContextRef)ctx {
+    NSLog(@"CALayerBezierPath - drawInContext");
+    UIGraphicsPushContext(ctx);
+    CGPoint origin = CGPointMake(100, 20);
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    // Upper tip
+    [path moveToPoint:CGPointMake(origin.x+20, origin.y-20)];
+    // Arrow head
+    [path addLineToPoint:CGPointMake(origin.x, origin.y)];
+    // Lower tip
+    [path addLineToPoint:CGPointMake(origin.x+20, origin.y+20)];
+    
+    [[UIColor redColor] set];
+    // The line thickness needs to be proportional to the distance from the arrow head to the tips.  Making it half seems about right.
+    [path setLineWidth:10];
+    [path stroke];
+    UIGraphicsPopContext();
 }
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
@@ -199,10 +228,30 @@
     }];
     [searchTextField resignFirstResponder];
 }
+
+//- (void)loadView {
+//    UIView *myView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    myView.backgroundColor = [UIColor whiteColor];
+//    
+//    pulseLayer_ = [CALayer layer];
+//    [myView.layer addSublayer:pulseLayer_];
+//    
+//    self.view = myView;
+//}
+
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    pulseLayer_.backgroundColor = [UIColorFromRGBA(0xFFE365FF, .75) CGColor];
+    pulseLayer_.bounds = CGRectMake(0., 0., 50., 50.);
+    pulseLayer_.cornerRadius = 12.;
+    pulseLayer_.position=CGPointMake(50.0f,50.0f);
+    //pulseLayer_.position = self.view.center;
+    [pulseLayer_ setNeedsDisplay];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -211,5 +260,15 @@
     [super viewWillDisappear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    pulseAnimation.duration = .5;
+    pulseAnimation.toValue = [NSNumber numberWithFloat:1.1];
+    pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    pulseAnimation.autoreverses = YES;
+    pulseAnimation.repeatCount = FLT_MAX;
+    
+    [pulseLayer_ addAnimation:pulseAnimation forKey:nil];
+}
 
 @end
