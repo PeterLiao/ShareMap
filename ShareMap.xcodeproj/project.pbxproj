@@ -1310,7 +1310,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Roger Liu (D4W65MRR3Q)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mac/Documents/FacebookSDK,
@@ -1320,6 +1320,7 @@
 				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "人肉導航機!!";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1327,8 +1328,8 @@
 		043393D9160B7C7B007C81C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Roger Liu (D4W65MRR3Q)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mac/Documents/FacebookSDK,
@@ -1338,7 +1339,6 @@
 				INFOPLIST_FILE = "ShareMap/ShareMap-Info.plist";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "人肉導航機!!";
-				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};

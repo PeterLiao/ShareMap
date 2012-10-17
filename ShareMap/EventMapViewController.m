@@ -61,28 +61,28 @@
     placemarkList = [[NSArray alloc] init];
 
     
-    pulseLayer_ = [CALayer layer];
+    pulseLayer_ = [CAShapeLayer layer];
 //    [_mapView.layer addSublayer:pulseLayer_];
     
 
     
     Place* home = [[Place alloc] init];
-	home.name = @"Home";
-	home.description = @"Sweet home";
+//	home.name = @"Home";
+//	home.description = @"Sweet home";
 	home.latitude = 25.043119;
 	home.longitude = 121.509529;
     
 	Place* office = [[Place alloc] init];
-	office.name = @"Office";
-	office.description = @"Bad office";
+//	office.name = @"Office";
+//	office.description = @"Bad office";
 	office.latitude = 25.049272;
 	office.longitude = 121.516879;
     
     [self showRouteFrom:home to:office];
     [_mapView.layer addSublayer:pulseLayer_];
     
-    [self addPlacemark:25.045119 longitude:121.503529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
-    [self addPlacemark:25.043272 longitude:121.519879 title:@"Miniko" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
+    [self addPlacemark:25.043119 longitude:121.509529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
+    [self addPlacemark:25.049272 longitude:121.516879 title:@"Miniko" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
 
 
 }
@@ -280,16 +280,20 @@
     CGPathAddLineToPoint(path, NULL, 200, 0);
     CGPathAddLineToPoint(path, NULL, 200,200);
     CGPathAddLineToPoint(path, NULL, 0, 100);
-    pulseLayer_.backgroundColor = [UIColorFromRGBA(0xFFE365FF, .75) CGColor];
-    pulseLayer_.bounds = CGRectMake(0., 0., 50., 50.);
-    pulseLayer_.cornerRadius = 12.;
-    pulseLayer_.position=CGPointMake(50.0f,50.0f);
+    
+//    pulseLayer_.backgroundColor = [UIColorFromRGBA(0xFFE365FF, .75) CGColor];
+//    pulseLayer_.bounds = CGRectMake(0., 0., 50., 50.);
+//    pulseLayer_.cornerRadius = 12.;
+//    pulseLayer_.position=CGPointMake(50.0f,50.0f);
     //pulseLayer_.position = self.view.center;
     
-//    [pulseLayer_ setBounds:CGRectMake(0, 0, 200, 200)];
-//    //[pulseLayer_ setFillColor:[[UIColor purpleColor] CGColor]];
-//    [pulseLayer_ setPosition:CGPointMake(200, 200)];
-//    [pulseLayer_ setPath:path];
+    [pulseLayer_ setBounds:CGRectMake(0, 0, 50, 50)];
+    //pulseLayer_.fillColor = [[UIColor purpleColor] CGColor];
+    [pulseLayer_ setFillColor:(__bridge CGColorRef)([UIColor colorWithWhite:1 alpha:0.75])];
+    //pulseLayer_.strokeColor = (__bridge CGColorRef)([UIColor colorWithWhite:0.25 alpha:1.0]);
+
+    [pulseLayer_ setPosition:CGPointMake(200, 200)];
+    [pulseLayer_ setPath:path];
 
     //[[[self view] layer]addSublayer:pulseLayer_];
     [pulseLayer_ setNeedsDisplay];
@@ -325,6 +329,7 @@
 	NSInteger lat=0;
 	NSInteger lng=0;
     NSInteger turn=0;
+    NSLog(@"len=%d, index=%d",len,index);
 	while (index < len) {
 		NSInteger b;
 		NSInteger shift = 0;
@@ -352,8 +357,7 @@
         
 		CLLocation *loc = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]] ;
         
-        // calculate distance between them
-        //CLLocationDistance meters = [newLocation distanceFromLocation:oldLocation];
+
         
 		[array addObject:loc];
         [array2 addObject:latitude];
@@ -388,9 +392,11 @@
 	NSLog(@"api url: %@", apiUrl);
     
     NSError *error = nil;
-    
-    NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl encoding:NSUTF8StringEncoding error:&error];
-    
+    NSStringEncoding encoding = 0;
+//    NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl encoding:NSUTF8StringEncoding error:&error]; // deprecated.
+
+    NSString *apiResponse = [[NSString alloc ]initWithContentsOfURL:apiUrl encoding:encoding error:&error];
+    NSLog(@"error: %@", error);
 	NSString* encodedPoints = [apiResponse stringByMatching:@"points:\\\"([^\\\"]*)\\\"" capture:1L];
 	
 	return [self decodePolyLine:[encodedPoints mutableCopy]];

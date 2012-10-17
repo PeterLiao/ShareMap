@@ -34,7 +34,7 @@
     _responseData = [NSMutableData data];
     _connStatus = STATUS_CONN_SUCCESS;
     NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:@"http://localhost:3000/travel_event/"]];
+                             [NSURL URLWithString:@"http://sevenpeaches.herokuapp.com/travel_event/"]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if(!conn)
     {
