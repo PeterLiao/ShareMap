@@ -12,9 +12,10 @@
 #import "MapView.h"
 #import "Place.h"
 #import "QuartzCore/CAShapeLayer.h"
-
+#import "CoreLocation/CoreLocation.h"
 #import "RegexKitLite/RegexKitLite.h"
 #import "PlaceMark.h"
+#import <CoreMotion/CoreMotion.h>
 
 enum {
     STATUS_ARRIVED = 0,
@@ -23,7 +24,7 @@ enum {
     STATUS_TARGET
 };
 
-@interface EventMapViewController : UIViewController<MKMapViewDelegate, NSURLConnectionDelegate>
+@interface EventMapViewController : UIViewController<MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate>
 {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
@@ -32,6 +33,8 @@ enum {
     UIImageView* routeView;
 	NSArray* routes;
     UIColor* lineColor;
+    double currentLatitude;
+    double currentLongitude;
 }
 
 @property (nonatomic, retain) NSArray * placemarkList;
@@ -40,6 +43,9 @@ enum {
 @property (nonatomic, retain) UITextField *searchTextField;
 @property (nonatomic, retain) CAShapeLayer *pulseLayer_;
 @property (nonatomic, retain) UIColor* lineColor;
+@property (strong, nonatomic) CLLocationManager * locationManager;
+@property (strong, nonatomic) CLLocation * startingPoint;
+@property (strong, nonatomic) CMMotionManager *motionManager;
 
 -(void)resetMapScope:(CLLocationCoordinate2D)coordinate;
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark;

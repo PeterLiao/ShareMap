@@ -25,6 +25,9 @@
 @synthesize searchTextField;
 @synthesize pulseLayer_;
 @synthesize lineColor;
+@synthesize locationManager = _locationManager;
+@synthesize startingPoint = _startingPoint;
+@synthesize motionManager = _motionManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,17 +42,15 @@
 {
     [super viewDidLoad];
     
-    //self.view = _mapView;
-    //MapView* newMapView = [[MapView alloc] initWithFrame:
-    //                       CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    //newMapView.mapView = _mapView;
-    //[_mapView setDelegate:newMapView];
-    //self.view = newMapView.mapView;
-    //[self.view addSubview:newMapView];
+    self.locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
+    self.locationManager.distanceFilter = 10.0f; //在生成更新位置前，設備必須移動的米數
+    //self.locationManager.headingFilter = 30;//在生成更新的指南針讀數之前設備需要轉過的度數 (Notify heading changes when heading is > 30.)
+    [_locationManager startUpdatingLocation];
+
     
-    //_mapView = newMapView.mapView;
-    //[_mapView setDelegate:newMapView];
-    _mapView.showsUserLocation = YES;
+    //_mapView.showsUserLocation = YES;
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mapView.frame.size.width, _mapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
     [_mapView addSubview:routeView];
@@ -57,55 +58,45 @@
     self.lineColor = [UIColor colorWithWhite:0.2 alpha:0.5];
     
 	// Do any additional setup after loading the view.
-    [_mapView removeAnnotations:[_mapView annotations]];
+    //[_mapView removeAnnotations:[_mapView annotations]];
     placemarkList = [[NSArray alloc] init];
 
     
+//    Place* home = [[Place alloc] init];
+//
+//	home.latitude = 25.043119;
+//	home.longitude = 121.509529;
+//    
+//	Place* office = [[Place alloc] init];
+//	office.latitude = 25.049272;
+//	office.longitude = 121.516879;
+//    
+//    [self showRouteFrom:home to:office];
+    
     pulseLayer_ = [CAShapeLayer layer];
-//    [_mapView.layer addSublayer:pulseLayer_];
-    
-
-    
-    Place* home = [[Place alloc] init];
-//	home.name = @"Home";
-//	home.description = @"Sweet home";
-	home.latitude = 25.043119;
-	home.longitude = 121.509529;
-    
-	Place* office = [[Place alloc] init];
-//	office.name = @"Office";
-//	office.description = @"Bad office";
-	office.latitude = 25.049272;
-	office.longitude = 121.516879;
-    
-    [self showRouteFrom:home to:office];
     [_mapView.layer addSublayer:pulseLayer_];
     
     [self addPlacemark:25.043119 longitude:121.509529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
     [self addPlacemark:25.049272 longitude:121.516879 title:@"Miniko" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
 
-
+    //偵測方向
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    if (_motionManager.accelerometerAvailable){
+        _motionManager.accelerometerUpdateInterval = 5;
+        [_motionManager startAccelerometerUpdatesToQueue:queue
+                        withHandler:^(CMAccelerometerData *accelerometerData, NSError *error){
+                            if (error) {
+                                [_motionManager stopAccelerometerUpdates];
+                                NSLog(@"Error: %@",error);
+                            } else {
+                                NSLog(@"x=%f, y=%f, z=%f",accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
+                            }
+                        }];
+    }
 }
 
--(void)drawInContext:(CGContextRef)ctx {
-    NSLog(@"CALayerBezierPath - drawInContext");
-    UIGraphicsPushContext(ctx);
-    CGPoint origin = CGPointMake(100, 20);
-    
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    // Upper tip
-    [path moveToPoint:CGPointMake(origin.x+20, origin.y-20)];
-    // Arrow head
-    [path addLineToPoint:CGPointMake(origin.x, origin.y)];
-    // Lower tip
-    [path addLineToPoint:CGPointMake(origin.x+20, origin.y+20)];
-    
-    [[UIColor redColor] set];
-    // The line thickness needs to be proportional to the distance from the arrow head to the tips.  Making it half seems about right.
-    [path setLineWidth:10];
-    [path stroke];
-    UIGraphicsPopContext();
-}
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
 {
@@ -119,7 +110,7 @@
     [placemark setStatus:status];
     
     [self addPlacemarkToList:placemark];
-    [self resetMapScope:coordinae2D];
+    //[self resetMapScope:coordinae2D];
     [_mapView setCenterCoordinate:_mapView.centerCoordinate animated:YES];
     [_mapView selectAnnotation:placemark animated:YES]; 
 }
@@ -214,7 +205,7 @@
     }
 
     pinView.canShowCallout=YES;
-    pinView.animatesDrop=YES;
+    //pinView.animatesDrop=YES;
     pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     return pinView;
@@ -276,12 +267,15 @@
     [super viewWillAppear:animated];
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 100);
-    CGPathAddLineToPoint(path, NULL, 200, 0);
-    CGPathAddLineToPoint(path, NULL, 200,200);
-    CGPathAddLineToPoint(path, NULL, 0, 100);
+    CGPathMoveToPoint(path, NULL, 0, 25);
+    CGPathAddLineToPoint(path, NULL, 35, 50);
+    CGPathAddLineToPoint(path, NULL, 15, 50);
+    CGPathAddLineToPoint(path, NULL, 25, 75);
+    CGPathAddLineToPoint(path, NULL, -25, 75);
+    CGPathAddLineToPoint(path, NULL, -15, 50);
+    CGPathAddLineToPoint(path, NULL, -35, 50);
     
-//    pulseLayer_.backgroundColor = [UIColorFromRGBA(0xFFE365FF, .75) CGColor];
+    //pulseLayer_.backgroundColor = [UIColorFromRGBA(0xFFE365FF, .75) CGColor];
 //    pulseLayer_.bounds = CGRectMake(0., 0., 50., 50.);
 //    pulseLayer_.cornerRadius = 12.;
 //    pulseLayer_.position=CGPointMake(50.0f,50.0f);
@@ -289,10 +283,10 @@
     
     [pulseLayer_ setBounds:CGRectMake(0, 0, 50, 50)];
     //pulseLayer_.fillColor = [[UIColor purpleColor] CGColor];
-    [pulseLayer_ setFillColor:(__bridge CGColorRef)([UIColor colorWithWhite:1 alpha:0.75])];
-    //pulseLayer_.strokeColor = (__bridge CGColorRef)([UIColor colorWithWhite:0.25 alpha:1.0]);
+    [pulseLayer_ setFillColor:[UIColorFromRGBA(0xFFE365FF, .75) CGColor]];
 
-    [pulseLayer_ setPosition:CGPointMake(200, 200)];
+
+    [pulseLayer_ setPosition:CGPointMake(185, 10)];
     [pulseLayer_ setPath:path];
 
     //[[[self view] layer]addSublayer:pulseLayer_];
@@ -405,14 +399,16 @@
 -(void) centerMap {
     if (routes.count == 0) return;
 	MKCoordinateRegion region;
-    
+
 	CLLocationDegrees maxLat = -90;
 	CLLocationDegrees maxLon = -180;
 	CLLocationDegrees minLat = 90;
 	CLLocationDegrees minLon = 180;
+
 	for(int idx = 0; idx < routes.count; idx++)
 	{
 		CLLocation* currentLocation = [routes objectAtIndex:idx];
+        
 		if(currentLocation.coordinate.latitude > maxLat)
 			maxLat = currentLocation.coordinate.latitude;
 		if(currentLocation.coordinate.latitude < minLat)
@@ -421,11 +417,24 @@
 			maxLon = currentLocation.coordinate.longitude;
 		if(currentLocation.coordinate.longitude < minLon)
 			minLon = currentLocation.coordinate.longitude;
+        
+        
 	}
-	region.center.latitude     = (maxLat + minLat) / 2;
+//	region.center.latitude     = (maxLat + minLat) / 2;
+//	region.center.longitude    = (maxLon + minLon) / 2;
+//	region.span.latitudeDelta  = maxLat - minLat;
+//	region.span.longitudeDelta = maxLon - minLon;
+    CLLocation *locSouthWest = [[CLLocation alloc] initWithLatitude:minLat longitude:minLon];
+    CLLocation *locNorthEast = [[CLLocation alloc] initWithLatitude:maxLat longitude:maxLon];
+    
+
+    CLLocationDistance meters = [locSouthWest distanceFromLocation:locNorthEast];
+
+    region.center.latitude     = (maxLat + minLat) / 2;
 	region.center.longitude    = (maxLon + minLon) / 2;
-	region.span.latitudeDelta  = maxLat - minLat;
-	region.span.longitudeDelta = maxLon - minLon;
+    region.span.latitudeDelta = meters / 111319.5;
+    region.span.longitudeDelta = 0.0;
+
 	
 	[_mapView setRegion:region animated:YES];
 }
@@ -512,5 +521,34 @@
 	[routeView setNeedsDisplay];
 }
 
+#pragma mark CLLocationManagerDelegate Methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    if (_startingPoint == nil)
+        self.startingPoint = newLocation;
+    currentLatitude = newLocation.coordinate.latitude;
+    currentLongitude = newLocation.coordinate.longitude;
+    NSLog(@"current Latitude:%f",currentLatitude);
+    NSLog(@"current Longitude:%f",currentLongitude);
+    //    [_mapView.layer addSublayer:pulseLayer_];
+    
+    Place* from = [[Place alloc] init];
+    from.name = @"Jessica";
+    from.description = @"趕路中(預計15分鐘)";
+	from.latitude = newLocation.coordinate.latitude;
+	from.longitude = newLocation.coordinate.longitude;
+    
+	Place* to = [[Place alloc] init];
+    to.name = @"Miniko";
+    to.description = @"目的地";
+	to.latitude = 25.049272;
+	to.longitude = 121.516879;
+    
+    [self showRouteFrom:from to:to];
+}
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSString *errorType = (error.code == kCLErrorDenied) ? @"Access Denied" : @"Unknown Error";
+    NSLog(@"Error: %@",errorType);
+}
 @end

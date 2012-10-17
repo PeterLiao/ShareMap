@@ -261,6 +261,7 @@
 		CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B916230A9200CE7BD6 /* PhotoViewController.m */; };
 		CEC249C0162354D200CE7BD6 /* FaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */; };
 		CEC249C51623564D00CE7BD6 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2497F1621117D00CE7BD6 /* FaceViewController.m */; };
+		CEC674AD162EE2520058377B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC674AC162EE2520058377B /* CoreMotion.framework */; };
 		CED5555B162BC6E00069CB45 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED5555A162BC6E00069CB45 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -542,6 +543,7 @@
 		CEC249B816230A9000CE7BD6 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CEC249B916230A9200CE7BD6 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController.xib; sourceTree = "<group>"; };
+		CEC674AC162EE2520058377B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		CED5555A162BC6E00069CB45 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CED5555C162BF2260069CB45 /* UsefulMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsefulMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -551,6 +553,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC674AD162EE2520058377B /* CoreMotion.framework in Frameworks */,
 				CED5555B162BC6E00069CB45 /* QuartzCore.framework in Frameworks */,
 				CEC2497D16210D3D00CE7BD6 /* CFNetwork.framework in Frameworks */,
 				0432A99F160D6DB5003E8869 /* CoreLocation.framework in Frameworks */,
@@ -568,6 +571,7 @@
 		043393B4160B7C7B007C81C0 = {
 			isa = PBXGroup;
 			children = (
+				CEC674AC162EE2520058377B /* CoreMotion.framework */,
 				043393C2160B7C7B007C81C0 /* Frameworks */,
 				043393C0160B7C7B007C81C0 /* Products */,
 				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
