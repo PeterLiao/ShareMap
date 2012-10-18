@@ -12,6 +12,12 @@
 #import "QuartzCore/CAMediaTimingFunction.h"
 #import "UsefulMacros.h"
 #import "QuartzCore/CAShapeLayer.h"
+#import "QuartzCore/CATransaction.h"
+#import "math.h"
+
+#define toRad(X) (X*M_PI/180.0)
+#define toDeg(X) (X*180.0/M_PI)
+#define degreesToRadians(x) (M_PI * x / 180.0)
 
 @interface EventMapViewController ()
 
@@ -46,10 +52,17 @@
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
     self.locationManager.distanceFilter = 10.0f; //在生成更新位置前，設備必須移動的米數
-    //self.locationManager.headingFilter = 30;//在生成更新的指南針讀數之前設備需要轉過的度數 (Notify heading changes when heading is > 30.)
-    [_locationManager startUpdatingLocation];
-
     
+    self.locationManager.headingFilter = 5;//在生成更新的指南針讀數之前設備需要轉過的度數 (Notify heading changes when heading is > 5.)
+    if ([CLLocationManager locationServicesEnabled]){
+        [_locationManager startUpdatingLocation];
+    }
+    //偵測方位
+    
+    if ([CLLocationManager headingAvailable]){
+        [_locationManager startUpdatingHeading];
+    }
+
     //_mapView.showsUserLocation = YES;
     routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mapView.frame.size.width, _mapView.frame.size.height)];
     routeView.userInteractionEnabled = NO;
@@ -75,28 +88,76 @@
     
     pulseLayer_ = [CAShapeLayer layer];
     [_mapView.layer addSublayer:pulseLayer_];
+    CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
+
+
     
     [self addPlacemark:25.043119 longitude:121.509529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
     [self addPlacemark:25.049272 longitude:121.516879 title:@"Miniko" subTitle:@"趕路中(預計10分鐘)" status:STATUS_GOING];
 
-    //偵測方向
+    //偵測速度
     
-    self.motionManager = [[CMMotionManager alloc] init];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    if (_motionManager.accelerometerAvailable){
-        _motionManager.accelerometerUpdateInterval = 5;
-        [_motionManager startAccelerometerUpdatesToQueue:queue
-                        withHandler:^(CMAccelerometerData *accelerometerData, NSError *error){
-                            if (error) {
-                                [_motionManager stopAccelerometerUpdates];
-                                NSLog(@"Error: %@",error);
-                            } else {
-                                NSLog(@"x=%f, y=%f, z=%f",accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
-                            }
-                        }];
+//    self.motionManager = [[CMMotionManager alloc] init];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    if (_motionManager.accelerometerAvailable){
+//        _motionManager.accelerometerUpdateInterval = 5;
+//        [_motionManager startAccelerometerUpdatesToQueue:queue
+//                        withHandler:^(CMAccelerometerData *accelerometerData, NSError *error){
+//                            if (error) {
+//                                [_motionManager stopAccelerometerUpdates];
+//                                NSLog(@"Error: %@",error);
+//                            } else {
+//                                NSLog(@"x=%f, y=%f, z=%f",accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
+//                            }
+//                        }];
+//    }
+    
+    CABasicAnimation *spin = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    spin.toValue = [NSNumber numberWithFloat:M_PI * 2];
+    spin.duration = 1.f;
+    spin.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    
+    [CATransaction begin];
+    if(IS_IOS4) {
+        [CATransaction setCompletionBlock:^{
+            CABasicAnimation *squish = [CABasicAnimation animationWithKeyPath:@"transform"];
+            CATransform3D squishTransform = CATransform3DMakeScale(1.75f, .25f, 1.f);
+            squish.toValue = [NSValue valueWithCATransform3D:squishTransform];
+            squish.duration = .5f;
+            squish.repeatCount = 1;
+            squish.autoreverses = YES;
+            
+            CABasicAnimation *fadeOutBG = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+            fadeOutBG.toValue = (id)[[UIColor yellowColor] CGColor];
+            fadeOutBG.duration = .55f;
+            fadeOutBG.repeatCount = 1;
+            fadeOutBG.autoreverses = YES;
+            fadeOutBG.beginTime = 1.f;
+            
+            CAAnimationGroup *group = [CAAnimationGroup animation];
+            group.animations = [NSArray arrayWithObjects:squish, fadeOutBG, nil];
+            group.duration = 2.f;
+            group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+            
+            [pulseLayer_ addAnimation:group forKey:@"SquishAndHighlight"];
+        }];
     }
+    [pulseLayer_ addAnimation:spin forKey:@"spinTheText"];
+    [CATransaction commit];
+
+        
 }
 
+//CGFloat DegreesToRadians(CGFloat degrees)
+//{
+//    return degrees * M_PI / 180;
+//}
+//
+//NSNumber* DegreesToNumber(CGFloat degrees)
+//{
+//    return [NSNumber numberWithFloat:
+//            DegreesToRadians(degrees)];
+//}
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
 {
@@ -386,7 +447,7 @@
 	NSLog(@"api url: %@", apiUrl);
     
     NSError *error = nil;
-    NSStringEncoding encoding = 0;
+    NSStringEncoding encoding = NSASCIIStringEncoding;
 //    NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl encoding:NSUTF8StringEncoding error:&error]; // deprecated.
 
     NSString *apiResponse = [[NSString alloc ]initWithContentsOfURL:apiUrl encoding:encoding error:&error];
@@ -551,4 +612,50 @@
     NSString *errorType = (error.code == kCLErrorDenied) ? @"Access Denied" : @"Unknown Error";
     NSLog(@"Error: %@",errorType);
 }
+
+
+- (void)locationManager:(CLLocationManager*)manager
+       didUpdateHeading:(CLHeading*)newHeading
+{
+    // If the accuracy is valid, process the event.
+    if (newHeading.headingAccuracy > 0)
+    {
+        //取得角度值-磁北(0-北, 90-東, 180-南, 270-西)
+        //CLLocationDirection theHeading = newHeading.magneticHeading;
+        //取得角度值-正北(0-北, 90-東, 180-南, 270-西)
+        CLLocationDirection theHeading = newHeading.trueHeading;
+        
+        // Do something with the event data.
+        
+        NSLog(@"%f", theHeading);
+        [self updateHeadingDisplays:theHeading];
+
+    } else {
+        NSLog(@"需校正");
+    }
+    
+}
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
+    return YES;
+}
+
+- (void)updateHeadingDisplays:(CLLocationDirection) theHeading {
+//    // Animate Compass
+    [UIView     animateWithDuration:0.3
+                              delay:0.0
+                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             CGAffineTransform headingRotation;
+                             headingRotation = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat)-toRad(theHeading));
+                             _mapView.transform = headingRotation;
+
+                         }
+                         completion:^(BOOL finished) {
+                             
+                         }];
+    
+
+    
+}
+
 @end

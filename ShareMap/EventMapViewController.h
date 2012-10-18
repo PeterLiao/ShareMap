@@ -35,6 +35,8 @@ enum {
     UIColor* lineColor;
     double currentLatitude;
     double currentLongitude;
+    CLLocationDirection     currentHeading;
+    CLLocationDirection     cityHeading;
 }
 
 @property (nonatomic, retain) NSArray * placemarkList;
@@ -46,6 +48,7 @@ enum {
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (strong, nonatomic) CLLocation * startingPoint;
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (nonatomic) CLLocationDirection currentHeading;
 
 -(void)resetMapScope:(CLLocationCoordinate2D)coordinate;
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark;
@@ -53,4 +56,5 @@ enum {
 -(void) showRouteFrom: (Place*) f to:(Place*) t;
 
 - (IBAction)doSearch:(id)sender;
+- (void)updateHeadingDisplays:(CLLocationDirection) theHeading;
 @end
