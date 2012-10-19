@@ -346,7 +346,7 @@
     [pulseLayer_ setFillColor:[UIColorFromRGBA(0xFFE365FF, .75) CGColor]];
 
 
-    [pulseLayer_ setPosition:CGPointMake(185, 10)];
+    [pulseLayer_ setPosition:CGPointMake(250, 250)];
     [pulseLayer_ setPath:path];
 
     //[[[self view] layer]addSublayer:pulseLayer_];
@@ -482,16 +482,20 @@
 	}
 
 
-    CLLocation *locSouthWest = [[CLLocation alloc] initWithLatitude:minLat longitude:minLon];
-    CLLocation *locNorthEast = [[CLLocation alloc] initWithLatitude:maxLat longitude:maxLon];
-    
-
-    CLLocationDistance meters = [locSouthWest distanceFromLocation:locNorthEast];
+//    CLLocation *locSouthWest = [[CLLocation alloc] initWithLatitude:minLat longitude:minLon];
+//    CLLocation *locNorthEast = [[CLLocation alloc] initWithLatitude:maxLat longitude:maxLon];
+//    CLLocationDistance meters = [locSouthWest distanceFromLocation:locNorthEast];
 
     region.center.latitude     = (maxLat + minLat) / 2;
 	region.center.longitude    = (maxLon + minLon) / 2;
-    region.span.latitudeDelta  = maxLat - minLat;
-    region.span.longitudeDelta = maxLon - minLon;
+    region.span.latitudeDelta  = (maxLat - minLat) * 2;
+   
+    
+    region.span.longitudeDelta = ( maxLon - minLon ) * 2;
+     NSLog(@"region.span.latitudeDelta = %f",region.span.latitudeDelta);
+     NSLog(@"region.span.longitudeDelta = %f",region.span.longitudeDelta);
+//    region.span.latitudeDelta  = maxLat - minLat;
+//    region.span.longitudeDelta = maxLon - minLon;
 //    region.span.latitudeDelta = meters / 111319.5;
 //    region.span.longitudeDelta = 0.0;
 
