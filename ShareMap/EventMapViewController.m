@@ -88,7 +88,6 @@
     
     pulseLayer_ = [CAShapeLayer layer];
     [_mapView.layer addSublayer:pulseLayer_];
-    CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
 
 
     
@@ -481,10 +480,8 @@
         
         
 	}
-//	region.center.latitude     = (maxLat + minLat) / 2;
-//	region.center.longitude    = (maxLon + minLon) / 2;
-//	region.span.latitudeDelta  = maxLat - minLat;
-//	region.span.longitudeDelta = maxLon - minLon;
+
+
     CLLocation *locSouthWest = [[CLLocation alloc] initWithLatitude:minLat longitude:minLon];
     CLLocation *locNorthEast = [[CLLocation alloc] initWithLatitude:maxLat longitude:maxLon];
     
@@ -493,8 +490,10 @@
 
     region.center.latitude     = (maxLat + minLat) / 2;
 	region.center.longitude    = (maxLon + minLon) / 2;
-    region.span.latitudeDelta = meters / 111319.5;
-    region.span.longitudeDelta = 0.0;
+    region.span.latitudeDelta  = maxLat - minLat;
+    region.span.longitudeDelta = maxLon - minLon;
+//    region.span.latitudeDelta = meters / 111319.5;
+//    region.span.longitudeDelta = 0.0;
 
 	
 	[_mapView setRegion:region animated:YES];
@@ -648,6 +647,7 @@
                              CGAffineTransform headingRotation;
                              headingRotation = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat)-toRad(theHeading));
                              _mapView.transform = headingRotation;
+                             [_mapView.layer addSublayer:pulseLayer_];
 
                          }
                          completion:^(BOOL finished) {
