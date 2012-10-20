@@ -356,8 +356,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -369,6 +370,7 @@
     pulseAnimation.repeatCount = FLT_MAX;
     
     [pulseLayer_ addAnimation:pulseAnimation forKey:nil];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {
