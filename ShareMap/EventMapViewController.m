@@ -635,8 +635,10 @@
 												  CGColorSpaceCreateDeviceRGB(),
 												  kCGImageAlphaPremultipliedLast);
 	
-    
-    CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGFloat components[] = {0.0, 0.0, 1.0, 1.0};
+    CGColorRef color = CGColorCreate(colorspace, components);
+    CGContextSetStrokeColorWithColor(context, color);
 	CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 1.0);
 	CGContextSetLineWidth(context, 3.0);
 	
@@ -690,6 +692,8 @@
     from.description = @"趕路中(預計15分鐘)";
 	from.latitude = newLocation.coordinate.latitude;
 	from.longitude = newLocation.coordinate.longitude;
+//    from.latitude = 25.043119;
+//    from.longitude = 121.509529;
     
 	Place* to = [[Place alloc] init];
     to.name = @"Miniko";
