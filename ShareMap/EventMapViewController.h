@@ -16,6 +16,9 @@
 #import "RegexKitLite/RegexKitLite.h"
 #import "PlaceMark.h"
 #import <CoreMotion/CoreMotion.h>
+#import "QuadCurveMenuItem.h"
+
+@protocol QuadCurveMenuDelegate;
 
 enum {
     STATUS_ARRIVED = 0,
@@ -24,7 +27,9 @@ enum {
     STATUS_TARGET
 };
 
-@interface EventMapViewController : UIViewController<MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate>
+
+
+@interface EventMapViewController : UIViewController< MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate,QuadCurveMenuItemDelegate>
 {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
@@ -37,6 +42,14 @@ enum {
     double currentLongitude;
     CLLocationDirection     currentHeading;
     CLLocationDirection     cityHeading;
+    
+    
+    NSArray *_menusArray;
+    int _flag;
+    NSTimer *_timer;
+    QuadCurveMenuItem *_addButton;
+    
+    __unsafe_unretained id<QuadCurveMenuDelegate> _delegate;
 }
 
 @property (nonatomic, retain) NSArray * placemarkList;
@@ -50,6 +63,12 @@ enum {
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (nonatomic) CLLocationDirection currentHeading;
 
+@property (nonatomic, copy) NSArray *menusArray;
+@property (nonatomic, getter = isExpanding)     BOOL expanding;
+@property (nonatomic, assign) id<QuadCurveMenuDelegate> delegate;
+- (id)initWithFrame:(CGRect)frame menus:(NSArray *)aMenusArray;
+
+
 -(void)resetMapScope:(CLLocationCoordinate2D)coordinate;
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark;
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status;
@@ -58,3 +77,9 @@ enum {
 - (IBAction)doSearch:(id)sender;
 - (void)updateHeadingDisplays:(CLLocationDirection) theHeading;
 @end
+
+
+@protocol QuadCurveMenuDelegate <NSObject>
+- (void)quadCurveMenu:(EventMapViewController *)menu didSelectIndex:(NSInteger)idx;
+@end
+

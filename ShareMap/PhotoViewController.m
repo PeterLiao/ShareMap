@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
 //    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 //imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 //imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
