@@ -229,20 +229,11 @@
     _addButton.delegate = self;
     _addButton.center = STARTPOINT;
     [_mapView addSubview:_addButton];
+    
+
 
     
 }
-
-//CGFloat DegreesToRadians(CGFloat degrees)
-//{
-//    return degrees * M_PI / 180;
-//}
-//
-//NSNumber* DegreesToNumber(CGFloat degrees)
-//{
-//    return [NSNumber numberWithFloat:
-//            DegreesToRadians(degrees)];
-//}
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
 {
@@ -374,6 +365,43 @@
     //[mapView setMapType:MKMapTypeHybrid];
 }
 
+
+- (double)computeAzimuth:(float)lat1 lon1:(float)lon1 lat2:(float)lat2 lon2:(float)lon2
+{
+    double result = 0.0;
+    
+
+    int ilat1 = (int) (0.50 + lat1 * 360000.0);
+    int ilat2 = (int) (0.50 + lat2 * 360000.0);
+    int ilon1 = (int) (0.50 + lon1 * 360000.0);
+    int ilon2 = (int) (0.50 + lon2 * 360000.0);
+    
+    lat1 = toRad(lat1);
+    lon1 = toRad(lon1);
+    lat2 = toRad(lat2);
+    lon2 = toRad(lon2);
+    
+    if ((ilat1 == ilat2) && (ilon1 == ilon2)) {
+        return result;
+    } else if (ilon1 == ilon2) {
+        if (ilat1 > ilat2)
+            result = 180.0;
+    } else {
+        double c = acos(sin(lat2) * sin(lat1) + cos(lat2) * cos(lat1) * cos((lon2 - lon1)));
+        double A = asin(cos(lat2) * sin((lon2 - lon1)) / sin(c));
+        result =  toDeg(A);
+        if ((ilat2 > ilat1) && (ilon2 > ilon1)) {
+        } else if ((ilat2 < ilat1) && (ilon2 < ilon1)) {
+            result = 180.0 - result;
+        } else if ((ilat2 < ilat1) && (ilon2 > ilon1)) {
+            result = 180.0 - result;
+        } else if ((ilat2 > ilat1) && (ilon2 < ilon1)) {
+            result += 360.0;
+        }
+    }
+    return result;
+
+}
 - (IBAction)doSearch:(id)sender
 {
     CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
@@ -514,9 +542,33 @@
         CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i] floatValue] longitude:[[array3 objectAtIndex:i] floatValue]] ;
         CLLocationDistance meters = [newLocation distanceFromLocation:oldLocation];
         //        NSLog(@"i=%@",[array2 objectAtIndex:i]);
+        
+        // // 計算方位角,正北向為0度，以順時針方向遞增
+
+//        double d = 0;
+//        float lat_a_array2 = [[ array2 objectAtIndex:i-1] floatValue];
+//        float lng_a_array3 = [[ array3 objectAtIndex:i-1] floatValue];
+//        float lat_b_array2 = [[ array2 objectAtIndex:i] floatValue];
+//        float lng_b_array3 = [[ array3 objectAtIndex:i] floatValue];
+//
+//        float lat_a=lat_a_array2*M_PI/180;
+//        float lng_a=lng_a_array3*M_PI/180;
+//        float lat_b=lat_b_array2*M_PI/180;
+//        float lng_b=lng_b_array3*M_PI/180;
+//            
+//        d=sin(lat_a)*sin(lat_b)+cos(lat_a)*cos(lat_b)*cos(lng_b-lng_a);
+//        d=sqrt(1-d*d);
+//        d=cos(lat_b)*sin(lng_b-lng_a)/d;
+//        d=asin(d)*180/M_PI;
+        
+            //     d = Math.round(d*10000);
+        
         if (meters != 0){
             turn++;
+//            NSLog(@"angles of [%f, %f] and [%f, %f] = %f",lat_a_array2,lng_a_array3,lat_b_array2,lng_b_array3,result);
+//            NSLog(@"angles of [%f, %f] and [%f, %f] = %f",lat1,lon1,lat2,lon2,result);
             NSLog(@"meters=%f",meters);
+            
         }
     }
     NSLog(@"total turn=%d",turn);
@@ -616,6 +668,8 @@
 	routes = [self calculateRoutesFrom:coordinae2D_f to:coordinae2D_t];
 	[self updateRouteView];
 	[self centerMap];
+    
+
 }
 
 -(void) updateRouteView {
@@ -690,10 +744,10 @@
     Place* from = [[Place alloc] init];
     from.name = @"Jessica";
     from.description = @"趕路中(預計15分鐘)";
-	from.latitude = newLocation.coordinate.latitude;
-	from.longitude = newLocation.coordinate.longitude;
-//    from.latitude = 25.043119;
-//    from.longitude = 121.509529;
+//	from.latitude = newLocation.coordinate.latitude;
+//	from.longitude = newLocation.coordinate.longitude;
+    from.latitude = 25.043119;
+    from.longitude = 121.509529;
     
 	Place* to = [[Place alloc] init];
     to.name = @"Miniko";
@@ -702,6 +756,12 @@
 	to.longitude = 121.516879;
     
     [self showRouteFrom:from to:to];
+    
+    //Show Angle of next point
+
+    CLLocation* nextLocation = [routes objectAtIndex:0];
+    float result = [self computeAzimuth:from.latitude lon1:from.longitude lat2:nextLocation.coordinate.latitude lon2:nextLocation.coordinate.longitude];
+    NSLog(@"Angle of [%f,%f] [%f,%f] = %f",from.latitude, from.longitude, nextLocation.coordinate.latitude, nextLocation.coordinate.longitude,  result);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
@@ -791,7 +851,7 @@
 //        _addButton.center = STARTPOINT;
 //        [self addSubview:_addButton];
 //    }
-//    return self;
+    return self;
 }
 
 - (void)dealloc

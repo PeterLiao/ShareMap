@@ -73,7 +73,7 @@ enum {
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark;
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status;
 -(void) showRouteFrom: (Place*) f to:(Place*) t;
-
+- (double)computeAzimuth:(float)lat1 lon1:(float)lon1 lat2:(float)lat2 lon2:(float)lon2;
 - (IBAction)doSearch:(id)sender;
 - (void)updateHeadingDisplays:(CLLocationDirection) theHeading;
 @end
