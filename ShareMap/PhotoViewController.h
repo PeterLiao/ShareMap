@@ -31,10 +31,29 @@
 
 - (id)initWithWindow:(UIWindow *)window;
 @property (nonatomic, retain) id <KTPhotoBrowserDataSource> dataSource;
+
 /**
  * Re-displays the thumbnail images.
  */
 - (void)reloadThumbs;
+
+/**
+ * Called before the thumbnail images are loaded and displayed.
+ * Override this method to prepare. For instance, display an
+ * activity indicator.
+ */
+- (void)willLoadThumbs;
+
+/**
+ * Called immediately after the thumbnail images are loaded and displayed.
+ */
+- (void)didLoadThumbs;
+
+/**
+ * Used internally. Called when the thumbnail is touched by the user.
+ */
+- (void)didSelectThumbAtIndex:(NSUInteger)index;
+
 @end
 
 

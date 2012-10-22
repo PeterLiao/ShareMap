@@ -7,6 +7,9 @@
 //
 
 #import "PhotoViewController.h"
+#import "KTThumbsView.h"
+#import "KTThumbView.h"
+#import "KTPhotoScrollViewController.h"
 
 @interface PhotoViewController (Private)
 - (UIActivityIndicatorView *)activityIndicator;
@@ -23,13 +26,13 @@
 
 }
 
-//- (id)initWithWindow:(UIWindow *)window {
-//    self = [super init];
-//    if (self) {
-//        window_ = window;
-//    }
-//    return self;
-//}
+- (id)initWithWindow:(UIWindow *)window {
+    self = [super init];
+    if (self) {
+        window_ = window;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -198,6 +201,22 @@
 
 - (void)didFinishSave {
     [self reloadThumbs];
+}
+
+
+- (void)didSelectThumbAtIndex:(NSUInteger)index {
+    KTPhotoScrollViewController *newController = [[KTPhotoScrollViewController alloc]
+                                                  initWithDataSource:dataSource_
+                                                  andStartWithPhotoAtIndex:index];
+    
+    [[self navigationController] pushViewController:newController animated:YES];
+
+}
+
+- (void)reloadThumbs {
+    [self willLoadThumbs];
+    [scrollView_ reloadData];
+    [self didLoadThumbs];
 }
 
 @end
