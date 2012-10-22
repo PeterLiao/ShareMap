@@ -13,12 +13,13 @@ enum {
     STATUS_CONN_FAIL
 };
 
-@interface EventTableViewController : UITableViewController<NSURLConnectionDelegate>
+@interface EventTableViewController : UITableViewController<NSURLConnectionDelegate,UITableViewDelegate,UINavigationControllerDelegate>
 {
     NSArray *rowList;
     int connStatus;
 }
 @property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, retain) NSMutableArray *dataList;
 @property (nonatomic, retain) NSArray *rowList;
 @property (nonatomic) int connStatus;
 

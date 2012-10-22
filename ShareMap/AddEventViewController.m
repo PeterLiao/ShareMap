@@ -47,13 +47,13 @@
 
 - (IBAction)doCancelView:(id)sender
 {
-     [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)addEvent:(id)sender
 {
     _responseData = [NSMutableData data];
-    NSString *requestURL = @"http://sevenpeaches.herokuapp.com/travel_event/new?";
+    NSString *requestURL = @"http://localhost:3000/travel_event/new?";
     NSString *eventTitle = [_eventTitleTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *eventDetailTitle = [_eventDetailTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -94,4 +94,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)done:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
 @end
