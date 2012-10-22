@@ -26,4 +26,5 @@
 - (IBAction)doCancelView:(id)sender;
 - (IBAction)addEvent:(id)sender;
 
+- (IBAction)done:(UITextField *)textField;
 @end

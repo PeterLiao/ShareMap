@@ -25,6 +25,7 @@
 		04422AAB160BFC74000C4200 /* PlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAA160BFC74000C4200 /* PlaceItem.m */; };
 		04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAD160C0D9E000C4200 /* CustomPlacemark.m */; };
 		04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAE160C0D9E000C4200 /* EventTableViewController.m */; };
+		04A2697116355EC2007F4D25 /* AddLocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */; };
 		04A831DA161EA811005930DB /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A831D9161EA811005930DB /* AddEventViewController.m */; };
 		CE178C61163289B40045EE4B /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CE178C59163289B40045EE4B /* bg-addbutton-highlighted.png */; };
 		CE178C62163289B40045EE4B /* bg-addbutton-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE178C5A163289B40045EE4B /* bg-addbutton-highlighted@2x.png */; };
@@ -320,6 +321,8 @@
 		04422AAC160C0D9E000C4200 /* CustomPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlacemark.h; sourceTree = "<group>"; };
 		04422AAD160C0D9E000C4200 /* CustomPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlacemark.m; sourceTree = "<group>"; };
 		04422AAE160C0D9E000C4200 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
+		04A2696F16355EC2007F4D25 /* AddLocationMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationMapViewController.h; sourceTree = "<group>"; };
+		04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationMapViewController.m; sourceTree = "<group>"; };
 		04A831D8161EA811005930DB /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		04A831D9161EA811005930DB /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		CE178C59163289B40045EE4B /* bg-addbutton-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-addbutton-highlighted.png"; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 		043393C9160B7C7B007C81C0 /* ShareMap */ = {
 			isa = PBXGroup;
 			children = (
+				04A2696F16355EC2007F4D25 /* AddLocationMapViewController.h */,
+				04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */,
 				CED2C6AF163193320046A0A9 /* Photo */,
 				CED5555C162BF2260069CB45 /* UsefulMacros.h */,
 				043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */,
@@ -1372,6 +1377,7 @@
 				CEC249A61622B86E00CE7BD6 /* PlaceMark.m in Sources */,
 				CEC249A91622B8D600CE7BD6 /* MapView.m in Sources */,
 				CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */,
+				04A2697116355EC2007F4D25 /* AddLocationMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

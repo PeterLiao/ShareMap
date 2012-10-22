@@ -9,6 +9,11 @@
 #import "EventTableViewController.h"
 #import "TravelEvent.h"
 #import "EventTabBarController.h"
+#import "AddEventViewController.h"
+
+
+#define URL_GET_EVENT     @"http://localhost:3000/travel_event/"
+#define URL_DESTROY_EVENT @"http://localhost:3000/travel_event/destroy/%d"
 
 @interface EventTableViewController ()
 
@@ -18,6 +23,7 @@
 
 @synthesize responseData = _responseData;
 @synthesize rowList = _rowList;
+@synthesize dataList = _dataList;
 @synthesize connStatus = _connStatus;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -34,7 +40,7 @@
     _responseData = [NSMutableData data];
     _connStatus = STATUS_CONN_SUCCESS;
     NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:@"http://sevenpeaches.herokuapp.com/travel_event/"]];
+                             [NSURL URLWithString:URL_GET_EVENT]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if(!conn)
     {
@@ -42,10 +48,34 @@
     }
 }
 
+-(void)deleteEvent:(int)index
+{
+    NSLog(@"_rowList.count:%d", _rowList.count);
+    if(index > _rowList.count)return;
+    _responseData = [NSMutableData data];
+    _connStatus = STATUS_CONN_SUCCESS;
+    TravelEvent *event = [_rowList objectAtIndex:index];
+    NSLog(@"deleteEvent, event_id:%d", event.event_id);
+    NSString *strUrl =[NSString stringWithFormat:URL_DESTROY_EVENT, event.event_id];
+    ;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if(!conn)
+    {
+        _connStatus = STATUS_CONN_FAIL;
+    }
+    else
+    {
+        [_dataList removeObjectAtIndex:index];
+        _rowList = [NSArray arrayWithArray:_dataList];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self reloadEvent];
+    self.navigationController.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,47 +100,51 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
+    NSLog(@"connectionDidFinishLoading, URL:%@", connection.currentRequest.URL.absoluteString);
     NSLog(@"Received %d bytes of data",[self.responseData length]);
-    
-    self.rowList = [[NSArray alloc] init];
-    
-    // convert to JSON
-    NSError *myError = nil;
-    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    // show all values
-    for (NSDictionary *result in res) {    
-        TravelEvent *event = [[TravelEvent alloc] init];
-        event.event_id= [[result objectForKey:@"id"] intValue];
-        event.name = [result objectForKey:@"name"];
-        event.description = [result objectForKey:@"description"];
-        event.destination_id = [[result objectForKey:@"destination_id"] intValue];
-        event.owner_id = [[result objectForKey:@"owner_id"] intValue];
-        self.rowList = [self.rowList arrayByAddingObject:event];
-    }
-    _connStatus = STATUS_CONN_SUCCESS;
-    [self.tableView reloadData];
-    /*
-    for(id key in res) {
+    if(connection.currentRequest.URL.absoluteString == URL_GET_EVENT)
+    {
+        _dataList = [[NSMutableArray alloc] init];
+        // convert to JSON
+        NSError *myError = nil;
+        NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
         
-        id value = [res objectForKey:key];
-        
-        NSString *keyAsString = (NSString *)key;
-        NSString *valueAsString = (NSString *)value;
-        
-        NSLog(@"key: %@", keyAsString);
-        NSLog(@"value: %@", valueAsString);
-        ```
-        
-        // extract specific value...
-        NSArray *results = [res objectForKey:key];
-        
-        for (NSDictionary *result in results) {
-            NSString *name = [result objectForKey:@"name"];
-            NSLog(@"name: %@", name);
+        // show all values
+        for (NSDictionary *result in res) {
+            TravelEvent *event = [[TravelEvent alloc] init];
+            event.event_id= [[result objectForKey:@"id"] intValue];
+            event.name = [result objectForKey:@"name"];
+            event.description = [result objectForKey:@"description"];
+            event.destination_id = [[result objectForKey:@"destination_id"] intValue];
+            event.owner_id = [[result objectForKey:@"owner_id"] intValue];
+            [_dataList addObject:event];
         }
-    }*/
+        _connStatus = STATUS_CONN_SUCCESS;
+        _rowList = [NSArray arrayWithArray:_dataList];
+        NSLog(@"Receive event count:%d", _rowList.count);
+        [self.tableView reloadData];
+    }
+    /*
+     //Parse josn data from server
+     for(id key in res) {
+     
+     id value = [res objectForKey:key];
+     
+     NSString *keyAsString = (NSString *)key;
+     NSString *valueAsString = (NSString *)value;
+     
+     NSLog(@"key: %@", keyAsString);
+     NSLog(@"value: %@", valueAsString);
+     ```
+     
+     // extract specific value...
+     NSArray *results = [res objectForKey:key];
+     
+     for (NSDictionary *result in results) {
+     NSString *name = [result objectForKey:@"name"];
+     NSLog(@"name: %@", name);
+     }
+     }*/
     
 }
 
@@ -181,43 +215,43 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -226,18 +260,47 @@
     NSLog(@"row:%d selected", [indexPath row]);
     // Navigation logic may go here. Create and push another view controller.
     
-     //EventTabBarController *controller = (EventTabBarController *)segue.destinationViewController;
-     
+    //EventTabBarController *controller = (EventTabBarController *)segue.destinationViewController;
+    
     // ...
-     // Pass the selected object to the new view controller.
-     //[self.navigationController pushViewController:controller animated:YES];
+    // Pass the selected object to the new view controller.
+    //[self.navigationController pushViewController:controller animated:YES];
     [self performSegueWithIdentifier:@"EventTab" sender:self];
-     
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"刪除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        NSLog(@"delete event: row index:%d", indexPath.row);
+        [(UITableView *)self.view beginUpdates];
+        [(UITableView *)self.view deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        [self deleteEvent:indexPath.row];
+        [(UITableView *)self.view endUpdates];
+        //[self reloadEvent];
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
 }
 
 - (IBAction)doEvent:(id)sender
 {
 }
 
+- (void
+   )navigationController:(UINavigationController *)navigationController
+willShowViewController:(UIViewController *)viewController animated:(BOOL
+                                                                    )animated
+{
+    [viewController viewWillAppear:animated];
+}
 
 @end
