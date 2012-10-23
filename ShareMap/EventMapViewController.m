@@ -258,10 +258,27 @@
     // Release any retained subviews of the main view.
 }
 
+//IOS 5 and below
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return NO;
 }
+
+//IOS 6
+- (BOOL)shouldAutorotate
+{
+	return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+	return UIInterfaceOrientationMaskLandscape;
+}
+
+
+
+
 
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark
 {        

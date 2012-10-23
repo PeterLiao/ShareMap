@@ -410,7 +410,8 @@ const CGFloat ktkDefaultToolbarHeight = 44;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
-   return YES;
+    //    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return NO;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 

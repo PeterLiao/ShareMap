@@ -260,6 +260,10 @@
 		CE223DED1620E870001BA44C /* 99.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223D1B1620E870001BA44C /* 99.png */; };
 		CE223DEE1620E870001BA44C /* 99@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223D1C1620E870001BA44C /* 99@2x.png */; };
 		CE223DEF1620E870001BA44C /* 9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE223D1D1620E870001BA44C /* 9@2x.png */; };
+		CE23CBBB16359F1A004A4839 /* FRCurvedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23CBBA16359F1A004A4839 /* FRCurvedTextView.m */; };
+		CE23CBBF1635A608004A4839 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23CBBE1635A608004A4839 /* OptionViewController.m */; };
+		CE23CBC11635A81C004A4839 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE23CBC01635A81C004A4839 /* CoreText.framework */; };
+		CE23CBC316366C56004A4839 /* 139-flags.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23CBC216366C56004A4839 /* 139-flags.png */; };
 		CEC249791621051C00CE7BD6 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249781621051C00CE7BD6 /* ChatViewController.m */; };
 		CEC2497D16210D3D00CE7BD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC2497C16210D3D00CE7BD6 /* CFNetwork.framework */; };
 		CEC24984162116E500CE7BD6 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC24983162116E500CE7BD6 /* AsyncUdpSocket.m */; };
@@ -277,7 +281,6 @@
 		CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B916230A9200CE7BD6 /* PhotoViewController.m */; };
 		CEC249C0162354D200CE7BD6 /* FaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */; };
 		CEC249C51623564D00CE7BD6 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2497F1621117D00CE7BD6 /* FaceViewController.m */; };
-		CEC674AD162EE2520058377B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC674AC162EE2520058377B /* CoreMotion.framework */; };
 		CED2C6AD16316F3D0046A0A9 /* IPAdress.c in Sources */ = {isa = PBXBuildFile; fileRef = CE223C3716202649001BA44C /* IPAdress.c */; };
 		CED2C6BD163193800046A0A9 /* KTPhotoBrowserGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2C6B2163193660046A0A9 /* KTPhotoBrowserGlobal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CED2C6BE163193800046A0A9 /* KTPhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2C6B4163193660046A0A9 /* KTPhotoScrollViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -561,6 +564,12 @@
 		CE223D1B1620E870001BA44C /* 99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 99.png; sourceTree = "<group>"; };
 		CE223D1C1620E870001BA44C /* 99@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "99@2x.png"; sourceTree = "<group>"; };
 		CE223D1D1620E870001BA44C /* 9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "9@2x.png"; sourceTree = "<group>"; };
+		CE23CBB916359F1A004A4839 /* FRCurvedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCurvedTextView.h; sourceTree = "<group>"; };
+		CE23CBBA16359F1A004A4839 /* FRCurvedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCurvedTextView.m; sourceTree = "<group>"; };
+		CE23CBBD1635A608004A4839 /* OptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionViewController.h; sourceTree = "<group>"; };
+		CE23CBBE1635A608004A4839 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
+		CE23CBC01635A81C004A4839 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		CE23CBC216366C56004A4839 /* 139-flags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "139-flags.png"; sourceTree = "<group>"; };
 		CEC249771621051C00CE7BD6 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		CEC249781621051C00CE7BD6 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		CEC2497C16210D3D00CE7BD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -587,7 +596,6 @@
 		CEC249B816230A9000CE7BD6 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CEC249B916230A9200CE7BD6 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController.xib; sourceTree = "<group>"; };
-		CEC674AC162EE2520058377B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		CED2C6B0163193660046A0A9 /* KTPhotoBrowserDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserDataSource.h; sourceTree = "<group>"; };
 		CED2C6B1163193660046A0A9 /* KTPhotoBrowserGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserGlobal.h; sourceTree = "<group>"; };
 		CED2C6B2163193660046A0A9 /* KTPhotoBrowserGlobal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTPhotoBrowserGlobal.m; sourceTree = "<group>"; };
@@ -616,7 +624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC674AD162EE2520058377B /* CoreMotion.framework in Frameworks */,
+				CE23CBC11635A81C004A4839 /* CoreText.framework in Frameworks */,
 				CED5555B162BC6E00069CB45 /* QuartzCore.framework in Frameworks */,
 				CEC2497D16210D3D00CE7BD6 /* CFNetwork.framework in Frameworks */,
 				0432A99F160D6DB5003E8869 /* CoreLocation.framework in Frameworks */,
@@ -634,7 +642,7 @@
 		043393B4160B7C7B007C81C0 = {
 			isa = PBXGroup;
 			children = (
-				CEC674AC162EE2520058377B /* CoreMotion.framework */,
+				CE23CBC01635A81C004A4839 /* CoreText.framework */,
 				043393C2160B7C7B007C81C0 /* Frameworks */,
 				043393C0160B7C7B007C81C0 /* Products */,
 				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
@@ -677,6 +685,10 @@
 				043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */,
 				CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */,
 				CEC2498D1621221D00CE7BD6 /* ChatCustomCell.xib */,
+				CE23CBB916359F1A004A4839 /* FRCurvedTextView.h */,
+				CE23CBBA16359F1A004A4839 /* FRCurvedTextView.m */,
+				CE23CBBD1635A608004A4839 /* OptionViewController.h */,
+				CE23CBBE1635A608004A4839 /* OptionViewController.m */,
 				CEC2499D1621A65B00CE7BD6 /* Place.h */,
 				CEC2499E1621A65C00CE7BD6 /* Place.m */,
 				CEC2498A162121F800CE7BD6 /* ChatCustomCell.h */,
@@ -765,6 +777,7 @@
 				CE178C60163289B40045EE4B /* bg-menuitem@2x.png */,
 				CE223C4B1620E86F001BA44C /* Face */,
 				CE223C481620E4E4001BA44C /* IMG_0972.JPG */,
+				CE23CBC216366C56004A4839 /* 139-flags.png */,
 				CE223C1D16201BBC001BA44C /* 09-chat-2.png */,
 				CEC24993162170E300CE7BD6 /* default_head_online.png */,
 				CEC24994162170E300CE7BD6 /* face_test.png */,
@@ -1337,6 +1350,7 @@
 				CE178C73163289C30045EE4B /* icon-plus@2x.png in Resources */,
 				CE178C74163289C30045EE4B /* icon-star.png in Resources */,
 				CE178C75163289C30045EE4B /* icon-star@2x.png in Resources */,
+				CE23CBC316366C56004A4839 /* 139-flags.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,6 +1392,8 @@
 				CEC249A91622B8D600CE7BD6 /* MapView.m in Sources */,
 				CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */,
 				04A2697116355EC2007F4D25 /* AddLocationMapViewController.m in Sources */,
+				CE23CBBB16359F1A004A4839 /* FRCurvedTextView.m in Sources */,
+				CE23CBBF1635A608004A4839 /* OptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

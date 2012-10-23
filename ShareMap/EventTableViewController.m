@@ -12,8 +12,8 @@
 #import "AddEventViewController.h"
 
 
-#define URL_GET_EVENT     @"http://localhost:3000/travel_event/"
-#define URL_DESTROY_EVENT @"http://localhost:3000/travel_event/destroy/%d"
+#define URL_GET_EVENT     @"http://sevenpeaches.herokuapp.com/travel_event/"
+#define URL_DESTROY_EVENT @"http://sevenpeaches.herokuapp.com/travel_event/destroy/%d"
 
 @interface EventTableViewController ()
 
@@ -155,7 +155,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)	:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
