@@ -34,6 +34,7 @@ enum {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
     IBOutlet UITextField *searchTextField;
+    IBOutlet UILabel *distance;
     CAShapeLayer *pulseLayer_;
     UIImageView* routeView;
 	NSArray* routes;
@@ -56,6 +57,7 @@ enum {
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (nonatomic, retain) UITextField *searchTextField;
+@property (nonatomic, retain) UILabel *distance;
 @property (nonatomic, retain) CAShapeLayer *pulseLayer_;
 @property (nonatomic, retain) UIColor* lineColor;
 @property (strong, nonatomic) CLLocationManager * locationManager;

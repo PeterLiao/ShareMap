@@ -266,7 +266,7 @@
 		CE23CBC316366C56004A4839 /* 139-flags.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23CBC216366C56004A4839 /* 139-flags.png */; };
 		CEC249791621051C00CE7BD6 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249781621051C00CE7BD6 /* ChatViewController.m */; };
 		CEC2497D16210D3D00CE7BD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC2497C16210D3D00CE7BD6 /* CFNetwork.framework */; };
-		CEC24984162116E500CE7BD6 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC24983162116E500CE7BD6 /* AsyncUdpSocket.m */; };
+		CEC24984162116E500CE7BD6 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC24983162116E500CE7BD6 /* AsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEC2498C162121F800CE7BD6 /* ChatCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2498B162121F800CE7BD6 /* ChatCustomCell.m */; };
 		CEC2498E1621221E00CE7BD6 /* ChatCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC2498D1621221D00CE7BD6 /* ChatCustomCell.xib */; };
 		CEC249911621709900CE7BD6 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC2498F1621709900CE7BD6 /* bubble.png */; };
@@ -279,7 +279,6 @@
 		CEC249AD1622C3DF00CE7BD6 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2499E1621A65C00CE7BD6 /* Place.m */; };
 		CEC249B31622E5E200CE7BD6 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEC249BA16230A9300CE7BD6 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249B916230A9200CE7BD6 /* PhotoViewController.m */; };
-		CEC249C0162354D200CE7BD6 /* FaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */; };
 		CEC249C51623564D00CE7BD6 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2497F1621117D00CE7BD6 /* FaceViewController.m */; };
 		CED2C6AD16316F3D0046A0A9 /* IPAdress.c in Sources */ = {isa = PBXBuildFile; fileRef = CE223C3716202649001BA44C /* IPAdress.c */; };
 		CED2C6BD163193800046A0A9 /* KTPhotoBrowserGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = CED2C6B2163193660046A0A9 /* KTPhotoBrowserGlobal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -595,7 +594,6 @@
 		CEC249B21622E57F00CE7BD6 /* RegexKitLite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = RegexKitLite/RegexKitLite.m; sourceTree = "<group>"; };
 		CEC249B816230A9000CE7BD6 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CEC249B916230A9200CE7BD6 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
-		CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController.xib; sourceTree = "<group>"; };
 		CED2C6B0163193660046A0A9 /* KTPhotoBrowserDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserDataSource.h; sourceTree = "<group>"; };
 		CED2C6B1163193660046A0A9 /* KTPhotoBrowserGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTPhotoBrowserGlobal.h; sourceTree = "<group>"; };
 		CED2C6B2163193660046A0A9 /* KTPhotoBrowserGlobal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTPhotoBrowserGlobal.m; sourceTree = "<group>"; };
@@ -683,7 +681,6 @@
 				CED2C6AF163193320046A0A9 /* Photo */,
 				CED5555C162BF2260069CB45 /* UsefulMacros.h */,
 				043393DE160B7D0C007C81C0 /* ShareMapStoryboard.storyboard */,
-				CEC249BF162354CF00CE7BD6 /* FaceViewController.xib */,
 				CEC2498D1621221D00CE7BD6 /* ChatCustomCell.xib */,
 				CE23CBB916359F1A004A4839 /* FRCurvedTextView.h */,
 				CE23CBBA16359F1A004A4839 /* FRCurvedTextView.m */,
@@ -1335,7 +1332,6 @@
 				CEC24996162170E300CE7BD6 /* default_head_online.png in Resources */,
 				CEC24997162170E300CE7BD6 /* face_test.png in Resources */,
 				CEC24998162170E300CE7BD6 /* senditem.png in Resources */,
-				CEC249C0162354D200CE7BD6 /* FaceViewController.xib in Resources */,
 				CE178C61163289B40045EE4B /* bg-addbutton-highlighted.png in Resources */,
 				CE178C62163289B40045EE4B /* bg-addbutton-highlighted@2x.png in Resources */,
 				CE178C63163289B40045EE4B /* bg-addbutton.png in Resources */,

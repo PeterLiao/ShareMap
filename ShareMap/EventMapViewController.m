@@ -45,6 +45,7 @@
 @synthesize responseData = _responseData;
 @synthesize mapView = _mapView;
 @synthesize searchTextField;
+@synthesize distance;
 @synthesize pulseLayer_;
 @synthesize lineColor;
 @synthesize locationManager = _locationManager;
@@ -517,6 +518,7 @@
 	NSInteger lat=0;
 	NSInteger lng=0;
     NSInteger turn=0;
+    float totalmeters = 0.f;
     NSLog(@"len=%d, index=%d",len,index);
 	while (index < len) {
 		NSInteger b;
@@ -582,6 +584,7 @@
         
         if (meters != 0){
             turn++;
+            totalmeters = totalmeters + meters;
 //            NSLog(@"angles of [%f, %f] and [%f, %f] = %f",lat_a_array2,lng_a_array3,lat_b_array2,lng_b_array3,result);
 //            NSLog(@"angles of [%f, %f] and [%f, %f] = %f",lat1,lon1,lat2,lon2,result);
             NSLog(@"meters=%f",meters);
@@ -589,6 +592,14 @@
         }
     }
     NSLog(@"total turn=%d",turn);
+    NSString *mo;
+    if (totalmeters > 1000){
+        float totalkm = totalmeters / 1000;
+        mo = [NSString stringWithFormat:@"總距離：%.3f 公里",totalkm];
+    } else {
+        mo = [NSString stringWithFormat:@"總距離：%.1f 公尺",totalmeters];
+    }
+    self.distance.text = mo;
 	return array;
 }
 

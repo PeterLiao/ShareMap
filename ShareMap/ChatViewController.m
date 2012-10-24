@@ -110,39 +110,17 @@
 -(void)openUDPServer{
 	//初始化udp
     
-	GCDAsyncUdpSocket *tempSocket=[[GCDAsyncUdpSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+	//初始化udp
+	AsyncUdpSocket *tempSocket=[[AsyncUdpSocket alloc] initWithDelegate:self];
 	self.udpSocket=tempSocket;
 
 	//绑定端口
 	NSError *error = nil;
-//	/[self.udpSocket bindToPort:4333 error:&error];
-    if (![self.udpSocket bindToPort:4333 error:&error])
-    {
-        NSLog(@"Error binding: %@", [error description]);
-        //return;
-    }
-//    [self.udpSocket enableBroadcast:YES error:&error];
-//    if (error != nil)
-//    {
-//        NSLog(@"Error enabling broadcast: %@", [error description]);
-//        //return;
-//    }
-
+	[self.udpSocket bindToPort:4333 error:&error];
     [self.udpSocket joinMulticastGroup:@"224.0.0.1" error:&error];
-       	//启动接收线程
-    if (error != nil)
-    {
-        NSLog(@"Error joinMulticastGroup: %@", [error description]);
-        //return;
-    }
     
-    
-    if (![self.udpSocket beginReceiving:&error])
-    {
-        NSLog(@"Error receiving: %@", [error description]);
-    }
-	//[self.udpSocket];
-    
+   	//启动接收线程
+	[self.udpSocket receiveWithTimeout:-1 tag:0];
 }
 
 
@@ -196,24 +174,30 @@
 	NSMutableString *sendString=[NSMutableString stringWithCapacity:100];
 	[sendString appendString:message];
 	//开始发送
-//	BOOL res = [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
-    [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
+    BOOL res = [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
 								 toHost:@"224.0.0.1"
 								   port:4333
 							withTimeout:-1
+                
                                     tag:0];
     
+//    [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
+//								 toHost:@"224.0.0.1"
+//								   port:4333
+//							withTimeout:-1
+//                                    tag:0];
     
-//   	if (!res) {
-//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-//														message:@"发送失败"
-//													   delegate:self
-//											  cancelButtonTitle:@"取消"
-//											  otherButtonTitles:nil];
-//		[alert show];
-//
-//        return;
-//	}
+    
+   	if (!res) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+														message:@"訊息不可為空"
+													   delegate:self
+											  cancelButtonTitle:@"取消"
+											  otherButtonTitles:nil];
+		[alert show];
+
+        return;
+	}
 	
 	if ([self.chatArray lastObject] == nil) {
 		self.lastTime = nowTime;
@@ -236,17 +220,31 @@
 									  animated:YES];
 }
 
-
+//Deprecated
 -(IBAction)showPhraseInfo:(id)sender
 {
     self.messageString =[NSMutableString stringWithFormat:@"%@",self.messageTextField.text];
 	[self.messageTextField resignFirstResponder];
 	if (self.phraseViewController == nil) {
-		FaceViewController *temp = [[FaceViewController alloc] initWithNibName:@"FaceViewController" bundle:nil];
+        FaceViewController *temp = [self.storyboard instantiateViewControllerWithIdentifier:@"Face"];
+//		FaceViewController *temp = [[FaceViewController alloc] initWithNibName:@"FaceViewController" bundle:nil];
 		self.phraseViewController = temp;
 
 	}
 	[self presentModalViewController:self.phraseViewController animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    //將page2設定成Storyboard Segue的目標UIViewController
+    id page2 = segue.destinationViewController;
+    
+    //將值透過Storyboard Segue帶給頁面2的string變數
+//    [page2 setValue:page1TextField.text forKey:@"string"];
+    
+    //將delegate設成自己（指定自己為代理）
+    [page2 setValue:self forKey:@"delegate"];
+    
 }
 
 
@@ -304,20 +302,13 @@
 #pragma mark -
 #pragma mark UDP Delegate Methods
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data
-      fromAddress:(NSData *)address withFilterContext:(id)filterContext
+-(BOOL)onUdpSocket:(AsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port
 {
-
     
-    NSLog(@"host---->%@",address);
-    NSError *error = nil;
-    //[self.udpSocket receiveWithTimeout:-1 tag:0];
-    if (![self.udpSocket beginReceiving:&error])
-    {
-        NSLog(@"Error receiving: %@", [error description]);
-    }
+    NSLog(@"host---->%@",host);
+    [self.udpSocket receiveWithTimeout:-1 tag:0];
    	//接收到数据回调，用泡泡VIEW显示出来
-	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
+	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding] ;
     NSLog(@"%@",info);
 	
     UIView *chatView = [self bubbleView:[NSString stringWithFormat:@"%@:%@",@"other", info]
@@ -329,11 +320,11 @@
 	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
 							  atScrollPosition: UITableViewScrollPositionBottom
 									  animated:YES];
-
-
+	//已经处理完毕
+	return YES;
 }
 
-- (void)onUdpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error
+- (void)onUdpSocket:(AsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error
 {
 	//无法发送时,返回的异常提示信息
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -342,9 +333,10 @@
 										  cancelButtonTitle:@"取消"
 										  otherButtonTitles:nil];
 	[alert show];
+
 	
 }
-- (void)onUdpSocket:(GCDAsyncUdpSocket *)sock didNotReceiveDataWithTag:(long)tag dueToError:(NSError *)error
+- (void)onUdpSocket:(AsyncUdpSocket *)sock didNotReceiveDataWithTag:(long)tag dueToError:(NSError *)error
 {
 	//无法接收时，返回异常提示信息
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -353,6 +345,7 @@
 										  cancelButtonTitle:@"取消"
 										  otherButtonTitles:nil];
 	[alert show];
+
 }
 
 #pragma mark -
@@ -578,5 +571,13 @@
     return NO;
 }
 
+
+- (void)passValue:(NSString *)value {
+    
+    //設定page1TextField為所取的的數值
+    self.messageString=value;
+//    [self.messageString appendString:value];
+//    page1TextField.text = value;
+}
 
 @end

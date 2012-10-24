@@ -146,6 +146,7 @@
 }
 
 
+
 -(void)didSelectAFace:(id)sender
 {
     UIButton *tempbtn = (UIButton *)sender;
@@ -153,9 +154,12 @@
     NSArray *temparray = [tempdic allKeys];
     NSString *faceStr= [NSString stringWithFormat:@"%@",[temparray objectAtIndex:0]];
     
-    self.chatViewController.phraseString = faceStr;
-    [self.chatViewController.messageString appendString:self.chatViewController.phraseString];
-    [self dismissModalViewControllerAnimated:YES];
+    //self.chatViewController.phraseString = faceStr;
+    //[self.chatViewController.messageString appendString:self.chatViewController.phraseString];
+//    [self dismissModalViewControllerAnimated:YES ];
+    [self dismissViewControllerAnimated:YES completion:^{}];
+    //呼叫協定中的方法並帶入page2textField的數值
+    [_delegate passValue:faceStr];
 }
-
+			
 @end

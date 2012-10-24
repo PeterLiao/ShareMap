@@ -12,7 +12,7 @@
 #import "IPAddress.h"
 @class BaseTabBarController;
 
-@interface ChatViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
+@interface ChatViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,FaceDelegate> {
 	NSString                   *_titleString;
 	NSMutableString            *_messageString;
 	NSString                   *_phraseString;
@@ -22,7 +22,7 @@
 	UITextField                *_messageTextField;
 	BOOL                       _isFromNewSMS;
 	FaceViewController      *_phraseViewController;
-	GCDAsyncUdpSocket             *_udpSocket;
+	AsyncUdpSocket             *_udpSocket;
 	NSDate                     *_lastTime;
     
     
@@ -30,16 +30,17 @@
     
 }
 @property (nonatomic, retain) BaseTabBarController *basetempController;
-@property (nonatomic, retain) IBOutlet FaceViewController   *phraseViewController;
+
 @property (nonatomic, retain) IBOutlet UITableView            *chatTableView;
 @property (nonatomic, retain) IBOutlet UITextField            *messageTextField;
 @property (nonatomic, retain) NSString               *phraseString;
 @property (nonatomic, retain) NSString               *titleString;
 @property (nonatomic, retain) NSMutableString        *messageString;
 @property (nonatomic, retain) NSMutableArray		 *chatArray;
+@property (nonatomic, retain) IBOutlet FaceViewController   *phraseViewController;
 
 @property (nonatomic, retain) NSDate                 *lastTime;
-@property (nonatomic, retain) GCDAsyncUdpSocket         *udpSocket;
+@property (nonatomic, retain) AsyncUdpSocket         *udpSocket;
 
 -(IBAction)sendMessage_Click:(id)sender;
 -(IBAction)showPhraseInfo:(id)sender;
