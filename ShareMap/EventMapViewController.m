@@ -131,38 +131,38 @@
 //                        }];
 //    }
     
-    CABasicAnimation *spin = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    spin.toValue = [NSNumber numberWithFloat:M_PI * 2];
-    spin.duration = 1.f;
-    spin.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    
-    [CATransaction begin];
-    if(IS_IOS4) {
-        [CATransaction setCompletionBlock:^{
-            CABasicAnimation *squish = [CABasicAnimation animationWithKeyPath:@"transform"];
-            CATransform3D squishTransform = CATransform3DMakeScale(1.75f, .25f, 1.f);
-            squish.toValue = [NSValue valueWithCATransform3D:squishTransform];
-            squish.duration = .5f;
-            squish.repeatCount = 1;
-            squish.autoreverses = YES;
-            
-            CABasicAnimation *fadeOutBG = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
-            fadeOutBG.toValue = (id)[[UIColor yellowColor] CGColor];
-            fadeOutBG.duration = .55f;
-            fadeOutBG.repeatCount = 1;
-            fadeOutBG.autoreverses = YES;
-            fadeOutBG.beginTime = 1.f;
-            
-            CAAnimationGroup *group = [CAAnimationGroup animation];
-            group.animations = [NSArray arrayWithObjects:squish, fadeOutBG, nil];
-            group.duration = 2.f;
-            group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-            
-            [pulseLayer_ addAnimation:group forKey:@"SquishAndHighlight"];
-        }];
-    }
-    [pulseLayer_ addAnimation:spin forKey:@"spinTheText"];
-    [CATransaction commit];
+//    CABasicAnimation *spin = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    spin.toValue = [NSNumber numberWithFloat:M_PI * 2];
+//    spin.duration = 1.f;
+//    spin.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+//    
+//    [CATransaction begin];
+//    if(IS_IOS4) {
+//        [CATransaction setCompletionBlock:^{
+//            CABasicAnimation *squish = [CABasicAnimation animationWithKeyPath:@"transform"];
+//            CATransform3D squishTransform = CATransform3DMakeScale(1.75f, .25f, 1.f);
+//            squish.toValue = [NSValue valueWithCATransform3D:squishTransform];
+//            squish.duration = .5f;
+//            squish.repeatCount = 1;
+//            squish.autoreverses = YES;
+//            
+//            CABasicAnimation *fadeOutBG = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+//            fadeOutBG.toValue = (id)[[UIColor yellowColor] CGColor];
+//            fadeOutBG.duration = .55f;
+//            fadeOutBG.repeatCount = 1;
+//            fadeOutBG.autoreverses = YES;
+//            fadeOutBG.beginTime = 1.f;
+//            
+//            CAAnimationGroup *group = [CAAnimationGroup animation];
+//            group.animations = [NSArray arrayWithObjects:squish, fadeOutBG, nil];
+//            group.duration = 2.f;
+//            group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+//            
+//            [pulseLayer_ addAnimation:group forKey:@"SquishAndHighlight"];
+//        }];
+//    }
+//    [pulseLayer_ addAnimation:spin forKey:@"spinTheText"];
+//    [CATransaction commit];
     
     
     // Menu
@@ -218,7 +218,7 @@
         item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * sinf(i * M_PI_2 / (count - 1)), STARTPOINT.y - FARRADIUS * cosf(i * M_PI_2 / (count - 1)));
         item.center = item.startPoint;
         item.delegate = self;
-        [_mapView addSubview:item];
+        [self.view addSubview:item];
     }
     
     // add the "Add" Button.
@@ -228,7 +228,7 @@
                                   highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
     _addButton.delegate = self;
     _addButton.center = STARTPOINT;
-    [_mapView addSubview:_addButton];
+    [self.view addSubview:_addButton];
     
 
 
@@ -779,6 +779,22 @@
     CLLocation* nextLocation = [routes objectAtIndex:0];
     float result = [self computeAzimuth:from.latitude lon1:from.longitude lat2:nextLocation.coordinate.latitude lon2:nextLocation.coordinate.longitude];
     NSLog(@"Angle of [%f,%f] [%f,%f] = %f",from.latitude, from.longitude, nextLocation.coordinate.latitude, nextLocation.coordinate.longitude,  result);
+    
+    
+    CABasicAnimation *spin = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    NSLog(@"toRad(result) = %f", toRad(result));
+    
+    spin.toValue = [NSNumber numberWithFloat:toRad(result) ];
+    spin.duration = 1.f;
+    spin.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    spin.fillMode=kCAFillModeForwards;
+    spin.removedOnCompletion=NO;
+    
+    
+    [CATransaction begin];
+    [pulseLayer_ addAnimation:spin forKey:@"spinTheText"];
+    [CATransaction commit];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{

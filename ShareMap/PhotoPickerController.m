@@ -8,9 +8,9 @@
 
 #import "PhotoPickerController.h"
 
-#define BUTTON_TAKEPHOTO 0
-#define BUTTON_USELIBRARY 1
-#define BUTTON_CANCEL 2
+#define BUTTON_TAKEPHOTO 1
+#define BUTTON_USELIBRARY 2
+#define BUTTON_CANCEL 3
 
 @interface PhotoPickerController (Private)
 - (UIImagePickerController *)imagePicker;
@@ -40,10 +40,10 @@
    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
       UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button text.")
-                                                 destructiveButtonTitle:nil
-                                                      otherButtonTitles:NSLocalizedString(@"Take Photo", @"Take Photo button text."), 
-                                                                        NSLocalizedString(@"Choose From Library", @"Button text."), 
+                                                      cancelButtonTitle:NSLocalizedString(@"取消", @"Cancel button text.")
+                                                 destructiveButtonTitle:NSLocalizedString(@"分享到地圖", @"Share button text.")
+                                                      otherButtonTitles:NSLocalizedString(@"照相", @"Take Photo button text."), 
+                                                                        NSLocalizedString(@"從相片庫選擇...", @"Button text."), 
                                                                         nil];
       if ([delegate_ respondsToSelector:@selector(view)]) {
          [actionSheet showInView:[delegate_ view]];
