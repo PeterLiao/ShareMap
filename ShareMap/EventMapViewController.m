@@ -484,6 +484,7 @@
 //    [[[self view] layer]addSublayer:pulseLayer_];
     [[[_mapView superview] layer]addSublayer:pulseLayer_];
 //    [pulseLayer_ setNeedsDisplay];
+    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
 
 }
 

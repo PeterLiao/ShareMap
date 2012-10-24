@@ -96,14 +96,12 @@
 	[super viewWillAppear:YES];
     
 
-    [self.navigationController setTitle:@"Test"];
-
-    
-
 	[self openUDPServer];
 	
 	[self.messageTextField setText:self.messageString];
 	[self.chatTableView reloadData];
+    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
+
 }
 
 //建立基于UDP的Socket连接

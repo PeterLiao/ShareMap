@@ -22,7 +22,7 @@
         curvedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
         curvedView.alpha = 0.0f;
     }
-    
+    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
 }
 
 - (void)viewDidAppear:(BOOL)animated {

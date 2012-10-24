@@ -109,6 +109,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 
 }
