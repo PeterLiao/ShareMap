@@ -19,6 +19,9 @@
 #import "QuadCurveMenuItem.h"
 #import "GlobalTab.h"
 #import "Reachability.h"
+#import "ATMHudDelegate.h"
+
+@class ATMHud;
 
 @protocol QuadCurveMenuDelegate;
 
@@ -30,7 +33,7 @@ enum {
 };
 
 
-@interface EventMapViewController : UIViewController< MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate,QuadCurveMenuItemDelegate>
+@interface EventMapViewController : UIViewController< MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate,QuadCurveMenuItemDelegate, ATMHudDelegate>
 {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
@@ -56,6 +59,8 @@ enum {
     UILabel *labelShow;
     singletonObj * sobj;
     
+    ATMHud *hud;
+    
 }
 
 @property (nonatomic, retain) NSArray * placemarkList;
@@ -76,6 +81,7 @@ enum {
 
 @property (nonatomic,retain) IBOutlet UILabel *labelShow;
 
+@property (nonatomic, retain) ATMHud *hud;
 
 - (id)initWithFrame:(CGRect)frame menus:(NSArray *)aMenusArray;
 

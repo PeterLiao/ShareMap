@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "CustomPlacemark.h"
+#import "ATMHudDelegate.h"
 
 enum {
     STATUS_ARRIVED = 0,
@@ -17,17 +18,21 @@ enum {
     STATUS_TARGET
 };
 
-@interface AddLocationMapViewController : UIViewController<MKMapViewDelegate, UISearchBarDelegate,CLLocationManagerDelegate>
+@class ATMHud;
+
+@interface AddLocationMapViewController : UIViewController<MKMapViewDelegate, UISearchBarDelegate,CLLocationManagerDelegate,ATMHudDelegate>
 {
     IBOutlet UISearchBar *searchBar;
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
+    ATMHud *hud;
 }
 
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) NSArray * placemarkList;
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (strong, nonatomic) CLLocationManager * locationManager;
+@property (nonatomic, retain) ATMHud *hud;
 
 - (IBAction)doSearch:(id)sender;
 - (IBAction)doApply:(id)sender;

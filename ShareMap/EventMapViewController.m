@@ -21,6 +21,8 @@
 #import "math.h"
 #import "ChatViewController.h"
 #import "Reachability.h"
+#import "ATMHud.h"
+#import "ATMHudQueueItem.h"
 
 #define toRad(X) (X*M_PI/180.0)
 #define toDeg(X) (X*180.0/M_PI)
@@ -63,6 +65,7 @@
 @synthesize delegate = _delegate;
 @synthesize menusArray = _menusArray;
 @synthesize labelShow;
+@synthesize hud;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -264,6 +267,13 @@
     [self.view addSubview:_addButton];
     
     
+    // HUD
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    [self.view addSubview:hud.view];
+    [hud setBlockTouches:YES];
+    [hud setCaption:@"切換到朋友介面以回到上一層選單"];
+    [hud show];
+    [hud hideAfter:3.5];
 }
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
@@ -1216,6 +1226,20 @@
     NSLog(@"Select the index : %d",idx);
 }
 
+#pragma mark -
+#pragma mark ATMHudDelegate
+- (void)userDidTapHud:(ATMHud *)_hud {
+	[_hud hide];
+}
+
+// Uncomment this method to see a demonstration of playing a sound everytime a HUD appears.
+/*
+ - (void)hudDidAppear:(ATMHud *)_hud {
+ NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"pop"
+ ofType: @"wav"];
+ [hud playSound:soundFilePath];
+ }
+ */
 
 
 @end

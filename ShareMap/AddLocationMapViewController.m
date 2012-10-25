@@ -7,6 +7,8 @@
 //
 
 #import "AddLocationMapViewController.h"
+#import "ATMHud.h"
+#import "ATMHudQueueItem.h"
 
 @interface AddLocationMapViewController ()
 
@@ -18,6 +20,7 @@
 @synthesize placemarkList = _placemarkList;
 @synthesize mapView = _mapView;
 @synthesize locationManager = _locationManager;
+@synthesize hud;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
@@ -38,8 +42,8 @@
     if ([CLLocationManager locationServicesEnabled]){
         [_locationManager startUpdatingLocation];
         
-
     }
+    
     [_mapView removeAnnotations:[_mapView annotations]];
     mapView.showsUserLocation = YES;
     CLLocationCoordinate2D userLoc;
@@ -47,6 +51,16 @@
     userLoc.latitude = mapView.userLocation.location.coordinate.latitude;
     userLoc.longitude = mapView.userLocation.location.coordinate.longitude;
     mapView.region = MKCoordinateRegionMakeWithDistance(userLoc, 50000, 50000);
+    
+    
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    [_mapView addSubview:hud.view];
+    [hud setBlockTouches:YES];
+    [hud setCaption:@"長按地圖來新增目的地"];
+    [hud show];
+    [hud hideAfter:3.0];
+
+    
     UILongPressGestureRecognizer *lpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     lpress.minimumPressDuration = 0.5;
     lpress.allowableMovement = 10.0;
@@ -138,6 +152,13 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated
+{
+
+}
+
+
+
 - (void)longPress:(UIGestureRecognizer*)gestureRecognizer
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded){
@@ -158,10 +179,12 @@
 }
 
 
+
 #pragma mark CLLocationManagerDelegate Methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
 
     [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:@"Jessica" subTitle:@"目前位置" status:STATUS_GOING];
+    
 }
 
 
@@ -170,5 +193,18 @@
     NSLog(@"Error: %@",errorType);
 }
 
+#pragma mark -
+#pragma mark ATMHudDelegate
+- (void)userDidTapHud:(ATMHud *)_hud {
+	[_hud hide];
+}
 
+// Uncomment this method to see a demonstration of playing a sound everytime a HUD appears.
+/*
+ - (void)hudDidAppear:(ATMHud *)_hud {
+ NSString *soundFilePath = [[NSBundle mainBundle] pathForResource: @"pop"
+ ofType: @"wav"];
+ [hud playSound:soundFilePath];
+ }
+ */
 @end

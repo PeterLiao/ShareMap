@@ -11,6 +11,7 @@
 #import "KTThumbView.h"
 #import "KTPhotoScrollViewController.h"
 
+
 @interface PhotoViewController (Private)
 - (UIActivityIndicatorView *)activityIndicator;
 - (void)showActivityIndicator;
@@ -19,6 +20,7 @@
 @end
 
 @implementation PhotoViewController
+
 
 - (void)dealloc {
      myPhotos_ = nil;
@@ -71,7 +73,6 @@
 
 
     
-    
     if (myPhotos_ == nil) {
         myPhotos_ = [[Photos alloc] init];
         [myPhotos_ setDelegate:self];
@@ -87,6 +88,9 @@
     NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
     [toolbar setItems:items];
     [self.view addSubview:toolbar];
+    
+
+
 
 }
 

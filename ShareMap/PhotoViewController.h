@@ -12,13 +12,17 @@
 #import "Photos.h"
 
 
+
+
 @class Photos;
+
 
 @interface PhotoViewController : KTThumbsViewController <PhotoPickerControllerDelegate, PhotosDelegate,UINavigationControllerDelegate> {
     PhotoPickerController *photoPicker_;
     Photos *myPhotos_;
     UIActivityIndicatorView *activityIndicatorView_;
     UIWindow *window_;
+
 //@private
 //    id <KTPhotoBrowserDataSource> dataSource_;
 //    KTThumbsView *scrollView_;
@@ -30,6 +34,7 @@
 - (IBAction)ViewPhoto:(id)sender;
 
 - (id)initWithWindow:(UIWindow *)window;
+
 @property (nonatomic, retain) id <KTPhotoBrowserDataSource> dataSource;
 
 /**
