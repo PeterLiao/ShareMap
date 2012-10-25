@@ -191,7 +191,7 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 														message:@"訊息不可為空"
 													   delegate:self
-											  cancelButtonTitle:@"取消"
+											  cancelButtonTitle:@"確定"
 											  otherButtonTitles:nil];
 		[alert show];
 
@@ -331,7 +331,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 													message:[error description]
 												   delegate:self
-										  cancelButtonTitle:@"取消"
+										  cancelButtonTitle:@"確定"
 										  otherButtonTitles:nil];
 	[alert show];
 
@@ -343,7 +343,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 													message:[error description]
 												   delegate:self
-										  cancelButtonTitle:@"取消"
+										  cancelButtonTitle:@"確定"
 										  otherButtonTitles:nil];
 	[alert show];
 

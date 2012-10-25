@@ -20,6 +20,7 @@
 #import "QuartzCore/CATransaction.h"
 #import "math.h"
 #import "ChatViewController.h"
+#import "Reachability.h"
 
 #define toRad(X) (X*M_PI/180.0)
 #define toDeg(X) (X*180.0/M_PI)
@@ -73,6 +74,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -81,7 +84,26 @@
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
-    self.locationManager.distanceFilter = 10.0f; //在生成更新位置前，設備必須移動的米數
+    
+    // 檢查是否為 Wifi
+    if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != NotReachable) {
+        NSLog(@"Wifi!");
+        self.locationManager.distanceFilter = 100.0f; //在生成更新位置前，設備必須移動的米數
+    // 檢查是否為 3G
+    } else if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable) {
+        NSLog(@"3G!");
+        self.locationManager.distanceFilter = 10.0f; //在生成更新位置前，設備必須移動的米數
+    } else {
+        NSLog(@"Cannot connect Network!!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"目前無網路連線，請先連上網路再行使用"
+                                                       delegate:self
+                                              cancelButtonTitle:@"確定"
+                                              otherButtonTitles:nil];
+        [alert show];
+
+        return;
+    }
     
     self.locationManager.headingFilter = 5;//在生成更新的指南針讀數之前設備需要轉過的度數 (Notify heading changes when heading is > 5.)
     if ([CLLocationManager locationServicesEnabled]){
@@ -495,7 +517,7 @@
     
     //跑馬燈
     if (sobj.gblStr){
-        labelShow.text = [NSString stringWithFormat:@"%@: %@", @"Other: ", sobj.gblStr];
+        labelShow.text = [NSString stringWithFormat:@"%@%@", @"Other: ", sobj.gblStr];
     }
     CGRect frame = labelShow.frame;
 	frame.origin.x = -180;
@@ -800,10 +822,10 @@
     Place* from = [[Place alloc] init];
     from.name = @"Jessica";
     from.description = @"趕路中(預計15分鐘)";
-//	from.latitude = newLocation.coordinate.latitude;
-//	from.longitude = newLocation.coordinate.longitude;
-    from.latitude = 25.043119;
-    from.longitude = 121.509529;
+	from.latitude = newLocation.coordinate.latitude;
+	from.longitude = newLocation.coordinate.longitude;
+//    from.latitude = 25.043119;
+//    from.longitude = 121.509529;
     
 	Place* to = [[Place alloc] init];
     to.name = @"Miniko";
@@ -1180,6 +1202,7 @@
 {
     NSLog(@"Select the index : %d",idx);
 }
+
 
 
 @end
