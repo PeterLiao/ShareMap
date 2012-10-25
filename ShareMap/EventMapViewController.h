@@ -17,6 +17,7 @@
 #import "PlaceMark.h"
 #import <CoreMotion/CoreMotion.h>
 #import "QuadCurveMenuItem.h"
+#import "GlobalTab.h"
 
 @protocol QuadCurveMenuDelegate;
 
@@ -26,7 +27,6 @@ enum {
     STATUS_MISSING,
     STATUS_TARGET
 };
-
 
 
 @interface EventMapViewController : UIViewController< MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate,QuadCurveMenuItemDelegate>
@@ -51,6 +51,10 @@ enum {
     QuadCurveMenuItem *_addButton;
     
     __unsafe_unretained id<QuadCurveMenuDelegate> _delegate;
+    
+    UILabel *labelShow;
+    singletonObj * sobj;
+    
 }
 
 @property (nonatomic, retain) NSArray * placemarkList;
@@ -68,6 +72,10 @@ enum {
 @property (nonatomic, copy) NSArray *menusArray;
 @property (nonatomic, getter = isExpanding)     BOOL expanding;
 @property (nonatomic, assign) id<QuadCurveMenuDelegate> delegate;
+
+@property (nonatomic,retain) IBOutlet UILabel *labelShow;
+
+
 - (id)initWithFrame:(CGRect)frame menus:(NSArray *)aMenusArray;
 
 

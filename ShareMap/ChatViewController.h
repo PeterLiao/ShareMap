@@ -10,6 +10,9 @@
 #import "FaceViewController.h"
 #import "AsyncUdpSocket.h"
 #import "IPAddress.h"
+#import "GlobalTab.h";
+
+
 @class BaseTabBarController;
 
 @interface ChatViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,FaceDelegate> {
@@ -25,7 +28,7 @@
 	AsyncUdpSocket             *_udpSocket;
 	NSDate                     *_lastTime;
     
-    
+    singletonObj * anotherSingle;
     
     
 }

@@ -141,7 +141,7 @@ const CGFloat ktkDefaultToolbarHeight = 44;
    
    CGRect screenFrame = [[UIScreen mainScreen] bounds];
    CGRect toolbarFrame = CGRectMake(0, 
-                                    screenFrame.size.height - ktkDefaultToolbarHeight, 
+                                    screenFrame.size.height - ktkDefaultToolbarHeight-20,
                                     screenFrame.size.width, 
                                     ktkDefaultToolbarHeight);
    toolbar_ = [[UIToolbar alloc] initWithFrame:toolbarFrame];

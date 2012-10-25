@@ -50,6 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    anotherSingle = [singletonObj singleObj];
     
     UIImage *image = [UIImage imageNamed:@"backitem.png"];
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -216,6 +217,8 @@
 	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
 							  atScrollPosition: UITableViewScrollPositionBottom
 									  animated:YES];
+    anotherSingle.gblStr = message;
+
 }
 
 //Deprecated
@@ -570,11 +573,11 @@
 }
 
 
-- (void)passValue:(NSString *)value {
+- (void)passValue:(NSMutableString *)value {
     
     //設定page1TextField為所取的的數值
-    self.messageString=value;
-//    [self.messageString appendString:value];
+    self.messageString = value;
+    //    [self.messageString appendString:value];
 //    page1TextField.text = value;
 }
 

@@ -14,16 +14,16 @@
 
 @class Photos;
 
-@interface PhotoViewController : UIViewController <PhotoPickerControllerDelegate, PhotosDelegate,UINavigationControllerDelegate> {
+@interface PhotoViewController : KTThumbsViewController <PhotoPickerControllerDelegate, PhotosDelegate,UINavigationControllerDelegate> {
     PhotoPickerController *photoPicker_;
     Photos *myPhotos_;
     UIActivityIndicatorView *activityIndicatorView_;
     UIWindow *window_;
-@private
-    id <KTPhotoBrowserDataSource> dataSource_;
-    KTThumbsView *scrollView_;
-    BOOL viewDidAppearOnce_;
-    BOOL navbarWasTranslucent_;
+//@private
+//    id <KTPhotoBrowserDataSource> dataSource_;
+//    KTThumbsView *scrollView_;
+//    BOOL viewDidAppearOnce_;
+//    BOOL navbarWasTranslucent_;
 }
 
 

@@ -6,6 +6,11 @@
 //  Copyright (c) 2012年 Mac. All rights reserved.
 //
 
+/*
+ tabbar頁面間的切換:
+ [self.tabBarController setSelectedIndex:2]; 
+ */
+
 #import "EventMapViewController.h"
 #import "CustomPlacemark.h"
 #import "QuartzCore/CAAnimation.h"
@@ -14,6 +19,7 @@
 #import "QuartzCore/CAShapeLayer.h"
 #import "QuartzCore/CATransaction.h"
 #import "math.h"
+#import "ChatViewController.h"
 
 #define toRad(X) (X*M_PI/180.0)
 #define toDeg(X) (X*180.0/M_PI)
@@ -55,6 +61,8 @@
 @synthesize expanding = _expanding;
 @synthesize delegate = _delegate;
 @synthesize menusArray = _menusArray;
+@synthesize labelShow;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,6 +76,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sobj = [singletonObj singleObj];
     
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -231,8 +240,6 @@
     _addButton.center = STARTPOINT;
     [self.view addSubview:_addButton];
     
-
-
     
 }
 
@@ -485,6 +492,26 @@
     [[[_mapView superview] layer]addSublayer:pulseLayer_];
 //    [pulseLayer_ setNeedsDisplay];
     self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
+    
+    //跑馬燈
+    if (sobj.gblStr){
+        labelShow.text = [NSString stringWithFormat:@"%@: %@", @"Other: ", sobj.gblStr];
+    }
+    CGRect frame = labelShow.frame;
+	frame.origin.x = -180;
+	labelShow.frame = frame;
+	
+	[UIView beginAnimations:@"testAnimation" context:NULL];
+	[UIView setAnimationDuration:8.8f];
+	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationRepeatAutoreverses:NO];
+	[UIView setAnimationRepeatCount:999999];
+	
+	frame = labelShow.frame;
+	frame.origin.x = 350;
+	labelShow.frame = frame;
+	[UIView commitAnimations];
 
 }
 
@@ -1153,5 +1180,7 @@
 {
     NSLog(@"Select the index : %d",idx);
 }
+
+
 @end
 

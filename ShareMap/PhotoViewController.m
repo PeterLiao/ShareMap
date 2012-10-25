@@ -53,8 +53,7 @@
 // 
 //     imagePicker.delegate = self;
 //       imagePicker.allowsEditing = NO;
-    UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:100];
-    toolbar.frame = CGRectMake(0.0f, (float)(415.0f), 320.0f, 38.0f);
+ 
 //    UIButton *button = (UIButton *) [self.view viewWithTag:120];
 	// Do any additional setup after loading the view.
 //    [self setTitle:NSLocalizedString(@"Photo Album", @"Photo Album screen title.")];
@@ -67,14 +66,11 @@
 //    [button addTarget:self action:@selector(addPhoto:) forControlEvents:(UIControlEvents)UIControlEventTouchDown];
 //    UIToolbar *toolbar = [[UIToolbar alloc] init];
 //    toolbar.barStyle = UIBarStyleBlackOpaque;
-    [toolbar sizeToFit];
+    
 //    toolbar.frame = CGRectMake(0, 436, 320, 44);
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = 130.0;
-    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
-    NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
-    [toolbar setItems:items];
 
+
+    
     
     if (myPhotos_ == nil) {
         myPhotos_ = [[Photos alloc] init];
@@ -206,19 +202,5 @@
 }
 
 
-- (void)didSelectThumbAtIndex:(NSUInteger)index {
-    KTPhotoScrollViewController *newController = [[KTPhotoScrollViewController alloc]
-                                                  initWithDataSource:dataSource_
-                                                  andStartWithPhotoAtIndex:index];
-    
-    [[self navigationController] pushViewController:newController animated:YES];
-
-}
-
-- (void)reloadThumbs {
-    [self willLoadThumbs];
-    [scrollView_ reloadData];
-    [self didLoadThumbs];
-}
 
 @end

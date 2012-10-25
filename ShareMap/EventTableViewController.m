@@ -295,8 +295,7 @@
 {
 }
 
-- (void
-   )navigationController:(UINavigationController *)navigationController
+- (void)navigationController:(UINavigationController *)navigationController
 willShowViewController:(UIViewController *)viewController animated:(BOOL
                                                                     )animated
 {

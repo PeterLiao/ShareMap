@@ -29,7 +29,7 @@
 - (void)loadView {
    // Make sure to set wantsFullScreenLayout or the photo
    // will not display behind the status bar.
-   [self setWantsFullScreenLayout:YES];
+//   [self setWantsFullScreenLayout:YES];
 
    KTThumbsView *scrollView = [[KTThumbsView alloc] initWithFrame:CGRectZero];
    [scrollView setDataSource:self];
@@ -55,6 +55,15 @@
    // Set main view to the scroll view.
    [self setView:scrollView];
    
+    UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:100];
+    toolbar.frame = CGRectMake(0.0f, (float)(100.0f), 320.0f, 38.0f);
+    [toolbar sizeToFit];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = 130.0;
+    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
+    NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
+    [toolbar setItems:items];
+    
    // Retain a reference to the scroll view.
    scrollView_ = scrollView;
    [scrollView_ retain];
@@ -72,20 +81,32 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   // The first time the view appears, store away the current translucency so we can reset on pop.
-  UINavigationBar *navbar = [[self navigationController] navigationBar];
-  if (!viewDidAppearOnce_) {
-    viewDidAppearOnce_ = YES;
-    navbarWasTranslucent_ = [navbar isTranslucent];
-  }
-  // Then ensure translucency to match the look of Apple's Photos app.
-  [navbar setTranslucent:YES];
+//  UINavigationBar *navbar = [[self navigationController] navigationBar];
+//  if (!viewDidAppearOnce_) {
+//    viewDidAppearOnce_ = YES;
+//    navbarWasTranslucent_ = [navbar isTranslucent];
+//  }
+//  // Then ensure translucency to match the look of Apple's Photos app.
+//  [navbar setTranslucent:YES];
+    
+    UIToolbar *toolbar = (UIToolbar *)[self.presentingViewController.view viewWithTag:100];
+    toolbar.frame = CGRectMake(0.0f, (float)(415.0f), 320.0f, 38.0f);
+    [toolbar sizeToFit];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = 130.0;
+    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
+    NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
+    [toolbar setItems:items];
+    
+
+
   [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   // Restore old translucency when we pop this controller.
-  UINavigationBar *navbar = [[self navigationController] navigationBar];
-  [navbar setTranslucent:navbarWasTranslucent_];
+//  UINavigationBar *navbar = [[self navigationController] navigationBar];
+//  [navbar setTranslucent:navbarWasTranslucent_];
   [super viewWillDisappear:animated];
 }
 
@@ -149,7 +170,8 @@
       // Set thumbnail image asynchronously.
       [dataSource_ thumbImageAtIndex:index thumbView:thumbView];
    }
-   
+
+
    return thumbView;
 }
 

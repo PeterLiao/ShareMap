@@ -264,6 +264,9 @@
 		CE23CBBF1635A608004A4839 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23CBBE1635A608004A4839 /* OptionViewController.m */; };
 		CE23CBC11635A81C004A4839 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE23CBC01635A81C004A4839 /* CoreText.framework */; };
 		CE23CBC316366C56004A4839 /* 139-flags.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23CBC216366C56004A4839 /* 139-flags.png */; };
+		CE23CBDB1638DA33004A4839 /* nextIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23CBD91638DA32004A4839 /* nextIcon.png */; };
+		CE23CBDC1638DA33004A4839 /* previousIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23CBDA1638DA32004A4839 /* previousIcon.png */; };
+		CE23CBE316393E93004A4839 /* GlobalTab.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23CBE216393E92004A4839 /* GlobalTab.m */; };
 		CEC249791621051C00CE7BD6 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC249781621051C00CE7BD6 /* ChatViewController.m */; };
 		CEC2497D16210D3D00CE7BD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC2497C16210D3D00CE7BD6 /* CFNetwork.framework */; };
 		CEC24984162116E500CE7BD6 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC24983162116E500CE7BD6 /* AsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -569,6 +572,10 @@
 		CE23CBBE1635A608004A4839 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		CE23CBC01635A81C004A4839 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		CE23CBC216366C56004A4839 /* 139-flags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "139-flags.png"; sourceTree = "<group>"; };
+		CE23CBD91638DA32004A4839 /* nextIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextIcon.png; sourceTree = "<group>"; };
+		CE23CBDA1638DA32004A4839 /* previousIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previousIcon.png; sourceTree = "<group>"; };
+		CE23CBE116393E72004A4839 /* GlobalTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalTab.h; sourceTree = "<group>"; };
+		CE23CBE216393E92004A4839 /* GlobalTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalTab.m; sourceTree = "<group>"; };
 		CEC249771621051C00CE7BD6 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		CEC249781621051C00CE7BD6 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		CEC2497C16210D3D00CE7BD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -640,7 +647,6 @@
 		043393B4160B7C7B007C81C0 = {
 			isa = PBXGroup;
 			children = (
-				CE23CBC01635A81C004A4839 /* CoreText.framework */,
 				043393C2160B7C7B007C81C0 /* Frameworks */,
 				043393C0160B7C7B007C81C0 /* Products */,
 				CEC249A016228A0200CE7BD6 /* RegexKitLite */,
@@ -661,6 +667,7 @@
 		043393C2160B7C7B007C81C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE23CBC01635A81C004A4839 /* CoreText.framework */,
 				CED5555A162BC6E00069CB45 /* QuartzCore.framework */,
 				04422AA0160BF854000C4200 /* MapKit.framework */,
 				0432A99E160D6DB5003E8869 /* CoreLocation.framework */,
@@ -706,6 +713,8 @@
 				04422AAD160C0D9E000C4200 /* CustomPlacemark.m */,
 				CE178C76163289D30045EE4B /* QuadCurveMenuItem.h */,
 				CE178C77163289D30045EE4B /* QuadCurveMenuItem.m */,
+				CE23CBE116393E72004A4839 /* GlobalTab.h */,
+				CE23CBE216393E92004A4839 /* GlobalTab.m */,
 				04422AA6160BF9BC000C4200 /* EventMapViewController.h */,
 				04422AA7160BF9BC000C4200 /* EventMapViewController.m */,
 				CEC249B816230A9000CE7BD6 /* PhotoViewController.h */,
@@ -787,6 +796,8 @@
 				CE223C1F16201BBC001BA44C /* 56-cloud.png */,
 				CE223C2016201BBC001BA44C /* 86-camera.png */,
 				CE223C2316201BBC001BA44C /* coolpc-printershare.png */,
+				CE23CBD91638DA32004A4839 /* nextIcon.png */,
+				CE23CBDA1638DA32004A4839 /* previousIcon.png */,
 			);
 			name = "Resource Files";
 			sourceTree = "<group>";
@@ -1347,6 +1358,8 @@
 				CE178C74163289C30045EE4B /* icon-star.png in Resources */,
 				CE178C75163289C30045EE4B /* icon-star@2x.png in Resources */,
 				CE23CBC316366C56004A4839 /* 139-flags.png in Resources */,
+				CE23CBDB1638DA33004A4839 /* nextIcon.png in Resources */,
+				CE23CBDC1638DA33004A4839 /* previousIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1390,6 +1403,7 @@
 				04A2697116355EC2007F4D25 /* AddLocationMapViewController.m in Sources */,
 				CE23CBBB16359F1A004A4839 /* FRCurvedTextView.m in Sources */,
 				CE23CBBF1635A608004A4839 /* OptionViewController.m in Sources */,
+				CE23CBE316393E93004A4839 /* GlobalTab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
