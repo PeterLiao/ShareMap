@@ -10,6 +10,7 @@
 #import "ATMHud.h"
 #import "ATMHudQueueItem.h"
 
+static BOOL globalFlag= 0;
 @interface AddLocationMapViewController ()
 
 @end
@@ -154,7 +155,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
+    globalFlag = 0;
 }
 
 
@@ -164,7 +165,10 @@
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded){
         return;
     }
-    
+
+    if (gestureRecognizer.state == UIGestureRecognizerStateChanged ){
+        return;
+    }
     CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
     CLLocationCoordinate2D touchMapCoordinate =
     [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
@@ -176,15 +180,17 @@
 //    pointAnnotation.subtitle=@"subtitle";
     
     [_mapView addAnnotation:pointAnnotation];
+
 }
 
 
 
 #pragma mark CLLocationManagerDelegate Methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-
-    [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:@"Jessica" subTitle:@"目前位置" status:STATUS_GOING];
-    
+    if ( 0 == globalFlag ){
+        [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:@"Jessica" subTitle:@"目前位置" status:STATUS_GOING];
+        globalFlag = 1;
+    }
 }
 
 
