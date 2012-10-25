@@ -37,7 +37,7 @@
    [scrollView setScrollsToTop:YES];
    [scrollView setScrollEnabled:YES];
    [scrollView setAlwaysBounceVertical:YES];
-   [scrollView setBackgroundColor:[UIColor whiteColor]];
+   [scrollView setBackgroundColor:[UIColor darkGrayColor]];
    
    if ([dataSource_ respondsToSelector:@selector(thumbsHaveBorder)]) {
       [scrollView setThumbsHaveBorder:[dataSource_ thumbsHaveBorder]];
@@ -53,23 +53,23 @@
    
    
    // Set main view to the scroll view.
-   [self setView:scrollView];
-   
-    UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:100];
-    toolbar.frame = CGRectMake(0.0f, (float)(100.0f), 320.0f, 38.0f);
+    [self setView:scrollView];
+   /*
+    UIToolbar *toolbar = [[UIToolbar alloc]init];
+    //(UIToolbar *)[self.view viewWithTag:100];
+    toolbar.frame = CGRectMake(0.0f, (float)(320.0f), 320.0f, 38.0f);
     [toolbar sizeToFit];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceItem.width = 130.0;
     UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
     NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
     [toolbar setItems:items];
-    
+    [scrollView addSubview:toolbar];*/
    // Retain a reference to the scroll view.
    scrollView_ = scrollView;
    [scrollView_ retain];
-   
+    
    // Release the local scroll view reference.
-   [scrollView release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +88,7 @@
 //  }
 //  // Then ensure translucency to match the look of Apple's Photos app.
 //  [navbar setTranslucent:YES];
-    
+    /*
     UIToolbar *toolbar = (UIToolbar *)[self.presentingViewController.view viewWithTag:100];
     toolbar.frame = CGRectMake(0.0f, (float)(415.0f), 320.0f, 38.0f);
     [toolbar sizeToFit];
@@ -97,7 +97,7 @@
     UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
     NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
     [toolbar setItems:items];
-    
+    */
 
 
   [super viewWillAppear:animated];

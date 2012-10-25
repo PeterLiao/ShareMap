@@ -17,7 +17,7 @@ enum {
     STATUS_TARGET
 };
 
-@interface AddLocationMapViewController : UIViewController<MKMapViewDelegate, UISearchBarDelegate>
+@interface AddLocationMapViewController : UIViewController<MKMapViewDelegate, UISearchBarDelegate,CLLocationManagerDelegate>
 {
     IBOutlet UISearchBar *searchBar;
     NSArray * placemarkList;
@@ -27,6 +27,7 @@ enum {
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) NSArray * placemarkList;
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
+@property (strong, nonatomic) CLLocationManager * locationManager;
 
 - (IBAction)doSearch:(id)sender;
 - (IBAction)doApply:(id)sender;

@@ -87,8 +87,7 @@ enum {
 - (double)computeAzimuth:(float)lat1 lon1:(float)lon1 lat2:(float)lat2 lon2:(float)lon2;
 - (IBAction)doSearch:(id)sender;
 - (void)updateHeadingDisplays:(CLLocationDirection) theHeading;
-+ (BOOL) IsEnableWIFI;
-+ (BOOL) IsEnable3G;
+
 
 @end
 

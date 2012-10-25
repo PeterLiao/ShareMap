@@ -77,6 +77,16 @@
         [myPhotos_ setDelegate:self];
     }
     [self setDataSource:myPhotos_];
+    
+    UIToolbar *toolbar = [[UIToolbar alloc]init];
+    toolbar.frame = CGRectMake(0.0f, (float)(320.0f), 320.0f, 38.0f);
+    [toolbar sizeToFit];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = 130.0;
+    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
+    NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
+    [toolbar setItems:items];
+    [self.view addSubview:toolbar];
 
 }
 

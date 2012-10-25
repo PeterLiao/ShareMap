@@ -106,6 +106,7 @@
     }
     
     self.locationManager.headingFilter = 5;//在生成更新的指南針讀數之前設備需要轉過的度數 (Notify heading changes when heading is > 5.)
+    
     if ([CLLocationManager locationServicesEnabled]){
         [_locationManager startUpdatingLocation];
     }
@@ -484,6 +485,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    CGRect rect;
+    rect.size = CGSizeMake(500, 600);
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     
@@ -822,10 +825,14 @@
     Place* from = [[Place alloc] init];
     from.name = @"Jessica";
     from.description = @"趕路中(預計15分鐘)";
-	from.latitude = newLocation.coordinate.latitude;
-	from.longitude = newLocation.coordinate.longitude;
-//    from.latitude = 25.043119;
-//    from.longitude = 121.509529;
+    if ([CLLocationManager headingAvailable]){
+       	from.latitude = newLocation.coordinate.latitude;
+        from.longitude = newLocation.coordinate.longitude;
+    } else {
+        from.latitude = 25.043119;
+        from.longitude = 121.509529;
+    }
+    
     
 	Place* to = [[Place alloc] init];
     to.name = @"Miniko";
@@ -891,6 +898,9 @@
 
 - (void)updateHeadingDisplays:(CLLocationDirection) theHeading {
 //    // Animate Compass
+    CGRect rect;
+    rect.size = CGSizeMake(500, 600);
+    [self.mapView setBounds:rect];
     [UIView     animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction
@@ -899,13 +909,16 @@
                              headingRotation = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat)-toRad(theHeading));
                              _mapView.transform = headingRotation;
                              [_mapView.layer addSublayer:pulseLayer_];
-
+                             
+                             
                          }
                          completion:^(BOOL finished) {
                              
                          }];
     
-
+//    NSLog(@"height:%f, width:%f", self.mapView.bounds.size.height, self.mapView.bounds.size.width);
+//    [self.mapView setBounds:rect];
+    
     
 }
 

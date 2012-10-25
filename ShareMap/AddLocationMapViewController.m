@@ -17,6 +17,7 @@
 @synthesize searchBar = _searchBar;
 @synthesize placemarkList = _placemarkList;
 @synthesize mapView = _mapView;
+@synthesize locationManager = _locationManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,8 +31,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
 	// Do any additional setup after loading the view.
-    [self addPlacemark:25.043119 longitude:121.509529 title:@"Jessica" subTitle:@"趕路中(預計5分鐘)" status:STATUS_GOING];
+    if ([CLLocationManager locationServicesEnabled]){
+        [_locationManager startUpdatingLocation];
+        
+
+    }
+    [_mapView removeAnnotations:[_mapView annotations]];
+    mapView.showsUserLocation = YES;
+    CLLocationCoordinate2D userLoc;
+    
+    userLoc.latitude = mapView.userLocation.location.coordinate.latitude;
+    userLoc.longitude = mapView.userLocation.location.coordinate.longitude;
+    mapView.region = MKCoordinateRegionMakeWithDistance(userLoc, 50000, 50000);
+    UILongPressGestureRecognizer *lpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    lpress.minimumPressDuration = 0.5;
+    lpress.allowableMovement = 10.0;
+    [_mapView addGestureRecognizer:lpress];
 }
 
 - (void)viewDidUnload
@@ -117,4 +136,39 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (void)longPress:(UIGestureRecognizer*)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded){
+        return;
+    }
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
+    CLLocationCoordinate2D touchMapCoordinate =
+    [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
+    
+    MKPointAnnotation *pointAnnotation = nil;
+    pointAnnotation = [[MKPointAnnotation alloc] init];
+    pointAnnotation.coordinate = touchMapCoordinate;
+    pointAnnotation.title = @"目的地";
+//    pointAnnotation.subtitle=@"subtitle";
+    
+    [_mapView addAnnotation:pointAnnotation];
+}
+
+
+#pragma mark CLLocationManagerDelegate Methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+
+    [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:@"Jessica" subTitle:@"目前位置" status:STATUS_GOING];
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSString *errorType = (error.code == kCLErrorDenied) ? @"Access Denied" : @"Unknown Error";
+    NSLog(@"Error: %@",errorType);
+}
+
+
 @end
