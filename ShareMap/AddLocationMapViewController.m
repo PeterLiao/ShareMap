@@ -22,6 +22,7 @@ static BOOL globalFlag= 0;
 @synthesize mapView = _mapView;
 @synthesize locationManager = _locationManager;
 @synthesize hud;
+@synthesize dest = _dest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -116,6 +117,8 @@ static BOOL globalFlag= 0;
     [self resetMapScope:coordinae2D];
     [_mapView setCenterCoordinate:_mapView.centerCoordinate animated:YES];
     [_mapView selectAnnotation:placemark animated:YES];
+    dest.latitude = latitude;
+    dest.longitude = longitude;
 }
 
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark
@@ -149,6 +152,10 @@ static BOOL globalFlag= 0;
 
 - (IBAction)doApply:(id)sender
 {
+    //呼叫協定中的方法並帶入page2textField的數值
+    NSLog(@"Dest: %f",dest.latitude);
+    [_delegate passLoc:&(dest)];
+   
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -157,7 +164,6 @@ static BOOL globalFlag= 0;
 {
     globalFlag = 0;
 }
-
 
 
 - (void)longPress:(UIGestureRecognizer*)gestureRecognizer
@@ -170,8 +176,7 @@ static BOOL globalFlag= 0;
         return;
     }
     CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
-    CLLocationCoordinate2D touchMapCoordinate =
-    [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
     
     MKPointAnnotation *pointAnnotation = nil;
     pointAnnotation = [[MKPointAnnotation alloc] init];

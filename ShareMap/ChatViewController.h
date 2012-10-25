@@ -10,8 +10,7 @@
 #import "FaceViewController.h"
 #import "AsyncUdpSocket.h"
 #import "IPAddress.h"
-#import "GlobalTab.h";
-
+#import "GlobalTab.h"
 
 @class BaseTabBarController;
 

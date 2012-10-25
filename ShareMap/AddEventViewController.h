@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddLocationMapViewController.h"
 
-@interface AddEventViewController : UITableViewController<NSURLConnectionDelegate>
+
+@interface AddEventViewController : UITableViewController<NSURLConnectionDelegate, AddLocationDelegate>
 {
     UITextField *eventTitleTextField;
     UITextField *eventDetailTextField;
@@ -27,4 +29,7 @@
 - (IBAction)addEvent:(id)sender;
 
 - (IBAction)done:(UITextField *)textField;
+
+
 @end
+

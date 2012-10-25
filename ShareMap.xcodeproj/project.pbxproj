@@ -719,8 +719,6 @@
 		043393C9160B7C7B007C81C0 /* ShareMap */ = {
 			isa = PBXGroup;
 			children = (
-				04A2696F16355EC2007F4D25 /* AddLocationMapViewController.h */,
-				04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */,
 				CED2C6AF163193320046A0A9 /* Photo */,
 				CE3191D31639D93E00EA6CE9 /* ATMHUD */,
 				CE23CBE8163951F3004A4839 /* Reachability.h */,
@@ -740,6 +738,8 @@
 				CEC249A51622B86E00CE7BD6 /* PlaceMark.m */,
 				CEC249A71622B8D500CE7BD6 /* MapView.h */,
 				CEC249A81622B8D600CE7BD6 /* MapView.m */,
+				04A2696F16355EC2007F4D25 /* AddLocationMapViewController.h */,
+				04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */,
 				04A831D8161EA811005930DB /* AddEventViewController.h */,
 				04A831D9161EA811005930DB /* AddEventViewController.m */,
 				043393D2160B7C7B007C81C0 /* AppDelegate.h */,

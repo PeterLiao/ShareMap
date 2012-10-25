@@ -17,6 +17,13 @@ enum {
     STATUS_MISSING,
     STATUS_TARGET
 };
+//建立一個協定
+@protocol AddLocationDelegate
+
+//協定中的方法
+- (void)passLoc:(CLLocationCoordinate2D *)value;
+@end
+
 
 @class ATMHud;
 
@@ -26,6 +33,8 @@ enum {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
     ATMHud *hud;
+    CLLocationCoordinate2D dest;
+    IBOutlet UILabel *destination;
 }
 
 @property (nonatomic, retain) UISearchBar *searchBar;
@@ -33,6 +42,9 @@ enum {
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (nonatomic, retain) ATMHud *hud;
+@property (nonatomic, readwrite) CLLocationCoordinate2D dest;
+@property (nonatomic, retain) IBOutlet UILabel *destination;
+
 
 - (IBAction)doSearch:(id)sender;
 - (IBAction)doApply:(id)sender;
@@ -40,4 +52,6 @@ enum {
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark;
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status;
 
+//宣告一個採用Page2Delegate協定的物件
+@property (weak) id<AddLocationDelegate> delegate;
 @end
