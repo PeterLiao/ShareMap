@@ -551,6 +551,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="eventDetailTextField" destination="I4H-R1-1vl" id="4bJ-gp-Vi1"/>
+                        <outlet property="eventLocationLabel" destination="tal-qu-8j9" id="ZYm-Zw-jDD"/>
                         <outlet property="eventTitleTextField" destination="CI7-tz-7e8" id="Waz-SQ-uZP"/>
                     </connections>
                 </tableViewController>
@@ -596,11 +597,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="geoCoder" destination="Sq4-pw-0F4" id="0Z1-JN-5po"/>
                         <outlet property="mapView" destination="Eol-55-NkV" id="VdW-2Y-EiU"/>
                         <outlet property="searchBar" destination="Dis-tp-xMG" id="fmh-Bw-N5B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBi-ud-yut" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="sKe-Og-Rzr" customClass="CLLocation"/>
+                <customObject id="Sq4-pw-0F4" customClass="CLGeocoder"/>
             </objects>
             <point key="canvasLocation" x="911" y="-757"/>
         </scene>
@@ -644,91 +648,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="139-flags.png" width="42" height="21"/>
         <image name="86-camera.png" width="24" height="18"/>
     </resources>
-    <classes>
-        <class className="AddEventViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEventViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addEvent:"/>
-                <relationship kind="action" name="doCancelView:"/>
-                <relationship kind="action" name="done:" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="eventDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventDetailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="eventLocationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventTitleTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="AddLocationMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddLocationMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doApply:"/>
-                <relationship kind="action" name="doSearch:"/>
-                <relationship kind="outlet" name="destination" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="ChatViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChatViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sendMessage_Click:"/>
-                <relationship kind="action" name="showPhraseInfo:"/>
-                <relationship kind="outlet" name="chatTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="messageTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phraseViewController" candidateClass="FaceViewController"/>
-            </relationships>
-        </class>
-        <class className="EventMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doSearch:"/>
-                <relationship kind="outlet" name="Distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="labelShow" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="EventTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTabBarController.h"/>
-        </class>
-        <class className="EventTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addEvent:"/>
-            </relationships>
-        </class>
-        <class className="FRCurvedTextView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FRCurvedTextView.h"/>
-        </class>
-        <class className="FaceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FaceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissMyselfAction:"/>
-                <relationship kind="outlet" name="faceScrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="KTThumbsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KTThumbsViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-        </class>
-        <class className="OptionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="fourthCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="secondCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="thirdCurvedLayer" candidateClass="FRCurvedTextView"/>
-            </relationships>
-        </class>
-        <class className="PhotoViewController" superclassName="KTThumbsViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="ViewPhoto:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

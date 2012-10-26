@@ -23,6 +23,7 @@ static BOOL globalFlag= 0;
 @synthesize locationManager = _locationManager;
 @synthesize hud;
 @synthesize dest = _dest;
+@synthesize geoCoder;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,7 +61,7 @@ static BOOL globalFlag= 0;
     [hud setBlockTouches:YES];
     [hud setCaption:@"長按地圖來新增目的地"];
     [hud show];
-    [hud hideAfter:3.0];
+    [hud hideAfter:2.5];
 
     
     UILongPressGestureRecognizer *lpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
@@ -117,8 +118,8 @@ static BOOL globalFlag= 0;
     [self resetMapScope:coordinae2D];
     [_mapView setCenterCoordinate:_mapView.centerCoordinate animated:YES];
     [_mapView selectAnnotation:placemark animated:YES];
-    dest.latitude = latitude;
-    dest.longitude = longitude;
+    [dest setCoordinate:coordinae2D];
+
 }
 
 -(void)addPlacemarkToList:(CustomPlacemark *)placemark
@@ -153,8 +154,8 @@ static BOOL globalFlag= 0;
 - (IBAction)doApply:(id)sender
 {
     //呼叫協定中的方法並帶入page2textField的數值
-    NSLog(@"Dest: %f",dest.latitude);
-    [_delegate passLoc:&(dest)];
+    NSLog(@"Dest: %@",dest.title);
+    [_delegate passLoc:dest];
    
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -168,6 +169,20 @@ static BOOL globalFlag= 0;
 
 - (void)longPress:(UIGestureRecognizer*)gestureRecognizer
 {
+    CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
+    
+    MKPointAnnotation *pointAnnotation = nil;
+    static MKPointAnnotation *targetAnnotation = nil;
+
+    static NSString *targetAddress;
+
+    pointAnnotation = [[MKPointAnnotation alloc] init];
+    targetAnnotation = [[MKPointAnnotation alloc] init];
+    pointAnnotation.coordinate = touchMapCoordinate;
+    targetAnnotation.coordinate = touchMapCoordinate;
+    CLLocation *touchLocation = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
+    
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded){
         return;
     }
@@ -175,16 +190,32 @@ static BOOL globalFlag= 0;
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged ){
         return;
     }
-    CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
-    CLLocationCoordinate2D touchMapCoordinate = [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
+    //Geocoding Block
+//    [self.geoCoder reverseGeocodeLocation: _locationManager.location completionHandler:
+    [self.geoCoder reverseGeocodeLocation: touchLocation completionHandler:
+     ^(NSArray *placemarks, NSError *error) {
+         
+         //Get nearby address
+         CLPlacemark *placemark = [placemarks objectAtIndex:0];
+         
+         //String to hold address
+         NSString * locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+         targetAddress = locatedAt;
+         //Print the location to console
+         NSLog(@"I point at %@",locatedAt);
+         targetAnnotation.title = targetAddress;
+         dest = targetAnnotation;
+         [_mapView addAnnotation:dest];
+         
+     }];
+    NSLog(@"targetAddress: %@",targetAddress);
+    NSMutableString *target = [[NSMutableString alloc] initWithFormat:@"%@", targetAddress];
+    [target replaceOccurrencesOfString:@" " withString:@"_" options:NSCaseInsensitiveSearch  range:NSMakeRange(0, [target length])];
+    pointAnnotation.title=targetAddress;
+
+    pointAnnotation.subtitle=@"subtitle";
     
-    MKPointAnnotation *pointAnnotation = nil;
-    pointAnnotation = [[MKPointAnnotation alloc] init];
-    pointAnnotation.coordinate = touchMapCoordinate;
-    pointAnnotation.title = @"目的地";
-//    pointAnnotation.subtitle=@"subtitle";
     
-    [_mapView addAnnotation:pointAnnotation];
 
 }
 
@@ -193,7 +224,19 @@ static BOOL globalFlag= 0;
 #pragma mark CLLocationManagerDelegate Methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     if ( 0 == globalFlag ){
-        [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:@"Jessica" subTitle:@"目前位置" status:STATUS_GOING];
+        [self.geoCoder reverseGeocodeLocation: newLocation completionHandler:
+         ^(NSArray *placemarks, NSError *error) {
+             
+             //Get nearby address
+             CLPlacemark *placemark = [placemarks objectAtIndex:0];
+             
+             //String to hold address
+             NSString * locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+             //Print the location to console
+             NSLog(@"I point at %@",locatedAt);
+             [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:locatedAt subTitle:@"目前位置" status:STATUS_GOING];
+             
+         }];
         globalFlag = 1;
     }
 }

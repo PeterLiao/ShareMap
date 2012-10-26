@@ -625,37 +625,42 @@ static float nextmeters = 0.f;
 		lng += dlng;
 		NSNumber *latitude = [[NSNumber alloc] initWithFloat:lat * 1e-5] ;
 		NSNumber *longitude = [[NSNumber alloc] initWithFloat:lng * 1e-5];
-		printf("[%f,", [latitude doubleValue]);
-		printf("%f]", [longitude doubleValue]);
-            
+//		printf("[%f,", [latitude doubleValue]);
+//		printf("%f]", [longitude doubleValue]);
+        
         
 		CLLocation *loc = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]];
+        BOOL isSamePoint = NO;
         if( 0 == [array count] ){
             NSLog(@"lat_num = %f",[lat_1_num floatValue]);
             NSLog(@"lon_num = %f",[lon_1_num floatValue]);
-            if( ( [latitude doubleValue] - [lat_1_num floatValue] ) > 0 && [longitude doubleValue] != [lon_1_num floatValue]){
+            NSLog(@"abs a: %f",fabs([latitude doubleValue] - [lat_1_num floatValue]));
+            NSLog(@"abs b: %f",fabs([longitude doubleValue] - [lon_1_num floatValue]));
+            if( ( fabs([latitude doubleValue] - [lat_1_num floatValue]) ) > 0.00001 || ( fabs([longitude doubleValue] - [lon_1_num floatValue] )) > 0.00001){
+                isSamePoint = YES;
                 CLLocation *originalLoc = [[CLLocation alloc] initWithLatitude:[lat_1_num doubleValue] longitude:[lon_1_num doubleValue]] ;
                 [array addObject:originalLoc];
-//                [array2 addObject:originalLoc];
-//                [array3 addObject:originalLoc];
+                [array2 addObject:lat_1_num];
+                [array3 addObject:lon_1_num];
 //                NSLog(@"Here!");
             }
         }
-     
-
-        
-		[array addObject:loc];
-        [array2 addObject:latitude];
-        [array3 addObject:longitude];
+        if (!isSamePoint) {
+            [array addObject:loc];
+            [array2 addObject:latitude];
+            [array3 addObject:longitude];
+            }
         
 	}
-    
+
 	for(int i = 1; i < array2.count; i++){
         // calculate distance between them
         CLLocation *oldLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i-1] floatValue] longitude:[[array3 objectAtIndex:i-1] floatValue]] ;
         CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i] floatValue] longitude:[[array3 objectAtIndex:i] floatValue]] ;
         CLLocationDistance meters = [newLocation distanceFromLocation:oldLocation];
         NSLog(@"meters between [%f,%f] and [%f, %f] is %f",[[array2 objectAtIndex:i-1] floatValue],[[array3 objectAtIndex:i-1] floatValue], [[array2 objectAtIndex:i] floatValue],[[array3 objectAtIndex:i] floatValue],meters );
+        if ( 1 == i )
+            nextmeters = meters;
         //        NSLog(@"i=%@",[array2 objectAtIndex:i]);
         
         // // 計算方位角,正北向為0度，以順時針方向遞增
@@ -687,7 +692,7 @@ static float nextmeters = 0.f;
             
         }
     }
-    nextmeters = [[ array2 objectAtIndex:0] floatValue];
+    
     NSLog(@"total turn=%d",turn);
     NSString *mo;
     if (totalmeters > 1000){
@@ -903,7 +908,7 @@ static float nextmeters = 0.f;
     
     NSLog(@"CurrendHeading = %f", toRad(currentHeading));
     
-    spin.toValue = [NSNumber numberWithFloat:toRad(result) ];
+    spin.toValue = [NSNumber numberWithFloat:toRad((CGFloat)-toRad(result)) ]; // This is temp solution for angle;
     spin.duration = 1.f;
     spin.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     spin.fillMode=kCAFillModeForwards;

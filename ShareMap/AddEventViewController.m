@@ -113,11 +113,12 @@
     
 }
 
-- (void)passLoc:(CLLocationCoordinate2D *)value {
+- (void)passLoc:(MKPointAnnotation *)value {
     
     //設定page1TextField為所取的的數值
     //self.messageString = value;
-    NSLog(@"value = %f", value->latitude);
+    NSLog(@"value = %f", value.coordinate.latitude);
+    self.eventLocationLabel.text = value.title;
 }
 
 @end

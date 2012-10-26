@@ -21,7 +21,7 @@ enum {
 @protocol AddLocationDelegate
 
 //協定中的方法
-- (void)passLoc:(CLLocationCoordinate2D *)value;
+- (void)passLoc:(MKPointAnnotation *)value;
 @end
 
 
@@ -33,7 +33,7 @@ enum {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
     ATMHud *hud;
-    CLLocationCoordinate2D dest;
+    MKPointAnnotation *dest;
     IBOutlet UILabel *destination;
 }
 
@@ -42,9 +42,9 @@ enum {
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (nonatomic, retain) ATMHud *hud;
-@property (nonatomic, readwrite) CLLocationCoordinate2D dest;
+@property (assign, readwrite) MKPointAnnotation *dest;
 @property (nonatomic, retain) IBOutlet UILabel *destination;
-
+@property (strong, nonatomic) IBOutlet CLGeocoder *geoCoder;
 
 - (IBAction)doSearch:(id)sender;
 - (IBAction)doApply:(id)sender;
