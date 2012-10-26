@@ -61,13 +61,16 @@ enum {
     
     ATMHud *hud;
     
+    IBOutlet UILabel *Distance;
+    NSString *nextDistance;
+    
 }
 
 @property (nonatomic, retain) NSArray * placemarkList;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (nonatomic, retain) UITextField *searchTextField;
-@property (nonatomic, retain) UILabel *distance;
+
 @property (nonatomic, retain) CAShapeLayer *pulseLayer_;
 @property (nonatomic, retain) UIColor* lineColor;
 @property (strong, nonatomic) CLLocationManager * locationManager;
@@ -81,6 +84,8 @@ enum {
 
 @property (nonatomic,retain) IBOutlet UILabel *labelShow;
 
+@property (nonatomic,retain) IBOutlet UILabel *Distance;
+@property (nonatomic, retain) NSString *nextDistance;
 @property (nonatomic, retain) ATMHud *hud;
 
 - (id)initWithFrame:(CGRect)frame menus:(NSArray *)aMenusArray;
@@ -93,7 +98,7 @@ enum {
 - (double)computeAzimuth:(float)lat1 lon1:(float)lon1 lat2:(float)lat2 lon2:(float)lon2;
 - (IBAction)doSearch:(id)sender;
 - (void)updateHeadingDisplays:(CLLocationDirection) theHeading;
-
+-(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 
 @end
 

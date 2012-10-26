@@ -37,7 +37,9 @@
 
 
 
-
+static bool isNext = 1; // Default is total distance
+static float totalmeters = 0.f;
+static float nextmeters = 0.f;
 
 
 @interface EventMapViewController ()
@@ -54,7 +56,7 @@
 @synthesize responseData = _responseData;
 @synthesize mapView = _mapView;
 @synthesize searchTextField;
-@synthesize distance;
+@synthesize Distance;
 @synthesize pulseLayer_;
 @synthesize lineColor;
 @synthesize locationManager = _locationManager;
@@ -66,6 +68,8 @@
 @synthesize menusArray = _menusArray;
 @synthesize labelShow;
 @synthesize hud;
+@synthesize nextDistance;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -83,6 +87,7 @@
 {
     [super viewDidLoad];
     sobj = [singletonObj singleObj];
+    self.Distance.userInteractionEnabled = YES;
     
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -381,7 +386,7 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"通知選項" message:@"" delegate:nil cancelButtonTitle:@"返回" otherButtonTitles:@"傳送導航", @"迷路求救", @"丟訊息", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"通知選項" message:@"" delegate:nil cancelButtonTitle:@"返回" otherButtonTitles:@"傳送導航", @"事故求救", @"Call Out", @"丟訊息", nil];
     [alert show];
 }
 
@@ -504,10 +509,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    CGRect rect;
-    rect.size = CGSizeMake(500, 600);
+
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    CGRect rect;
+    rect.size = CGSizeMake(500, 600);
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 25);
@@ -578,10 +584,13 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
--(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded {
+-(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded lat_1:(NSString*) lat_1 lon_1:(NSString*) lon_1 {
 	[encoded replaceOccurrencesOfString:@"\\\\" withString:@"\\"
 								options:NSLiteralSearch
 								  range:NSMakeRange(0, [encoded length])];
+    NSDecimalNumber *lat_1_num = [[NSDecimalNumber alloc] initWithString:lat_1];
+    NSDecimalNumber *lon_1_num = [[NSDecimalNumber alloc] initWithString:lon_1];
+//    NSLog(@"lat_1: %f",[lat_1_num floatValue]);
 	NSInteger len = [encoded length];
 	NSInteger index = 0;
 	NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -590,7 +599,9 @@
 	NSInteger lat=0;
 	NSInteger lng=0;
     NSInteger turn=0;
-    float totalmeters = 0.f;
+    totalmeters = 0.f;
+    nextmeters = 0.f;
+    
     NSLog(@"len=%d, index=%d",len,index);
 	while (index < len) {
 		NSInteger b;
@@ -616,9 +627,21 @@
 		NSNumber *longitude = [[NSNumber alloc] initWithFloat:lng * 1e-5];
 		printf("[%f,", [latitude doubleValue]);
 		printf("%f]", [longitude doubleValue]);
+            
         
-		CLLocation *loc = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]] ;
-        
+		CLLocation *loc = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]];
+        if( 0 == [array count] ){
+            NSLog(@"lat_num = %f",[lat_1_num floatValue]);
+            NSLog(@"lon_num = %f",[lon_1_num floatValue]);
+            if( ( [latitude doubleValue] - [lat_1_num floatValue] ) > 0 && [longitude doubleValue] != [lon_1_num floatValue]){
+                CLLocation *originalLoc = [[CLLocation alloc] initWithLatitude:[lat_1_num doubleValue] longitude:[lon_1_num doubleValue]] ;
+                [array addObject:originalLoc];
+//                [array2 addObject:originalLoc];
+//                [array3 addObject:originalLoc];
+//                NSLog(@"Here!");
+            }
+        }
+     
 
         
 		[array addObject:loc];
@@ -664,6 +687,7 @@
             
         }
     }
+    nextmeters = [[ array2 objectAtIndex:0] floatValue];
     NSLog(@"total turn=%d",turn);
     NSString *mo;
     if (totalmeters > 1000){
@@ -672,7 +696,9 @@
     } else {
         mo = [NSString stringWithFormat:@"總距離：%.1f 公尺",totalmeters];
     }
-    self.distance.text = mo;
+    Distance.shadowColor = [UIColor blackColor];
+    Distance.shadowOffset = CGSizeMake(0, -1.0);
+    self.Distance.text = mo;
 	return array;
 }
 
@@ -682,6 +708,8 @@
     //Or @"http://maps.google.com/maps?saddr=Current+Location&daddr=%@", it need to localize the Current+Location string.
 	NSString* saddr = [NSString stringWithFormat:@"%f,%f", f.latitude, f.longitude];
 	NSString* daddr = [NSString stringWithFormat:@"%f,%f", t.latitude, t.longitude];
+    NSString* lan_1 = [NSString stringWithFormat:@"%f", f.latitude];
+    NSString* lon_1 = [NSString stringWithFormat:@"%f", f.longitude];
 	
 	NSString* apiUrlStr = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&dirflg=w", saddr, daddr];
 	NSURL* apiUrl = [NSURL URLWithString:apiUrlStr];
@@ -695,7 +723,7 @@
     NSLog(@"error: %@", error);
 	NSString* encodedPoints = [apiResponse stringByMatching:@"points:\\\"([^\\\"]*)\\\"" capture:1L];
 	
-	return [self decodePolyLine:[encodedPoints mutableCopy]];
+	return [self decodePolyLine:[encodedPoints mutableCopy] lat_1:lan_1 lon_1:lon_1];
 }
 
 -(void) centerMap {
@@ -836,6 +864,7 @@
     
     if (_startingPoint == nil)
         self.startingPoint = newLocation;
+    
     currentLatitude = newLocation.coordinate.latitude;
     currentLongitude = newLocation.coordinate.longitude;
     NSLog(@"current Latitude:%f",currentLatitude);
@@ -1009,6 +1038,38 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //self.expanding = !self.isExpanding;
+    UITouch *touch = [touches anyObject];
+    
+    if(touch.view.tag == 20){
+        NSString *mo;
+        NSLog(@"isNext = %d",isNext);
+        if (isNext) {  // 下一站距離
+            Distance.shadowColor = [UIColor blackColor];
+            Distance.shadowOffset = CGSizeMake(0, -1.0);
+            self.Distance.textColor = [UIColor purpleColor];
+            if (nextmeters > 1000){
+                float nextkm = nextmeters / 1000;
+                mo = [NSString stringWithFormat:@"下一站距離：%.3f 公里",nextkm];
+            } else {
+                mo = [NSString stringWithFormat:@"下一站距離：%.1f 公尺",nextmeters];
+            }
+            self.Distance.text = mo;
+            isNext = 0;
+
+        } else { // 總距離
+            Distance.shadowColor = [UIColor blackColor];
+            Distance.shadowOffset = CGSizeMake(0, -1.0);
+            self.Distance.textColor = [UIColor redColor];
+            if (totalmeters > 1000){
+                float totalkm = totalmeters / 1000;
+                mo = [NSString stringWithFormat:@"總距離：%.3f 公里",totalkm];
+            } else {
+                mo = [NSString stringWithFormat:@"總距離：%.1f 公尺",totalmeters];
+            }
+            self.Distance.text = mo;
+            isNext = 1;
+        }
+    }
 }
 
 #pragma mark - QuadCurveMenuItem delegates
@@ -1256,4 +1317,6 @@
 
 
 @end
+
+
 
