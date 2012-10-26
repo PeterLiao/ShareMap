@@ -32,7 +32,7 @@
 #define NEARRADIUS 130.0f
 #define ENDRADIUS 140.0f
 #define FARRADIUS 160.0f
-#define STARTPOINT CGPointMake(120, 480)
+#define STARTPOINT CGPointMake(30, 380)
 #define TIMEOFFSET 0.026f
 
 
@@ -248,13 +248,14 @@
     {
         QuadCurveMenuItem *item = [_menusArray objectAtIndex:i];
         item.tag = 1000 + i;
-        item.startPoint = STARTPOINT;
+//        item.startPoint = STARTPOINT;
+        item.startPoint = CGPointMake(120, 475);
         item.endPoint = CGPointMake(STARTPOINT.x + ENDRADIUS * sinf(i * M_PI_2 / (count - 1)), STARTPOINT.y - ENDRADIUS * cosf(i * M_PI_2 / (count - 1)));
         item.nearPoint = CGPointMake(STARTPOINT.x + NEARRADIUS * sinf(i * M_PI_2 / (count - 1)), STARTPOINT.y - NEARRADIUS * cosf(i * M_PI_2 / (count - 1)));
         item.farPoint = CGPointMake(STARTPOINT.x + FARRADIUS * sinf(i * M_PI_2 / (count - 1)), STARTPOINT.y - FARRADIUS * cosf(i * M_PI_2 / (count - 1)));
         item.center = item.startPoint;
         item.delegate = self;
-        [self.view addSubview:item];
+        [_mapView addSubview:item];
     }
     
     // add the "Add" Button.
@@ -265,6 +266,9 @@
     _addButton.delegate = self;
     _addButton.center = STARTPOINT;
     [self.view addSubview:_addButton];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    _addButton.userInteractionEnabled = YES;
+    [_addButton addGestureRecognizer:tap];
     
     
     // HUD
@@ -274,6 +278,11 @@
     [hud setCaption:@"切換到朋友介面以回到上一層選單"];
     [hud show];
     [hud hideAfter:3.5];
+}
+
+- (void )imageTapped:(UITapGestureRecognizer *) gestureRecognizer
+{
+//    self.expanding = !self.isExpanding;
 }
 
 -(void)addPlacemark:(double)latitude longitude:(double)longitude title:(NSString *)title subTitle:(NSString *) subTtile status:(int) status
@@ -623,6 +632,7 @@
         CLLocation *oldLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i-1] floatValue] longitude:[[array3 objectAtIndex:i-1] floatValue]] ;
         CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[array2 objectAtIndex:i] floatValue] longitude:[[array3 objectAtIndex:i] floatValue]] ;
         CLLocationDistance meters = [newLocation distanceFromLocation:oldLocation];
+        NSLog(@"meters between [%f,%f] and [%f, %f] is %f",[[array2 objectAtIndex:i-1] floatValue],[[array3 objectAtIndex:i-1] floatValue], [[array2 objectAtIndex:i] floatValue],[[array3 objectAtIndex:i] floatValue],meters );
         //        NSLog(@"i=%@",[array2 objectAtIndex:i]);
         
         // // 計算方位角,正北向為0度，以順時針方向遞增
@@ -862,6 +872,8 @@
     CABasicAnimation *spin = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     NSLog(@"toRad(result) = %f", toRad(result));
     
+    NSLog(@"CurrendHeading = %f", toRad(currentHeading));
+    
     spin.toValue = [NSNumber numberWithFloat:toRad(result) ];
     spin.duration = 1.f;
     spin.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
@@ -895,6 +907,7 @@
         // Do something with the event data.
         
         NSLog(@"%f", theHeading);
+        currentHeading = newHeading.trueHeading;
         [self updateHeadingDisplays:theHeading];
 
     } else {
@@ -995,7 +1008,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.expanding = !self.isExpanding;
+    //self.expanding = !self.isExpanding;
 }
 
 #pragma mark - QuadCurveMenuItem delegates
