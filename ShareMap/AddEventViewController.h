@@ -24,7 +24,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *eventDetailTextField;
 @property (nonatomic, retain) IBOutlet UILabel *eventDateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *eventLocationLabel;
-@property (nonatomic, retain) MKPointAnnotation *location;
+@property (assign, readwrite) MKPointAnnotation *location;
 @property (nonatomic) int connStatus;
 
 - (IBAction)doCancelView:(id)sender;

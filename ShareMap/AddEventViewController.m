@@ -7,6 +7,8 @@
 //
 
 #import "AddEventViewController.h"
+static double finalLat = 0.f;
+static double finalLon = 0.f ;
 
 @interface AddEventViewController ()
 
@@ -58,8 +60,8 @@
     NSString *requestURL = @"http://sevenpeaches.herokuapp.com/travel_event/new?";
     NSString *eventTitle = [_eventTitleTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *eventDetailTitle = [_eventDetailTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *lat = [[NSString alloc] initWithFormat:@"%f", self.location.coordinate.latitude];
-    NSString *lon = [[NSString alloc] initWithFormat:@"%f", self.location.coordinate.longitude];
+    NSString *lat = [[NSString alloc] initWithFormat:@"%f", finalLat];
+    NSString *lon = [[NSString alloc] initWithFormat:@"%f", finalLon];
     requestURL = [[requestURL stringByAppendingString:@"name="] stringByAppendingString:eventTitle];
     requestURL = [[requestURL stringByAppendingString:@"&description="] stringByAppendingString:eventDetailTitle];
     requestURL = [[requestURL stringByAppendingString:@"&event_time="] stringByAppendingString:@"0"];
@@ -69,9 +71,8 @@
     requestURL = [[requestURL stringByAppendingString:@"&longtitude="] stringByAppendingString:lon];
     requestURL = [[requestURL stringByAppendingString:@"&location_name="] stringByAppendingString:self.eventLocationLabel.text];
     NSLog(@"request url=%@", requestURL);
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:requestURL]];
-//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:requestURL]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -125,7 +126,10 @@
     
     NSLog(@"value = %f", value.coordinate.latitude);
     self.eventLocationLabel.text = value.title;
+    finalLat = value.coordinate.latitude;
+    finalLon = value.coordinate.longitude;
     [self.location setCoordinate:value.coordinate];
+    NSLog(@"location:%f, %f",finalLat, finalLat );
 }
 
 
