@@ -271,6 +271,7 @@
 		CE23CBEC163952C8004A4839 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE23CBEB163952C7004A4839 /* SystemConfiguration.framework */; };
 		CE2E00C0163B731400D02619 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E00BD163B72EA00D02619 /* UIGlossyButton.m */; };
 		CE2E00C1163B731400D02619 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E00BF163B72EA00D02619 /* UIView+LayerEffects.m */; };
+		CE2E00C9163B7E1800D02619 /* GCDiscreetNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E00C8163B7E0200D02619 /* GCDiscreetNotificationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CE3191E31639DCA900EA6CE9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3191E21639DCA900EA6CE9 /* AudioToolbox.framework */; };
 		CE3191E41639DE1300EA6CE9 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3191D61639D9F400EA6CE9 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CE3191E51639DE1300EA6CE9 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3191D91639D9F400EA6CE9 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -597,6 +598,8 @@
 		CE2E00BD163B72EA00D02619 /* UIGlossyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		CE2E00BE163B72EA00D02619 /* UIView+LayerEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
 		CE2E00BF163B72EA00D02619 /* UIView+LayerEffects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
+		CE2E00C7163B7E0200D02619 /* GCDiscreetNotificationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDiscreetNotificationView.h; sourceTree = "<group>"; };
+		CE2E00C8163B7E0200D02619 /* GCDiscreetNotificationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDiscreetNotificationView.m; sourceTree = "<group>"; };
 		CE3191D51639D9F400EA6CE9 /* ATMHud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
 		CE3191D61639D9F400EA6CE9 /* ATMHud.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
 		CE3191D71639D9F400EA6CE9 /* ATMHudDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
@@ -725,6 +728,7 @@
 		043393C9160B7C7B007C81C0 /* ShareMap */ = {
 			isa = PBXGroup;
 			children = (
+				CE2E00C6163B7DDF00D02619 /* Notification */,
 				CE2E00BA163B728200D02619 /* Glossy */,
 				CED2C6AF163193320046A0A9 /* Photo */,
 				CE3191D31639D93E00EA6CE9 /* ATMHUD */,
@@ -1085,6 +1089,15 @@
 				CE2E00BF163B72EA00D02619 /* UIView+LayerEffects.m */,
 			);
 			name = Glossy;
+			sourceTree = "<group>";
+		};
+		CE2E00C6163B7DDF00D02619 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E00C7163B7E0200D02619 /* GCDiscreetNotificationView.h */,
+				CE2E00C8163B7E0200D02619 /* GCDiscreetNotificationView.m */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		CE3191D31639D93E00EA6CE9 /* ATMHUD */ = {
@@ -1461,6 +1474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2E00C9163B7E1800D02619 /* GCDiscreetNotificationView.m in Sources */,
 				CE2E00C0163B731400D02619 /* UIGlossyButton.m in Sources */,
 				CE2E00C1163B731400D02619 /* UIView+LayerEffects.m in Sources */,
 				CE3191E41639DE1300EA6CE9 /* ATMHud.m in Sources */,

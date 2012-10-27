@@ -23,6 +23,7 @@
 #import "Reachability.h"
 #import "ATMHud.h"
 #import "ATMHudQueueItem.h"
+#import "GCDiscreetNotificationView.h"
 
 #define toRad(X) (X*M_PI/180.0)
 #define toDeg(X) (X*180.0/M_PI)
@@ -69,7 +70,7 @@ static float nextmeters = 0.f;
 @synthesize labelShow;
 @synthesize hud;
 @synthesize nextDistance;
-
+@synthesize notificationView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -282,6 +283,13 @@ static float nextmeters = 0.f;
     [hud setCaption:@"切換到朋友介面以回到上一層選單"];
     [hud show];
     [hud hideAfter:3.5];
+    
+    // Notification
+    notificationView = [[GCDiscreetNotificationView alloc] initWithText:@"test"
+                                                           showActivity:NO
+                                                     inPresentationMode:GCDiscreetNotificationViewPresentationModeTop
+                                                                 inView:self.view];
+    [self.notificationView hide:YES];
 }
 
 - (void )imageTapped:(UITapGestureRecognizer *) gestureRecognizer
@@ -543,24 +551,36 @@ static float nextmeters = 0.f;
     self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
     
     //跑馬燈
-    if (sobj.gblStr){
-        labelShow.text = [NSString stringWithFormat:@"%@%@", @"Other: ", sobj.gblStr];
+//    if (sobj.gblStr){
+//        labelShow.text = [NSString stringWithFormat:@"%@%@", @"Other: ", sobj.gblStr];
+//    }
+//
+//    CGRect frame = labelShow.frame;
+//	frame.origin.x = -180;
+//	labelShow.frame = frame;
+//	
+//	[UIView beginAnimations:@"testAnimation" context:NULL];
+//	[UIView setAnimationDuration:8.8f];
+//	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
+//	[UIView setAnimationDelegate:self];
+//	[UIView setAnimationRepeatAutoreverses:NO];
+//	[UIView setAnimationRepeatCount:999999];
+//	
+//	frame = labelShow.frame;
+//	frame.origin.x = 350;
+//	labelShow.frame = frame;
+//	[UIView commitAnimations];
+    
+    if (sobj.gblStr) {
+        NSString *text = [NSString stringWithFormat:@"%@%@", @"Other: ", sobj.gblStr];
+        notificationView = [[GCDiscreetNotificationView alloc] initWithText:text
+                                                               showActivity:NO
+                                                         inPresentationMode:GCDiscreetNotificationViewPresentationModeTop
+                                                                     inView:self.view];
+        [self.notificationView hide:NO];
+        [self.notificationView show:YES];
+        [self.notificationView hideAnimatedAfter:3.0];
     }
-    CGRect frame = labelShow.frame;
-	frame.origin.x = -180;
-	labelShow.frame = frame;
-	
-	[UIView beginAnimations:@"testAnimation" context:NULL];
-	[UIView setAnimationDuration:8.8f];
-	[UIView setAnimationCurve:UIViewAnimationCurveLinear];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationRepeatAutoreverses:NO];
-	[UIView setAnimationRepeatCount:999999];
-	
-	frame = labelShow.frame;
-	frame.origin.x = 350;
-	labelShow.frame = frame;
-	[UIView commitAnimations];
 
 }
 

@@ -22,6 +22,7 @@
 #import "ATMHudDelegate.h"
 
 @class ATMHud;
+@class GCDiscreetNotificationView;
 
 @protocol QuadCurveMenuDelegate;
 
@@ -33,7 +34,7 @@ enum {
 };
 
 
-@interface EventMapViewController : UIViewController< MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate,QuadCurveMenuItemDelegate, ATMHudDelegate>
+@interface EventMapViewController : UIViewController< MKMapViewDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate,QuadCurveMenuItemDelegate, ATMHudDelegate,UITextFieldDelegate>
 {
     NSArray * placemarkList;
     IBOutlet MKMapView * mapView;
@@ -87,6 +88,7 @@ enum {
 @property (nonatomic,retain) IBOutlet UILabel *Distance;
 @property (nonatomic, retain) NSString *nextDistance;
 @property (nonatomic, retain) ATMHud *hud;
+@property (nonatomic, retain) GCDiscreetNotificationView *notificationView;
 
 - (id)initWithFrame:(CGRect)frame menus:(NSArray *)aMenusArray;
 
