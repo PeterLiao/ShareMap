@@ -120,7 +120,7 @@ static BOOL globalFlag= 0;
     [self resetMapScope:coordinae2D];
     [_mapView setCenterCoordinate:_mapView.centerCoordinate animated:YES];
     [_mapView selectAnnotation:placemark animated:YES];
-    [dest setCoordinate:coordinae2D];
+//    [dest setCoordinate:coordinae2D];
 
 }
 
