@@ -18,6 +18,7 @@
 @synthesize eventDetailTextField = _eventDetailTextField;
 @synthesize eventDateLabel = _eventDateLabel;
 @synthesize eventLocationLabel = _eventLocationLabel;
+@synthesize location = _location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,12 +58,16 @@
     NSString *requestURL = @"http://sevenpeaches.herokuapp.com/travel_event/new?";
     NSString *eventTitle = [_eventTitleTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *eventDetailTitle = [_eventDetailTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+    NSString *lat = [[NSString alloc] initWithFormat:@"%f", self.location.coordinate.latitude];
+    NSString *lon = [[NSString alloc] initWithFormat:@"%f", self.location.coordinate.longitude];
     requestURL = [[requestURL stringByAppendingString:@"name="] stringByAppendingString:eventTitle];
     requestURL = [[requestURL stringByAppendingString:@"&description="] stringByAppendingString:eventDetailTitle];
     requestURL = [[requestURL stringByAppendingString:@"&event_time="] stringByAppendingString:@"0"];
     requestURL = [[requestURL stringByAppendingString:@"&destination_id="] stringByAppendingString:@"4"];
     requestURL = [[requestURL stringByAppendingString:@"&owner_id="] stringByAppendingString:@"1"];
+    requestURL = [[requestURL stringByAppendingString:@"&latitude="] stringByAppendingString:lat];
+    requestURL = [[requestURL stringByAppendingString:@"&longtitude="] stringByAppendingString:lon];
+    requestURL = [[requestURL stringByAppendingString:@"&location_name="] stringByAppendingString:self.eventLocationLabel.text];
     NSLog(@"request url=%@", requestURL);
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:requestURL]];
@@ -117,8 +122,16 @@
     
     //設定page1TextField為所取的的數值
     //self.messageString = value;
+    
     NSLog(@"value = %f", value.coordinate.latitude);
     self.eventLocationLabel.text = value.title;
+    [self.location setCoordinate:value.coordinate];
+}
+
+
+- (IBAction)backgroundTap:(id)sender {
+    [eventTitleTextField resignFirstResponder];
+    [eventDateLabel resignFirstResponder];
 }
 
 @end

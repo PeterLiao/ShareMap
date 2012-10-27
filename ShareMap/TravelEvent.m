@@ -14,6 +14,9 @@
 @synthesize description;
 @synthesize destination_id;
 @synthesize owner_id;
+@synthesize latitude;
+@synthesize longtitude;
+@synthesize location_name;
 
 - (id)init
 {

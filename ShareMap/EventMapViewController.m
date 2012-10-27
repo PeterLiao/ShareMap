@@ -899,8 +899,9 @@ static float nextmeters = 0.f;
     from.name = @"Jessica";
     from.description = @"趕路中(預計15分鐘)";
     if ([CLLocationManager headingAvailable]){
-       	from.latitude = newLocation.coordinate.latitude;
-        from.longitude = newLocation.coordinate.longitude;
+       	from.latitude = 25.047292;
+        from.longitude = 121.516264;
+        
     } else {
         from.latitude = 25.043119;
         from.longitude = 121.509529;

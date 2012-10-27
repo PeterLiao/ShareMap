@@ -658,6 +658,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEventViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addEvent:"/>
+                <relationship kind="action" name="backgroundTap:"/>
                 <relationship kind="action" name="doCancelView:"/>
                 <relationship kind="action" name="done:" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="eventDateLabel" candidateClass="UILabel"/>

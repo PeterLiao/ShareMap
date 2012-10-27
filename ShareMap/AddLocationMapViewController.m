@@ -37,7 +37,8 @@ static BOOL globalFlag= 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
@@ -53,6 +54,7 @@ static BOOL globalFlag= 0;
     
     userLoc.latitude = mapView.userLocation.location.coordinate.latitude;
     userLoc.longitude = mapView.userLocation.location.coordinate.longitude;
+    
     mapView.region = MKCoordinateRegionMakeWithDistance(userLoc, 50000, 50000);
 
     
@@ -235,7 +237,10 @@ static BOOL globalFlag= 0;
              //Print the location to console
              NSLog(@"I point at %@",locatedAt);
              [self addPlacemark:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude title:locatedAt subTitle:@"目前位置" status:STATUS_GOING];
-             
+             CLLocationCoordinate2D coordinae2D;
+             coordinae2D.latitude = newLocation.coordinate.latitude;
+             coordinae2D.longitude = newLocation.coordinate.longitude;
+             [dest setCoordinate:coordinae2D];
          }];
         globalFlag = 1;
     }

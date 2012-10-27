@@ -16,6 +16,9 @@
     NSDate *event_time;
     int destination_id;
     int owner_id;
+    double latitude;
+    double longtitude;
+    NSString *location_name;
 }
 @property (nonatomic) int event_id;
 @property (nonatomic, retain) NSString *name;
@@ -23,5 +26,8 @@
 @property (nonatomic, retain) NSDate *event_time;
 @property (nonatomic) int destination_id;
 @property (nonatomic) int owner_id;
+@property (nonatomic) double latitude;
+@property (nonatomic) double longtitude;
+@property (nonatomic) NSString *location_name;
 
 @end

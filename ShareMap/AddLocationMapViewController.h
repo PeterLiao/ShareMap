@@ -42,7 +42,7 @@ enum {
 @property (nonatomic, retain) IBOutlet MKMapView * mapView;
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (nonatomic, retain) ATMHud *hud;
-@property (assign, readwrite) MKPointAnnotation *dest;
+@property (nonatomic, readwrite) MKPointAnnotation *dest;
 @property (nonatomic, retain) IBOutlet UILabel *destination;
 @property (strong, nonatomic) IBOutlet CLGeocoder *geoCoder;
 

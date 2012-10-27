@@ -12,10 +12,8 @@
 #import "AddEventViewController.h"
 
 
-//#define URL_GET_EVENT     @"http://sevenpeaches.herokuapp.com/travel_event/"
-//#define URL_DESTROY_EVENT @"http://sevenpeaches.herokuapp.com/travel_event/destroy/%d"
-#define URL_GET_EVENT     @"localhost"
-#define URL_DESTROY_EVENT @"localhost"
+#define URL_GET_EVENT     @"http://sevenpeaches.herokuapp.com/travel_event/"
+#define URL_DESTROY_EVENT @"http://sevenpeaches.herokuapp.com/travel_event/destroy/%d"
 
 @interface EventTableViewController ()
 
@@ -119,6 +117,10 @@
             event.description = [result objectForKey:@"description"];
             event.destination_id = [[result objectForKey:@"destination_id"] intValue];
             event.owner_id = [[result objectForKey:@"owner_id"] intValue];
+            event.longtitude = [[result objectForKey:@"latitude"] doubleValue];
+            event.longtitude = [[result objectForKey:@"longtitude"] doubleValue];
+            event.location_name = [result objectForKey:@"location_name"];
+
             [_dataList addObject:event];
         }
         _connStatus = STATUS_CONN_SUCCESS;
@@ -190,7 +192,7 @@
         UIImage *image = [UIImage imageNamed:@"res/gathering.jpg"];
         cell.imageView.image = image;
         [[cell textLabel] setText:event.name];
-        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@", event.description]];
+        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@", event.location_name]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         return cell;
     }
