@@ -21,7 +21,7 @@ enum {
 @protocol AddLocationDelegate
 
 //協定中的方法
-- (void)passLoc:(MKPointAnnotation *)value;
+- (void)passLoc:(MKPointAnnotation *)value currentLat:(double)currentLat currentLon:(double) currentLon currentLoc:(NSString*) currentLoc;
 @end
 
 

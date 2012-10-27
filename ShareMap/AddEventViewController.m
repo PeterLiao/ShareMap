@@ -68,8 +68,9 @@ static double finalLon = 0.f ;
     requestURL = [[requestURL stringByAppendingString:@"&destination_id="] stringByAppendingString:@"4"];
     requestURL = [[requestURL stringByAppendingString:@"&owner_id="] stringByAppendingString:@"1"];
     requestURL = [[requestURL stringByAppendingString:@"&latitude="] stringByAppendingString:lat];
-    requestURL = [[requestURL stringByAppendingString:@"&longtitude="] stringByAppendingString:lon];
-    requestURL = [[requestURL stringByAppendingString:@"&location_name="] stringByAppendingString:self.eventLocationLabel.text];
+    requestURL = [[requestURL stringByAppendingString:@"&longtitude="] stringByAppendingString:lon];    
+    NSString *locationName = [self.eventLocationLabel.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    requestURL = [[requestURL stringByAppendingString:@"&location_name="] stringByAppendingString:locationName];
     NSLog(@"request url=%@", requestURL);
     NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:requestURL]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -119,15 +120,30 @@ static double finalLon = 0.f ;
     
 }
 
-- (void)passLoc:(MKPointAnnotation *)value {
+- (void)passLoc:(MKPointAnnotation *)value currentLat:(double)currentLat currentLon:(double) currentLon currentLoc: (NSString*) currentLoc {
     
     //設定page1TextField為所取的的數值
     //self.messageString = value;
-    
+    NSLog(@"currentLat = %f", currentLat);
     NSLog(@"value = %f", value.coordinate.latitude);
-    self.eventLocationLabel.text = value.title;
-    finalLat = value.coordinate.latitude;
-    finalLon = value.coordinate.longitude;
+//    self.eventLocationLabel.text = value.title;
+    if (value.coordinate.latitude == 0){
+        finalLat = value.coordinate.latitude;
+    } else{
+        finalLat = currentLat;
+    }
+    if (value.coordinate.latitude == 0){
+        finalLon = value.coordinate.longitude;
+    } else{
+        finalLon = currentLon;
+    }
+    
+    if (value.title == nil){
+        self.eventLocationLabel.text = currentLoc;
+    } else {
+        self.eventLocationLabel.text = value.title;
+    }
+
     [self.location setCoordinate:value.coordinate];
     NSLog(@"location:%f, %f",finalLat, finalLat );
 }
