@@ -8,6 +8,7 @@
 
 #import "PhotoPickerController.h"
 
+#define BUTTON_SHARE 0
 #define BUTTON_TAKEPHOTO 1
 #define BUTTON_USELIBRARY 2
 #define BUTTON_CANCEL 3
@@ -101,7 +102,7 @@
 
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-   switch (buttonIndex) {
+   switch (buttonIndex) {      
       case BUTTON_TAKEPHOTO:
          [self showWithCamera];
          break;
@@ -109,6 +110,7 @@
          [self showWithPhotoLibrary];
          break;
       case BUTTON_CANCEL:
+      case BUTTON_SHARE:
          // Do nothing.
          break;
       default:

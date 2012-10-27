@@ -92,7 +92,6 @@ static float nextmeters = 0.f;
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 導航精細度
-    
     // 檢查是否為 Wifi
     if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != NotReachable) {
         NSLog(@"Wifi!");

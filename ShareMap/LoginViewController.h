@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FRCurvedTextView.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController{
+    FRCurvedTextView *firstCurvedLayer;
+    IBOutlet FRCurvedTextView *secondCurvedLayer;
+    IBOutlet FRCurvedTextView *thirdCurvedLayer;
+    IBOutlet FRCurvedTextView *fourthCurvedLayer;
+}
 
+@property (nonatomic, retain) IBOutlet FRCurvedTextView *firstCurvedLayer;
+- (UIColor *)lighterColorForColor:(UIColor *)c;
 @end
