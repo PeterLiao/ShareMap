@@ -54,7 +54,7 @@ static BOOL globalFlag= 0;
     userLoc.latitude = mapView.userLocation.location.coordinate.latitude;
     userLoc.longitude = mapView.userLocation.location.coordinate.longitude;
     mapView.region = MKCoordinateRegionMakeWithDistance(userLoc, 50000, 50000);
-    
+
     
     hud = [[ATMHud alloc] initWithDelegate:self];
     [_mapView addSubview:hud.view];

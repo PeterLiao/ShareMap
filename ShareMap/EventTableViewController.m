@@ -12,8 +12,10 @@
 #import "AddEventViewController.h"
 
 
-#define URL_GET_EVENT     @"http://sevenpeaches.herokuapp.com/travel_event/"
-#define URL_DESTROY_EVENT @"http://sevenpeaches.herokuapp.com/travel_event/destroy/%d"
+//#define URL_GET_EVENT     @"http://sevenpeaches.herokuapp.com/travel_event/"
+//#define URL_DESTROY_EVENT @"http://sevenpeaches.herokuapp.com/travel_event/destroy/%d"
+#define URL_GET_EVENT     @"localhost"
+#define URL_DESTROY_EVENT @"localhost"
 
 @interface EventTableViewController ()
 

@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "CustomPlacemark.h"
-#import "MapView.h"
-#import "Place.h"
 #import "QuartzCore/CAShapeLayer.h"
 #import "CoreLocation/CoreLocation.h"
 #import "RegexKitLite/RegexKitLite.h"
