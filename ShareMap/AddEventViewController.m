@@ -109,15 +109,17 @@ static double finalLon = 0.f ;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //將page2設定成Storyboard Segue的目標UIViewController
-    id page2 = segue.destinationViewController;
-    
-    //將值透過Storyboard Segue帶給頁面2的string變數
-    //    [page2 setValue:page1TextField.text forKey:@"string"];
-    
-    //將delegate設成自己（指定自己為代理）
-    [page2 setValue:self forKey:@"delegate"];
-    
+    if([segue.destinationViewController isKindOfClass:[AddLocationMapViewController class]])
+    {
+        //將page2設定成Storyboard Segue的目標UIViewController
+        id page2 = segue.destinationViewController;
+        
+        //將值透過Storyboard Segue帶給頁面2的string變數
+        //    [page2 setValue:page1TextField.text forKey:@"string"];
+        
+        //將delegate設成自己（指定自己為代理）
+        [page2 setValue:self forKey:@"delegate"];
+    }
 }
 
 - (void)passLoc:(MKPointAnnotation *)value currentLat:(double)currentLat currentLon:(double) currentLon currentLoc: (NSString*) currentLoc {
@@ -152,6 +154,12 @@ static double finalLon = 0.f ;
 - (IBAction)backgroundTap:(id)sender {
     [eventTitleTextField resignFirstResponder];
     [eventDateLabel resignFirstResponder];
+}
+
+- (IBAction)showFriendListView:(id)sender
+{
+    UITableViewController *t = [[UITableViewController alloc]init];
+    [self.navigationController presentModalViewController:t animated:YES];
 }
 
 @end

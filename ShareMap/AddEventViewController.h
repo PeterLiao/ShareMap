@@ -33,5 +33,8 @@
 - (IBAction)done:(UITextField *)textField;
 - (IBAction)backgroundTap:(id)sender;
 
+- (IBAction)showFriendListView:(id)sender;
+
+
 @end
 

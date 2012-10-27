@@ -28,4 +28,16 @@
     return self;
 }
 
+- (id)initWithName:(NSString *)strName description:(NSString *)strDescription
+{
+    self = [super init];
+    if (self) {
+        self.name = strName;
+        self.description = strDescription;
+        // Initialization code here.
+    }
+    
+    return self;
+}
+
 @end

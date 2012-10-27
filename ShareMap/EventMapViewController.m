@@ -332,12 +332,12 @@ static float nextmeters = 0.f;
 {
 	return NO;
 }
-
+/*
 - (NSUInteger)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskLandscape;
 }
-
+*/
 
 
 

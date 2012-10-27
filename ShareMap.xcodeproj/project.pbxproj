@@ -25,6 +25,7 @@
 		04422AAB160BFC74000C4200 /* PlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAA160BFC74000C4200 /* PlaceItem.m */; };
 		04422AAF160C0D9E000C4200 /* CustomPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAD160C0D9E000C4200 /* CustomPlacemark.m */; };
 		04422AB0160C0D9E000C4200 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04422AAE160C0D9E000C4200 /* EventTableViewController.m */; };
+		04604B47163C348700EA90B9 /* FriendListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04604B46163C348700EA90B9 /* FriendListTableViewController.m */; };
 		04A2697116355EC2007F4D25 /* AddLocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */; };
 		04A831DA161EA811005930DB /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A831D9161EA811005930DB /* AddEventViewController.m */; };
 		CE178C61163289B40045EE4B /* bg-addbutton-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CE178C59163289B40045EE4B /* bg-addbutton-highlighted.png */; };
@@ -339,6 +340,8 @@
 		04422AAC160C0D9E000C4200 /* CustomPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlacemark.h; sourceTree = "<group>"; };
 		04422AAD160C0D9E000C4200 /* CustomPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlacemark.m; sourceTree = "<group>"; };
 		04422AAE160C0D9E000C4200 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
+		04604B45163C348700EA90B9 /* FriendListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListTableViewController.h; sourceTree = "<group>"; };
+		04604B46163C348700EA90B9 /* FriendListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListTableViewController.m; sourceTree = "<group>"; };
 		04A2696F16355EC2007F4D25 /* AddLocationMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationMapViewController.h; sourceTree = "<group>"; };
 		04A2697016355EC2007F4D25 /* AddLocationMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationMapViewController.m; sourceTree = "<group>"; };
 		04A831D8161EA811005930DB /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
@@ -771,6 +774,8 @@
 				04339425160B8D66007C81C0 /* Import */,
 				04422A9C160BD92D000C4200 /* Model */,
 				043393CA160B7C7B007C81C0 /* Supporting Files */,
+				04604B45163C348700EA90B9 /* FriendListTableViewController.h */,
+				04604B46163C348700EA90B9 /* FriendListTableViewController.m */,
 			);
 			path = ShareMap;
 			sourceTree = "<group>";
@@ -1506,6 +1511,7 @@
 				CE23CBBB16359F1A004A4839 /* FRCurvedTextView.m in Sources */,
 				CE23CBBF1635A608004A4839 /* OptionViewController.m in Sources */,
 				CE23CBE316393E93004A4839 /* GlobalTab.m in Sources */,
+				04604B47163C348700EA90B9 /* FriendListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

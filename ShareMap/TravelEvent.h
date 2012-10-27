@@ -30,4 +30,6 @@
 @property (nonatomic) double longtitude;
 @property (nonatomic) NSString *location_name;
 
+- (id)initWithName:(NSString *)strName description:(NSString *)strDescription;
+
 @end
