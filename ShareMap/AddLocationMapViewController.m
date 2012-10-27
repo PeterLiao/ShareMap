@@ -11,6 +11,9 @@
 #import "ATMHudQueueItem.h"
 
 static BOOL globalFlag= 0;
+static double globalLat = 0.f;
+static double globalLon = 0.f ;
+static NSString *globalTitle = nil;
 @interface AddLocationMapViewController ()
 
 @end
@@ -61,7 +64,7 @@ static BOOL globalFlag= 0;
     hud = [[ATMHud alloc] initWithDelegate:self];
     [_mapView addSubview:hud.view];
     [hud setBlockTouches:YES];
-    [hud setCaption:@"長按地圖來新增目的地"];
+    [hud setCaption:@"長按地圖來新增目的地或直接按確定使用目前位置"];
     [hud show];
     [hud hideAfter:2.5];
 
@@ -120,7 +123,8 @@ static BOOL globalFlag= 0;
     [self resetMapScope:coordinae2D];
     [_mapView setCenterCoordinate:_mapView.centerCoordinate animated:YES];
     [_mapView selectAnnotation:placemark animated:YES];
-//    [dest setCoordinate:coordinae2D];
+    [dest setCoordinate:coordinae2D];
+    
 
 }
 
@@ -157,7 +161,7 @@ static BOOL globalFlag= 0;
 {
     //呼叫協定中的方法並帶入page2textField的數值
     NSLog(@"Dest: %@",dest.title);
-    [_delegate passLoc:dest];
+    [_delegate passLoc:dest currentLat:globalLat currentLon:globalLon currentLoc:globalTitle];
    
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -207,15 +211,16 @@ static BOOL globalFlag= 0;
          NSLog(@"I point at %@",locatedAt);
          targetAnnotation.title = targetAddress;
          dest = targetAnnotation;
+         globalTitle = locatedAt;
          [_mapView addAnnotation:dest];
          
      }];
-    NSLog(@"targetAddress: %@",targetAddress);
-    NSMutableString *target = [[NSMutableString alloc] initWithFormat:@"%@", targetAddress];
-    [target replaceOccurrencesOfString:@" " withString:@"_" options:NSCaseInsensitiveSearch  range:NSMakeRange(0, [target length])];
-    pointAnnotation.title=targetAddress;
-
-    pointAnnotation.subtitle=@"subtitle";
+//    NSLog(@"targetAddress: %@",targetAddress);
+//    NSMutableString *target = [[NSMutableString alloc] initWithFormat:@"%@", targetAddress];
+//    [target replaceOccurrencesOfString:@" " withString:@"_" options:NSCaseInsensitiveSearch  range:NSMakeRange(0, [target length])];
+//    pointAnnotation.title=targetAddress;
+//
+//    pointAnnotation.subtitle=@"subtitle";
     
     
 
@@ -241,6 +246,9 @@ static BOOL globalFlag= 0;
              coordinae2D.latitude = newLocation.coordinate.latitude;
              coordinae2D.longitude = newLocation.coordinate.longitude;
              [dest setCoordinate:coordinae2D];
+             globalLat = newLocation.coordinate.latitude;
+             globalLon=  newLocation.coordinate.longitude;
+             globalTitle = locatedAt;
          }];
         globalFlag = 1;
     }

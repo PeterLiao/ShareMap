@@ -112,7 +112,9 @@
         // show all values
         for (NSDictionary *result in res) {
             TravelEvent *event = [[TravelEvent alloc] init];
-            event.event_id= [[result objectForKey:@"id"] intValue];
+            if([result objectForKey:@"id"] != NULL) {
+                event.event_id= [[result objectForKey:@"id"] intValue];
+            }
             event.name = [result objectForKey:@"name"];
             event.description = [result objectForKey:@"description"];
             event.destination_id = [[result objectForKey:@"destination_id"] intValue];
@@ -181,20 +183,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self.rowList count] > 0 && _connStatus == STATUS_CONN_SUCCESS)
+    int count = [self.rowList count];
+    if(count >= 0 && _connStatus == STATUS_CONN_SUCCESS)
     {
         static NSString *CellIdentifier = @"LoadOKCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
-        TravelEvent *event = [self.rowList objectAtIndex:[indexPath row]];
-        UIImage *image = [UIImage imageNamed:@"res/gathering.jpg"];
-        cell.imageView.image = image;
-        [[cell textLabel] setText:event.name];
-        [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@", event.location_name]];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        return cell;
+        if([self.rowList count] > 0)
+        {
+            TravelEvent *event = [self.rowList objectAtIndex:[indexPath row]];
+            UIImage *image = [UIImage imageNamed:@"res/gathering.jpg"];
+            cell.imageView.image = image;
+            [[cell textLabel] setText:event.name];
+            [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@", event.location_name]];
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            return cell;
+        } else {
+            static NSString *CellIdentifier = @"NonCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            
+            [[cell detailTextLabel] setText:@"目前沒有事件，新增ㄧ個吧！"];
+            return cell;
+        }
+        
     }
     else if(_connStatus == STATUS_CONN_FAIL)
     {
@@ -213,6 +229,7 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
+
         [[cell detailTextLabel] setText:@"讀取中..."];
         return cell;
     }
