@@ -129,12 +129,12 @@ static double finalLon = 0.f ;
     NSLog(@"currentLat = %f", currentLat);
     NSLog(@"value = %f", value.coordinate.latitude);
 //    self.eventLocationLabel.text = value.title;
-    if (value.coordinate.latitude == 0){
+    if (value.coordinate.latitude){
         finalLat = value.coordinate.latitude;
     } else{
         finalLat = currentLat;
     }
-    if (value.coordinate.latitude == 0){
+    if (value.coordinate.latitude){
         finalLon = value.coordinate.longitude;
     } else{
         finalLon = currentLon;

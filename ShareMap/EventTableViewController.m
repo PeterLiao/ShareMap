@@ -74,6 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sobj = [singletonObj singleObj];  // 宣告全域物件
     [self reloadEvent];
     self.navigationController.delegate = self;
 }
@@ -119,7 +120,7 @@
             event.description = [result objectForKey:@"description"];
             event.destination_id = [[result objectForKey:@"destination_id"] intValue];
             event.owner_id = [[result objectForKey:@"owner_id"] intValue];
-            event.longtitude = [[result objectForKey:@"latitude"] doubleValue];
+            event.latitude = [[result objectForKey:@"latitude"] doubleValue];
             event.longtitude = [[result objectForKey:@"longtitude"] doubleValue];
             event.location_name = [result objectForKey:@"location_name"];
 
@@ -279,6 +280,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"row:%d selected", [indexPath row]);
+    TravelEvent *event = [_rowList objectAtIndex:[indexPath row]];
+    sobj.eventTitle = event.name;
+    sobj.eventLatitude = event.latitude;
+    sobj.eventLongitude = event.longtitude;
+    sobj.eventLocationName = event.location_name;
+
     // Navigation logic may go here. Create and push another view controller.
     
     //EventTabBarController *controller = (EventTabBarController *)segue.destinationViewController;

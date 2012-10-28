@@ -87,7 +87,7 @@ static float nextmeters = 0.f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    sobj = [singletonObj singleObj];
+    sobj = [singletonObj singleObj];  // 宣告全域物件
     self.Distance.userInteractionEnabled = YES;
     
     self.locationManager = [[CLLocationManager alloc] init];
@@ -548,7 +548,7 @@ static float nextmeters = 0.f;
 //    [[[self view] layer]addSublayer:pulseLayer_];
     [[[_mapView superview] layer]addSublayer:pulseLayer_];
 //    [pulseLayer_ setNeedsDisplay];
-    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
+    self.tabBarController.title = sobj.eventTitle;
     
     //跑馬燈
 //    if (sobj.gblStr){
@@ -910,9 +910,11 @@ static float nextmeters = 0.f;
     
 	Place* to = [[Place alloc] init];
     to.name = @"Miniko";
-    to.description = @"目的地";
-	to.latitude = 25.049272;
-	to.longitude = 121.516879;
+    to.description = sobj.eventLocationName;
+//	to.latitude = 25.049272;
+//	to.longitude = 121.516879;
+    to.latitude = sobj.eventLatitude;
+    to.longitude = sobj.eventLongitude;
     
     [self showRouteFrom:from to:to];
     

@@ -2,6 +2,10 @@
 
 @implementation singletonObj
 @synthesize gblStr;
+@synthesize eventLatitude;
+@synthesize eventLongitude;
+@synthesize eventTitle;
+@synthesize eventLocationName;
 
 +(singletonObj *)singleObj{
     

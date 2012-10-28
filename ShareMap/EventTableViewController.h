@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GlobalTab.h"
 
 enum {
     STATUS_CONN_SUCCESS = 0,
@@ -17,6 +18,7 @@ enum {
 {
     NSArray *rowList;
     int connStatus;
+    singletonObj * sobj;
 }
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, retain) NSMutableArray *dataList;
