@@ -897,7 +897,7 @@ static float nextmeters = 0.f;
     
     Place* from = [[Place alloc] init];
     from.name = @"Jessica";
-    from.description = @"趕路中(預計15分鐘)";
+    from.description = @"趕路中";
     if ([CLLocationManager headingAvailable]){
        	from.latitude = currentLatitude;
         from.longitude = currentLongitude;

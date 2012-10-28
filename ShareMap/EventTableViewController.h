@@ -27,4 +27,5 @@ enum {
 
 - (void)reloadEvent;
 - (IBAction)addEvent:(id)sender;
+- (IBAction)forceReloadEvent:(id)sender;
 @end

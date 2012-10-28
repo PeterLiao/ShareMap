@@ -48,7 +48,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
+    sobj = [singletonObj singleObj];  // 宣告全域物件
+//    [self.navigationController setNavigationBarHidden:YES];
+    self.tabBarController.title = sobj.eventTitle;
 //    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 //imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 //imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

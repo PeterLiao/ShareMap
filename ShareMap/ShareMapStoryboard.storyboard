@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1fv-oB-XcJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1fv-oB-XcJ">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -87,16 +87,16 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="我的聚會清單" id="dJR-SL-qyz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QkP-Ix-Cya">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="uFz-F9-0wa">
                             <connections>
-                                <action selector="addEvent:" destination="pYY-cL-sYO" id="T01-33-juC"/>
-                                <segue destination="OKr-ey-SFi" kind="push" id="ocs-bt-YCG"/>
+                                <segue destination="OKr-ey-SFi" kind="push" id="NGC-if-egH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leP-ro-NWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Item" id="tGI-oh-AUR"/>
             </objects>
             <point key="canvasLocation" x="363" y="453"/>
         </scene>
@@ -158,7 +158,7 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" tag="200" contentMode="scaleToFill" id="qPI-YJ-KdW">
-                                <rect key="frame" x="0.0" y="322" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" id="aIv-Ig-tt8">
@@ -266,6 +266,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Yw3-01-NeN">
+                                <rect key="frame" x="35" y="28" width="250" height="250"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" id="mAD-E0-cbC" customClass="FRCurvedTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -282,7 +286,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" id="1Yg-iT-4vu" customClass="FRCurvedTextView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="312"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="311"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
@@ -386,18 +390,18 @@
         <!--Add Event View Controller - 新增事件-->
         <scene sceneID="zWG-ck-I1b">
             <objects>
-                <tableViewController id="OKr-ey-SFi" customClass="AddEventViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EventTabbar" id="OKr-ey-SFi" customClass="AddEventViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="oTO-lq-dxI">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <datePicker key="tableFooterView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="cgN-6r-tLb">
+                        <datePicker key="tableFooterView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" id="cgN-6r-tLb">
                             <rect key="frame" x="0.0" y="198" width="320" height="216"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <date key="date" timeIntervalSinceReferenceDate="372397223.14984697">
                                 <!--2012-10-20 03:40:23 +0000-->
                             </date>
-                            <locale key="locale" localeIdentifier="en_US"/>
+                            <locale key="locale" localeIdentifier="zh_TW"/>
                             <timeZone key="timeZone" name="America/Los_Angeles">
                                 <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
@@ -552,12 +556,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="新增事件" id="LhR-PF-8ng">
-                        <barButtonItem key="leftBarButtonItem" title="結束" id="zht-yj-YtV">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="zht-yj-YtV">
                             <connections>
                                 <action selector="doCancelView:" destination="OKr-ey-SFi" id="ynR-WP-xB2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="新增" id="ViC-HF-BKc">
+                        <barButtonItem key="rightBarButtonItem" title="確定" id="ViC-HF-BKc">
                             <connections>
                                 <action selector="addEvent:" destination="OKr-ey-SFi" id="sd3-Hg-ydf"/>
                             </connections>
@@ -658,115 +662,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="139-flags.png" width="42" height="21"/>
         <image name="86-camera.png" width="24" height="18"/>
     </resources>
-    <classes>
-        <class className="AddEventViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEventViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addEvent:"/>
-                <relationship kind="action" name="backgroundTap:"/>
-                <relationship kind="action" name="doCancelView:"/>
-                <relationship kind="action" name="done:" candidateClass="UITextField"/>
-                <relationship kind="action" name="showFriendListView:"/>
-                <relationship kind="outlet" name="eventDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventDetailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="eventLocationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventTitleTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="AddLocationMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddLocationMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doApply:"/>
-                <relationship kind="action" name="doSearch:"/>
-                <relationship kind="outlet" name="destination" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="geoCoder" candidateClass="CLGeocoder"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="CLGeocoder" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLGeocoder.h"/>
-        </class>
-        <class className="CLLocation" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLLocation.h"/>
-        </class>
-        <class className="ChatViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChatViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sendMessage_Click:"/>
-                <relationship kind="action" name="showPhraseInfo:"/>
-                <relationship kind="outlet" name="chatTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="messageTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phraseViewController" candidateClass="FaceViewController"/>
-            </relationships>
-        </class>
-        <class className="EventMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doSearch:"/>
-                <relationship kind="outlet" name="Distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="labelShow" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="EventTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTabBarController.h"/>
-        </class>
-        <class className="EventTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addEvent:"/>
-            </relationships>
-        </class>
-        <class className="FRCurvedTextView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FRCurvedTextView.h"/>
-        </class>
-        <class className="FaceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FaceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissMyselfAction:"/>
-                <relationship kind="outlet" name="faceScrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="FriendListTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendListTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doApply:"/>
-            </relationships>
-        </class>
-        <class className="KTThumbsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KTThumbsViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="fourthCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="secondCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="thirdCurvedLayer" candidateClass="FRCurvedTextView"/>
-            </relationships>
-        </class>
-        <class className="OptionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="firstCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="fourthCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="secondCurvedLayer" candidateClass="FRCurvedTextView"/>
-                <relationship kind="outlet" name="thirdCurvedLayer" candidateClass="FRCurvedTextView"/>
-            </relationships>
-        </class>
-        <class className="PhotoViewController" superclassName="KTThumbsViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="ViewPhoto:"/>
-            </relationships>
-        </class>
-        <class className="UIGlossyButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIGlossyButton.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

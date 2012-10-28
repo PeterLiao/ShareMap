@@ -50,6 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sobj = [singletonObj singleObj];  // 宣告全域物件
     anotherSingle = [singletonObj singleObj];
     
     UIImage *image = [UIImage imageNamed:@"backitem.png"];
@@ -101,7 +102,7 @@
 	
 	[self.messageTextField setText:self.messageString];
 	[self.chatTableView reloadData];
-    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
+    self.tabBarController.title = sobj.eventTitle;
 
 }
 

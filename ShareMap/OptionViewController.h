@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 #import "FRCurvedTextView.h"
+#import "GlobalTab.h"
 
 @interface OptionViewController : UIViewController {
     FRCurvedTextView *firstCurvedLayer;
     IBOutlet FRCurvedTextView *secondCurvedLayer;
     IBOutlet FRCurvedTextView *thirdCurvedLayer;
     IBOutlet FRCurvedTextView *fourthCurvedLayer;
+    singletonObj *sobj;
 }
 
 @property (nonatomic, retain) IBOutlet FRCurvedTextView *firstCurvedLayer;

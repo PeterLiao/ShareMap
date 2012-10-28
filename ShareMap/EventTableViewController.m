@@ -77,6 +77,15 @@
     sobj = [singletonObj singleObj];  // 宣告全域物件
     [self reloadEvent];
     self.navigationController.delegate = self;
+    
+    UIBarButtonItem *reload = [[UIBarButtonItem alloc]initWithTitle:@"重新整理" style:UIBarButtonItemStyleDone target:self action:@selector(forceReloadEvent:)];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
+    
+    NSArray *items = [[NSArray alloc] initWithObjects:reload, nil];
+    
+    self.navigationItem.rightBarButtonItems = items;
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -280,6 +289,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"row:%d selected", [indexPath row]);
+    if ( [_rowList count] == 0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"無效的事件，請選擇其他欄位或新增一個事件"
+                                                       delegate:self
+                                              cancelButtonTitle:@"確定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+
     TravelEvent *event = [_rowList objectAtIndex:[indexPath row]];
     sobj.eventTitle = event.name;
     sobj.eventLatitude = event.latitude;
@@ -310,7 +329,13 @@
         [(UITableView *)self.view beginUpdates];
         [(UITableView *)self.view deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
         [self deleteEvent:indexPath.row];
-        [(UITableView *)self.view endUpdates];
+        if (indexPath.row) {
+            [(UITableView *)self.view endUpdates];
+        } else {
+            [self reloadEvent];
+//            [[self tableView] endUpdates];  // Crash Here.
+        }
+        
         //[self reloadEvent];
         
     }
@@ -319,9 +344,18 @@
     }
 }
 
-- (IBAction)doEvent:(id)sender
+- (IBAction)addEvent:(id)sender
 {
+    NSLog(@"Addevent");
 }
+
+- (IBAction)forceReloadEvent:(id)sender
+{
+    NSLog(@"forceReloadEvent");
+    [self reloadEvent];
+
+}
+
 
 - (void)navigationController:(UINavigationController *)navigationController
 willShowViewController:(UIViewController *)viewController animated:(BOOL

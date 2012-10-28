@@ -22,7 +22,7 @@
         curvedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
         curvedView.alpha = 0.0f;
     }
-    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,6 +59,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sobj = [singletonObj singleObj];  // 宣告全域物件
+    self.tabBarController.title = sobj.eventTitle;
     
     firstCurvedLayer.text = @"人肉導航機";
     firstCurvedLayer.textFont = @"Baskerville Bold";

@@ -620,6 +620,7 @@
 		CE3191EB1639DEFB00EA6CE9 /* 11-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x.png"; sourceTree = "<group>"; };
 		CE3191EC1639DEFB00EA6CE9 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
 		CE3191ED1639DEFB00EA6CE9 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		CEA5266D163CC2700013FFFA /* Taipei.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Taipei.gpx; sourceTree = "<group>"; };
 		CEC249771621051C00CE7BD6 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		CEC249781621051C00CE7BD6 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		CEC2497C16210D3D00CE7BD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -784,6 +785,7 @@
 			isa = PBXGroup;
 			children = (
 				043393CB160B7C7B007C81C0 /* ShareMap-Info.plist */,
+				CEA5266D163CC2700013FFFA /* Taipei.gpx */,
 				043393CC160B7C7B007C81C0 /* InfoPlist.strings */,
 				043393CF160B7C7B007C81C0 /* main.m */,
 				043393D1160B7C7B007C81C0 /* ShareMap-Prefix.pch */,

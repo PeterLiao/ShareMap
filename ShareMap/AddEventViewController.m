@@ -57,19 +57,48 @@ static double finalLon = 0.f ;
 - (IBAction)addEvent:(id)sender
 {
     _responseData = [NSMutableData data];
+    
     NSString *requestURL = @"http://sevenpeaches.herokuapp.com/travel_event/new?";
     NSString *eventTitle = [_eventTitleTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    if ([eventTitle isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"請輸入標題！"
+                                                       delegate:self
+                                              cancelButtonTitle:@"確定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        return;
+        
+    }
+
     NSString *eventDetailTitle = [_eventDetailTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *lat = [[NSString alloc] initWithFormat:@"%f", finalLat];
     NSString *lon = [[NSString alloc] initWithFormat:@"%f", finalLon];
     requestURL = [[requestURL stringByAppendingString:@"name="] stringByAppendingString:eventTitle];
-    requestURL = [[requestURL stringByAppendingString:@"&description="] stringByAppendingString:eventDetailTitle];
+    if([eventDetailTitle length] != 0) {
+        requestURL = [[requestURL stringByAppendingString:@"&description="] stringByAppendingString:eventDetailTitle];
+    } else {
+        requestURL = [requestURL stringByAppendingString:@"&description=empty"] ;
+    }
     requestURL = [[requestURL stringByAppendingString:@"&event_time="] stringByAppendingString:@"0"];
     requestURL = [[requestURL stringByAppendingString:@"&destination_id="] stringByAppendingString:@"4"];
     requestURL = [[requestURL stringByAppendingString:@"&owner_id="] stringByAppendingString:@"1"];
     requestURL = [[requestURL stringByAppendingString:@"&latitude="] stringByAppendingString:lat];
     requestURL = [[requestURL stringByAppendingString:@"&longtitude="] stringByAppendingString:lon];    
     NSString *locationName = [self.eventLocationLabel.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    if ([self.eventLocationLabel.text isEqualToString:@"尚未決定地點"] || [self.eventLocationLabel.text isEqualToString:@""] ){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"請輸入地點！"
+                                                       delegate:self
+                                              cancelButtonTitle:@"確定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        return;
+
+    }
+        
     requestURL = [[requestURL stringByAppendingString:@"&location_name="] stringByAppendingString:locationName];
     NSLog(@"request url=%@", requestURL);
     NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:requestURL]];

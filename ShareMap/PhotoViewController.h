@@ -10,7 +10,7 @@
 #import "KTThumbsViewController.h"
 #import "PhotoPickerController.h"
 #import "Photos.h"
-
+#import "GlobalTab.h"
 
 
 
@@ -22,6 +22,8 @@
     Photos *myPhotos_;
     UIActivityIndicatorView *activityIndicatorView_;
     UIWindow *window_;
+    
+    singletonObj *sobj;
 
 //@private
 //    id <KTPhotoBrowserDataSource> dataSource_;

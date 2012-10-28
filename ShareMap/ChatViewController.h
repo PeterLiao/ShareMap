@@ -26,7 +26,7 @@
 	FaceViewController      *_phraseViewController;
 	AsyncUdpSocket             *_udpSocket;
 	NSDate                     *_lastTime;
-    
+    singletonObj * sobj;
     singletonObj * anotherSingle;
     
     
