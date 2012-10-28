@@ -160,7 +160,7 @@
     hud.accessoryPosition = ATMHudAccessoryPositionRight;
     [hud setCaption:@"上傳成功"];
     [hud show];
-    [hud hideAfter:2];
+    [hud hideAfter:1.5];
 }
 
 @end
