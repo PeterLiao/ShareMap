@@ -4,7 +4,7 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ShareMap/AddEventViewController.m"
@@ -13,11 +13,11 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "162"
          endingLineNumber = "162"
-         landmarkName = "-showFriendListView:"
+         landmarkName = "-passLoc:currentLat:currentLon:currentLoc:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ShareMap/AddEventViewController.m"
@@ -26,11 +26,11 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "155"
          endingLineNumber = "155"
-         landmarkName = "-backgroundTap:"
+         landmarkName = "-passLoc:currentLat:currentLon:currentLoc:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ShareMap/AddEventViewController.m"
@@ -39,7 +39,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "126"
          endingLineNumber = "126"
-         landmarkName = "-passLoc:currentLat:currentLon:currentLoc:"
+         landmarkName = "-connectionDidFinishLoading:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -52,11 +52,11 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "106"
          endingLineNumber = "106"
-         landmarkName = "-done:"
+         landmarkName = "-addEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ShareMap/AddEventViewController.m"
@@ -65,11 +65,11 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "107"
          endingLineNumber = "107"
-         landmarkName = "-done:"
+         landmarkName = "-addEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ShareMap/AddEventViewController.m"
@@ -78,7 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "96"
          endingLineNumber = "96"
-         landmarkName = "-connectionDidFinishLoading:"
+         landmarkName = "-addEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -235,6 +235,110 @@
          startingLineNumber = "90"
          endingLineNumber = "90"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373125666.775743"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "197"
+         endingLineNumber = "197"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126585.767136"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "337"
+         endingLineNumber = "337"
+         landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126585.767136"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "334"
+         endingLineNumber = "334"
+         landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126316.549767"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "190"
+         endingLineNumber = "190"
+         landmarkName = "-tableView:numberOfRowsInSection:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126317.454034"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
+         landmarkName = "-tableView:numberOfRowsInSection:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126585.767136"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "338"
+         endingLineNumber = "338"
+         landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126879.254389"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "341"
+         endingLineNumber = "341"
+         landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ShareMap/EventTableViewController.m"
+         timestampString = "373126660.077449"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "332"
+         endingLineNumber = "332"
+         landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

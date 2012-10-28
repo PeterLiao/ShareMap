@@ -187,14 +187,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //if([self.rowList count] == 0) return 1;
+    if([self.rowList count] == 0) return 1;
     return [self.rowList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int count = [self.rowList count];
-    if(count > 0 && _connStatus == STATUS_CONN_SUCCESS)
+    if(count >= 0 && _connStatus == STATUS_CONN_SUCCESS)
     {
         static NSString *CellIdentifier = @"LoadOKCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -327,14 +327,26 @@
         // Delete the row from the data source
         NSLog(@"delete event: row index:%d", indexPath.row);
         [(UITableView *)self.view beginUpdates];
-        [(UITableView *)self.view deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        if([_rowList count] > 1)
+        {
+            [(UITableView *)self.view deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        }
         [self deleteEvent:indexPath.row];
+        if([_rowList count] == 0)
+        {
+           [_dataList addObject:[[TravelEvent alloc]init]];
+            _rowList = [NSArray arrayWithArray:_dataList];
+        }
+ 
+        [(UITableView *)self.view endUpdates];
+        [self reloadEvent];
+/*
         if (indexPath.row) {
             [(UITableView *)self.view endUpdates];
         } else {
             [self reloadEvent];
 //            [[self tableView] endUpdates];  // Crash Here.
-        }
+        }*/
         
         //[self reloadEvent];
         
