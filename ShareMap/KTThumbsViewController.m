@@ -10,14 +10,15 @@
 #import "KTThumbsView.h"
 #import "KTThumbView.h"
 #import "KTPhotoScrollViewController.h"
-
+#import "ATMHud.h"
+#import "ATMHudQueueItem.h"
 
 @interface KTThumbsViewController (Private)
 @end
 
 
 @implementation KTThumbsViewController
-
+@synthesize hud;
 @synthesize dataSource = dataSource_;
 
 - (void)dealloc {
@@ -68,6 +69,14 @@
    // Retain a reference to the scroll view.
    scrollView_ = scrollView;
    [scrollView_ retain];
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:hud.view];
+    [hud setImage:[UIImage imageNamed:@"19-check"]];
+    hud.accessoryPosition = ATMHudAccessoryPositionRight;
+    [hud setCaption:@"點擊相機按鈕來選擇要上傳的照片或拍照"];
+    [hud setBlockTouches:NO];
+    [hud show];
+    [hud hideAfter:2];
     
    // Release the local scroll view reference.
 }
@@ -88,19 +97,11 @@
 //  }
 //  // Then ensure translucency to match the look of Apple's Photos app.
 //  [navbar setTranslucent:YES];
-    /*
-    UIToolbar *toolbar = (UIToolbar *)[self.presentingViewController.view viewWithTag:100];
-    toolbar.frame = CGRectMake(0.0f, (float)(415.0f), 320.0f, 38.0f);
-    [toolbar sizeToFit];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = 130.0;
-    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(addPhoto)];
-    NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
-    [toolbar setItems:items];
-    */
+
 
 
   [super viewWillAppear:animated];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

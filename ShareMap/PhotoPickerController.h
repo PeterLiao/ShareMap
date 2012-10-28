@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ATMHudDelegate.h"
 
-@interface PhotoPickerController : NSObject <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate> {
+@class ATMHud;
+
+@interface PhotoPickerController : NSObject <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, ATMHudDelegate> {
    id delegate_;
    UIImagePickerController *imagePicker_;
    BOOL isFromCamera_;
+    ATMHud *hud;
 }
 
+@property (nonatomic, retain) ATMHud *hud;
 - (id)initWithDelegate:(id)delegate;
 - (void)show;
 

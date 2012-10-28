@@ -7,6 +7,8 @@
 //
 
 #import "PhotoPickerController.h"
+#import "ATMHud.h"
+#import "ATMHudQueueItem.h"
 
 #define BUTTON_SHARE 0
 #define BUTTON_TAKEPHOTO 1
@@ -20,6 +22,7 @@
 @end
 
 @implementation PhotoPickerController
+@synthesize hud;
 
 - (void)dealloc {
    [imagePicker_ release], imagePicker_ = nil;
@@ -47,7 +50,8 @@
                                                                         NSLocalizedString(@"從相片庫選擇...", @"Button text."), 
                                                                         nil];
       if ([delegate_ respondsToSelector:@selector(view)]) {
-         [actionSheet showInView:[delegate_ view]];
+         //[actionSheet showInView:[delegate_ view]];
+         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
       }
    } else {
       [self showWithPhotoLibrary];
@@ -110,8 +114,22 @@
          [self showWithPhotoLibrary];
          break;
       case BUTTON_CANCEL:
+           // Do nothing.
+         break;
       case BUTTON_SHARE:
-         // Do nothing.
+           // HUD
+           hud = [[ATMHud alloc] initWithDelegate:self];
+//           [self.imagePicker.view addSubview:hud.view];
+           NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:.02 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
+           [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+           [hud setCaption:@"圖片上傳中..."];
+           [hud setBlockTouches:YES];
+           [[[UIApplication sharedApplication] keyWindow] addSubview:hud.view];
+
+           [hud show];
+
+
+         
          break;
       default:
 #ifdef DEBUG
@@ -121,5 +139,28 @@
    }
 }
 
+- (void)tick:(NSTimer *)timer {
+	static CGFloat p = 0.08;
+	p += 0.01;
+	[hud setProgress:p];
+	if (p >= 1) {
+		p = 0;
+		[timer invalidate];
+		[hud hide];
+
+		[self performSelector:@selector(resetProgress) withObject:nil afterDelay:0.2];
+	}
+}
+
+- (void)resetProgress {
+	[hud setProgress:0];
+    hud = [[ATMHud alloc] initWithDelegate:self];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:hud.view];
+    [hud setImage:[UIImage imageNamed:@"19-check"]];
+    hud.accessoryPosition = ATMHudAccessoryPositionRight;
+    [hud setCaption:@"上傳成功"];
+    [hud show];
+    [hud hideAfter:2];
+}
 
 @end

@@ -9,19 +9,25 @@
 #import <UIKit/UIKit.h>
 #import "KTPhotoBrowserDataSource.h"
 #import "KTThumbsView.h"
+#import "ATMHudDelegate.h"
+
+@class ATMHud;
 
 @class KTThumbsView;
 
-@interface KTThumbsViewController : UIViewController <KTThumbsViewDataSource>
+@interface KTThumbsViewController : UIViewController <KTThumbsViewDataSource,ATMHudDelegate>
 {
+    ATMHud *hud;
 @private
    id <KTPhotoBrowserDataSource> dataSource_;
    KTThumbsView *scrollView_;
    BOOL viewDidAppearOnce_;
    BOOL navbarWasTranslucent_;
+    
 }
 
 @property (nonatomic, retain) id <KTPhotoBrowserDataSource> dataSource;
+@property (nonatomic, retain) ATMHud *hud;
 
 /**
  * Re-displays the thumbnail images.

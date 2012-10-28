@@ -12,16 +12,15 @@
 #import "Photos.h"
 #import "GlobalTab.h"
 
-
-
 @class Photos;
 
 
-@interface PhotoViewController : KTThumbsViewController <PhotoPickerControllerDelegate, PhotosDelegate,UINavigationControllerDelegate> {
+@interface PhotoViewController : KTThumbsViewController <PhotoPickerControllerDelegate, PhotosDelegate,UINavigationControllerDelegate,ATMHudDelegate> {
     PhotoPickerController *photoPicker_;
     Photos *myPhotos_;
     UIActivityIndicatorView *activityIndicatorView_;
     UIWindow *window_;
+//    UIToolbar *toolbar;
     
     singletonObj *sobj;
 
@@ -32,12 +31,14 @@
 //    BOOL navbarWasTranslucent_;
 }
 
+//@property (nonatomic,retain) UIToolbar *toolbar;
 
 - (IBAction)ViewPhoto:(id)sender;
 
 - (id)initWithWindow:(UIWindow *)window;
 
 @property (nonatomic, retain) id <KTPhotoBrowserDataSource> dataSource;
+
 
 /**
  * Re-displays the thumbnail images.

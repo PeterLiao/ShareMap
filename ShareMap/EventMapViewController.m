@@ -279,8 +279,10 @@ static float nextmeters = 0.f;
     // HUD
     hud = [[ATMHud alloc] initWithDelegate:self];
     [self.view addSubview:hud.view];
-    [hud setBlockTouches:YES];
-    [hud setCaption:@"切換到朋友介面以回到上一層選單"];
+    [hud setImage:[UIImage imageNamed:@"19-check"]];
+    hud.accessoryPosition = ATMHudAccessoryPositionRight;
+    [hud setCaption:@"要回上一層選單時請切換到其他tab"];
+    [hud setBlockTouches:NO];
     [hud show];
     [hud hideAfter:3.5];
     

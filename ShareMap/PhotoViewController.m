@@ -21,6 +21,7 @@
 
 @implementation PhotoViewController
 
+//@synthesize toolbar;
 
 - (void)dealloc {
      myPhotos_ = nil;
@@ -80,6 +81,7 @@
         [myPhotos_ setDelegate:self];
     }
     [self setDataSource:myPhotos_];
+
     
     UIToolbar *toolbar = [[UIToolbar alloc]init];
     toolbar.frame = CGRectMake(0.0f, (float)(320.0f), 320.0f, 38.0f);
@@ -90,10 +92,10 @@
     NSArray *items = [NSArray arrayWithObjects: spaceItem, cameraItem, nil];
     [toolbar setItems:items];
     [self.view addSubview:toolbar];
-    
-
-
-
+    /* 以下兩個方式都能叫出toolbar, 但是會有別的tab也會出現toolbar的問題
+    [self.parentViewController.view addSubview:toolbar];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:toolbar];
+    */
 }
 
 - (void)viewDidUnload
@@ -121,15 +123,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tabBarController.title = NSLocalizedString(@"京站聚餐", @"comment");
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    self.tabBarController.title = sobj.eventTitle;
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [toolbar removeFromSuperview];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
