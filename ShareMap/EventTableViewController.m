@@ -194,7 +194,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int count = [self.rowList count];
-    if(count >= 0 && _connStatus == STATUS_CONN_SUCCESS)
+    if(count > 0 && _connStatus == STATUS_CONN_SUCCESS)
     {
         static NSString *CellIdentifier = @"LoadOKCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
